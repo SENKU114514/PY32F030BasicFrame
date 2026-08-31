@@ -1,0 +1,203 @@
+# EXTERN 可移植组件集：目录、移植与命名规范
+
+适用范围：本规范仅约束项目根目录 `EXTERN` 中的自写组件。其目标是让同一套组件能在
+PY32F030、PY32F002B、PY32F003 及后续同系列芯片间迁移；芯片厂商的 `Drivers`、IDE
+工程和自动生成文件不纳入本规范。
+
+本文件是规范说明，不代表已对任何源文件进行改名或修改。
+
+## 1. 组件分层与依赖方向
+
+```
+APP  ->  MAG / SYS / HW_INIT
+MAG  ->  HW_INIT（仅使用其定时能力）
+RTOS ->  独立；不与 MAG 同时承担主调度职责
+HW_INIT -> 芯片 LL/HAL 驱动与引脚复用配置
+SYS  ->  芯片时钟、启动后系统级配置
+```
+
+上层不得直接引用某个具体芯片的寄存器、`GPIOA`、`TIM1` 或 `LL_*` 宏；这些差异只能
+停留在 `HW_INIT` 与 `SYS`。更换芯片时，应优先只修改这两层的配置表或适配实现。
+
+## 2. EXTERN 的目录命名
+
+`EXTERN` 是可移植组件集合，目录名采用全大写的功能域名称；一级目录不得以具体芯片型号
+命名，也不放 IDE、编译产物或厂商驱动。
+
+```
+EXTERN/
+  APP/                 应用业务、系统入口、周期任务实现
+  SYS/                 系统时钟、芯片启动后的系统配置
+  MAG/                 通用非阻塞调度（management）
+  HW_INIT/             硬件抽象及外设初始化
+    GPIO/              GPIO 模块
+    TIM/               定时器模块
+    SPI/               SPI 模块
+    USART/             USART 模块
+    ADC/               ADC 模块
+    IWDG/              独立看门狗模块
+  RTOS/                RTOS 内核与端口实验代码
+  EXAMPLE/             最小模块使用示例与模板
+```
+
+规则：
+
+1. 一级域和外设目录使用全大写缩写：`APP`、`SYS`、`MAG`、`HW_INIT`、`GPIO`、`TIM`。
+2. 新增外设遵循厂商常用外设缩写，例如 `I2C`、`PWM`、`DMA`、`UART`；同一概念只保留一种
+   名称，不能同时使用 `USART` 与 `UART` 作为两个同义目录。
+3. 与具体板子相关的引脚映射、晶振频率或外设实例，放在对应的 `HW_INIT/<PERIPH>/` 或
+   `SYS/` 中；不应渗入 `APP`、`MAG`。
+4. 若某模块出现“通用逻辑”和“芯片适配”两部分，仍以一个模块目录保存：通用代码在
+   `<module>.c`，芯片差异集中在 `<module>_port.c` 或 `<module>_map.c`，不可散落在 APP。
+
+## 3. 文件命名
+
+每个模块的 `.c` 与 `.h` 必须同名配对，文件基本名全小写、使用下划线分词。
+
+```
+gpio.c / gpio.h
+gpio_port.c                 // 芯片或板级适配实现
+gpio_map.c                  // 引脚/外设映射表
+mag_tick.c / mag_tick.h
+app_main.c / app_main.h
+```
+
+`_init` 只能用于“以初始化为主体”的历史模块；新模块首选模块名本身，例如 `gpio.c`，
+初始化函数用 `HW_GPIO_Init()` 表达。文件名不携带芯片型号，除非文件只适用于该型号；
+这种例外必须使用明确后缀，例如 `gpio_py32f002b_port.c`。
+
+头文件保护宏统一为：
+
+```
+EXTERN_<一级域>_<模块名>_H
+EXTERN_HW_INIT_GPIO_H
+EXTERN_MAG_TICK_H
+```
+
+## 4. 标识符命名总则
+
+* 公共 API 必须带层级/模块前缀，避免多个外设或后续移植文件发生链接符号冲突。
+* 单词使用 PascalCase（函数动作、类型概念）或 snake_case（变量）；不要混用 `GETFSM`、
+  `SET_Pin`、`KeyMat` 这类风格。
+* 缩写保持芯片领域的标准大写：`GPIO`、`TIM`、`SPI`、`DMA`、`IRQ`、`IWDG`、`RTOS`。
+* 除中断入口、启动文件要求的符号和厂商库符号外，禁止无模块前缀的公共符号。
+
+## 5. 函数命名
+
+### 5.1 对外 API
+
+格式：`<层级>_<模块>_<动作><对象>`。
+
+```
+APP_Init()
+APP_MainLoop()
+SYS_ClockConfig()
+MAG_TickInit()
+MAG_TaskProcess()
+HW_GPIO_InitOutput()
+HW_GPIO_SetPin()
+HW_GPIO_GetKeyState()
+HW_TIM_InitCounterIt()
+HW_SPI_TransmitDma()
+RTOS_SwitchTask()
+```
+
+动词固定优先级：`Init`、`Deinit`、`Start`、`Stop`、`Enable`、`Disable`、`Set`、`Get`、
+`Read`、`Write`、`Scan`、`Process`、`Reset`。返回读取值用 `Get`；执行硬件读操作用 `Read`；
+设置状态用 `Set`。
+
+### 5.2 内部函数
+
+仅在当前 `.c` 使用的函数必须声明为 `static`，格式为小写 snake_case：
+
+```
+static void gpio_enable_clock(void);
+static bool spi_is_transfer_complete(void);
+```
+
+### 5.3 回调与中断
+
+可由用户覆盖的弱回调使用 `<模块>_<事件>Callback`：
+
+```
+HW_TIM1_UpdateCallback()
+HW_SPI_TxCompleteCallback()
+```
+
+芯片启动文件规定的中断入口名称必须原样保留，例如
+`TIM1_BRK_UP_TRG_COM_IRQHandler()`、`DMA1_Channel1_IRQHandler()`；入口内部仅完成清标志
+和转调模块回调。
+
+## 6. 类型、枚举与结构体
+
+类型格式为 `<模块>_<概念>_t`，枚举格式为 `<模块>_<概念>_e`：
+
+```
+HW_GPIO_Pin_t
+HW_GPIO_PinConfig_t
+HW_GPIO_Level_e
+HW_GPIO_KeyState_e
+HW_TIM_Config_t
+MAG_TaskConfig_t
+RTOS_TaskContext_t
+```
+
+所有枚举成员必须拥有与类型对应的全大写前缀，禁止裸名字：
+
+```
+HW_GPIO_LEVEL_LOW
+HW_GPIO_LEVEL_HIGH
+HW_GPIO_LEVEL_TOGGLE
+
+HW_GPIO_KEY_STATE_DOWN
+HW_GPIO_KEY_STATE_DOWN_DEBOUNCE
+HW_GPIO_KEY_STATE_UP
+HW_GPIO_KEY_STATE_UP_DEBOUNCE
+
+HW_GPIO_PIN_A0
+HW_GPIO_PIN_B3
+HW_TIM_CONFIG_TIM1_PWM2_CH1_PA3
+```
+
+结构体成员一律小写 snake_case：`gpio_port`、`gpio_pin`、`alternate_function`、
+`return_address`、`stack_address`。不使用 `TIMx`、`CHx` 之类含糊的成员名。
+
+## 7. 宏、常量、变量和参数
+
+* 宏与编译期开关：全大写，必须带模块前缀，例如 `HW_GPIO_KEY_DEBOUNCE_MS`、
+  `HW_IWDG_FEED()`、`MAG_TASK_PERIOD_50MS`。
+* 有单位的数值名称必须带单位：`timeout_ms`、`frequency_mhz`、`buffer_size_bytes`。
+* 全局变量默认禁止导出；确需导出时使用 `g_<模块小写>_<名称>`，例如
+  `g_hw_spi_dma_busy`。模块私有文件变量使用 `static`，格式 `s_<名称>`。
+* 局部变量和参数采用小写 snake_case，例如 `pin_id`、`prescaler`、`auto_reload`、
+  `p_tx_data`、`p_rx_data`。指针参数可使用 `p_` 前缀，数组长度使用 `_count` 或 `_size`。
+* 布尔状态使用 `is_`、`has_`、`should_` 前缀，例如 `is_transfer_complete`。
+
+## 8. 可移植性硬规则
+
+1. `APP` 不得出现 `GPIOA`、`TIM1`、`LL_GPIO_*`、`LL_TIM_*` 等芯片/厂商符号。
+2. 枚举配置项可以描述“功能 + 候选映射”，如 `HW_SPI_CONFIG_SPI1_PA1_PA2`；实际端口、
+   引脚和 AF 数值仅在映射表中填写。
+3. 芯片型号不得进入通用 API、通用类型或 APP 文件名；仅在芯片专属 port 文件中出现。
+4. 从 F030 迁移到 F002B/F003 时，优先替换 `SYS` 的时钟适配、`HW_INIT` 的 map/port 实现、
+   中断向量适配；`APP`、`MAG` 的接口不应改变。
+5. 同一功能只能有一个公共入口。例如 GPIO 输出配置统一由 `HW_GPIO_InitOutput()` 提供，
+   不再并存 `HW_GPIO_OUT_init()`、`GPIO_OutputInit()` 等等价名称。
+
+## 9. 现有名称的后续统一目标（仅作为重构对照）
+
+```
+HW_GPIO_OUT_init()          -> HW_GPIO_InitOutput()
+HW_GPIO_INPUT_init()        -> HW_GPIO_InitInput()
+HW_GPIO_SET_Pin()           -> HW_GPIO_SetPin()
+HW_GPIO_GETFSM_KeyState()   -> HW_GPIO_GetKeyState()
+HW_TIM_COUNT_IT_init()      -> HW_TIM_InitCounterIt()
+HW_TIM_PWM_init()           -> HW_TIM_InitPwm()
+HW_SPI_DMA_init()           -> HW_SPI_InitDma()
+get_mag_tick()              -> MAG_TickGet()
+mag_task()                  -> MAG_TaskProcess()
+APP_SystemClockConfig()     -> SYS_ClockConfig()
+task_context_t              -> RTOS_TaskContext_t
+```
+
+该对照是目标规范，不应在未获得明确修改授权时执行。

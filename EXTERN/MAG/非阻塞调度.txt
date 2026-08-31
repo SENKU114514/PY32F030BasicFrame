@@ -1,0 +1,5 @@
+非阻塞调度管理
+
+mag=management管理
+tick=时钟
+task=任务

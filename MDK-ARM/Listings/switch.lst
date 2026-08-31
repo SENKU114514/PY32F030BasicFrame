@@ -1,0 +1,97 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;²ÉÓÃARMÓï·¨
+    2 00000000         ;Ô­Àí£ºÃ¿´ÎÓÉ´úÂëÌø×ª½ø»ã±àµÄÊ±ºò£¬
+    3 00000000         ;R0»á´¢´æÎÒÃÇº¯Êı´«ÈëµÄµÚÒ»¸ö²ÎÊı
+    4 00000000         ;R1»á´¢´æµÚ¶ş¸ö²ÎÊı£¬ºóÃæÍ¬Àí
+    5 00000000         ;LR¼Ä´æÆ÷»á×Ô¶¯´¢´æµ±Ç°Ö¸ÁîµØÖ·+1
+    6 00000000         
+    7 00000000                 AREA             CODE_SEG,CODE,READONLY ;ÄÚ´æ·Ö¶
+                                                            Î´æflash,´úÂë¶Î,Ö»¶
+                                                            Á
+    8 00000000                 EXPORT           task_switch ;º¯ÊıÈ«¾ÖÉùÃ÷
+    9 00000000                 EXPORT           task_run_first ;º¯ÊıÈ«¾ÖÉùÃ÷
+   10 00000000         
+   11 00000000         task_switch                          ;Ìø×ªº¯Êı
+   12 00000000         ;r0->stack_addr <= sp,½«sp²ÎÊı»ñÈ¡½østack_addrÖĞ
+   13 00000000 466B            MOV              R3, SP      ;È¡³öSP
+   14 00000002 6043            STR              R3, [R0, #4] ;½«SP´æÈë½á¹¹Ìåsta
+                                                            ck_addrÖĞ
+   15 00000004         
+   16 00000004         ;r0->return_addr <= lr
+   17 00000004 4673            MOV              R3, LR      ;È¡³öLRÊıÖµ
+   18 00000006 6003            STR              R3, [R0, #0] ;½«È¡³öµÄÊıÖµ´æÈë½
+                                                            á¹¹Ìåreturn_addrÖĞ
+   19 00000008         
+   20 00000008         ;sp <= r1->stack_addr
+   21 00000008 684B            LDR              R3, [R1, #4] ;È¡³ö½á¹¹ÌåÖ¸ÕëµÚ¶
+                                                            ş¸öÄÚÈİ(»ùµØÖ·)
+   22 0000000A 469D            MOV              SP, R3      ;½«²ÎÊı´«ÈëSPÖĞ
+   23 0000000C         
+   24 0000000C         ;PC <= r1->return_addr
+   25 0000000C 680B            LDR              R3, [R1, #0] ;È¡³ö½á¹¹ÌåÖ¸ÕëµÚÒ
+                                                            »¸öÄÚÈİ
+   26 0000000E 4718            BX               R3          ;½«È¡³öµÄÄÚÈİÊä³öµ½
+                                                            PC£¬Ò²¾ÍÊÇÈÎÎñµØÖ·,
+                                                            ÓëMOV PC, R3Ò»ÑùµÄĞ
+                                                            §¹û
+   27 00000010         
+   28 00000010         task_run_first
+   29 00000010         ;½«Ïà¹ØÈÎÎñÕ»µÄµØÖ·´«ÈëÕ»(sp)µØÖ·ÖĞ
+   30 00000010 6843            LDR              R3, [R0, #4] ;È¡³ö½á¹¹ÌåÖ¸ÕëµÚ¶
+                                                            ş¸öÄÚÈİ(»ùµØÖ·)
+   31 00000012 469D            MOV              SP, R3      ;½«²ÎÊı´«ÈëSPÖĞ
+   32 00000014         
+   33 00000014         ;½«³ÌĞòÌø×ªµ½Ïà¹ØÈÎÎñ(PC)
+   34 00000014 6803            LDR              R3, [R0, #0] ;È¡³ö½á¹¹ÌåÖ¸ÕëµÚÒ
+                                                            »¸öÄÚÈİ
+   35 00000016 4718            BX               R3          ;½«È¡³öµÄÄÚÈİÊä³öµ½
+                                                            PC£¬Ò²¾ÍÊÇÈÎÎñµØÖ·,
+                                                            ÓëMOV PC, R3Ò»ÑùµÄĞ
+                                                            §¹û
+   36 00000018         
+   37 00000018         
+   38 00000018         
+   39 00000018                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
+work --depend=.\objects\switch.d -o.\objects\switch.o -I.\RTE\_Project -IE:\all
+Software\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include -I
+E:\allSoftware\keil5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --predef
+ine="__UVISION_VERSION SETA 528" --list=.\listings\switch.lst ..\EXTERN\RTOS\sw
+itch.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+CODE_SEG 00000000
+
+Symbol: CODE_SEG
+   Definitions
+      At line 7 in file ..\EXTERN\RTOS\switch.s
+   Uses
+      None
+Comment: CODE_SEG unused
+task_run_first 00000010
+
+Symbol: task_run_first
+   Definitions
+      At line 28 in file ..\EXTERN\RTOS\switch.s
+   Uses
+      At line 9 in file ..\EXTERN\RTOS\switch.s
+Comment: task_run_first used once
+task_switch 00000000
+
+Symbol: task_switch
+   Definitions
+      At line 11 in file ..\EXTERN\RTOS\switch.s
+   Uses
+      At line 8 in file ..\EXTERN\RTOS\switch.s
+Comment: task_switch used once
+3 symbols
+335 symbols in table
