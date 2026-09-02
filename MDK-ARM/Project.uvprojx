@@ -585,6 +585,11 @@
               <FileType>1</FileType>
               <FilePath>..\EXTERN\SERVER\KEY\KEY_FSM.c</FilePath>
             </File>
+            <File>
+              <FileName>JSON_Parse.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\EXTERN\SERVER\JSON\JSON_Parse.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

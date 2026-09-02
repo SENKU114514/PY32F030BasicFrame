@@ -506,6 +506,35 @@ static HW_UART_RxBuffer_t s_uart_rx_buffer[UART_COUNT];
 
 
 /*
+ * 一次性接收状态。
+ *
+ * data/capacity：本轮由调用者提供的接收数组及其容量。
+ * length：本轮已经保存的字节数。
+ * activity_count：本轮实际到达的字节计数；即使数组已满也继续递增，
+ *                 用于正确判断总线是否已经连续静默。
+ * active：只有该标志为 1 时，中断才会把字节写入本轮数组。
+ * overflow：对端回复超过调用者给出的数组容量。
+ * rx_error：本轮出现 ORE、FE 或 NE 接收错误。
+ */
+typedef struct
+{
+    uint8_t *data;
+    uint16_t capacity;
+
+    volatile uint16_t length;
+    volatile uint32_t activity_count;
+
+    volatile uint8_t active;
+    volatile uint8_t overflow;
+    volatile uint8_t rx_error;
+} HW_UART_RxOnce_t;
+
+
+/* 每个 UART 各自拥有一份互不影响的一次性接收状态。 */
+static HW_UART_RxOnce_t s_uart_rx_once[UART_COUNT];
+
+
+/*
  * 根据 UART 编号分别查找 TX 和 RX 引脚配置。
  *
  * TX 和 RX 分开查找的原因：
@@ -797,6 +826,21 @@ static void HW_UART_ResetRxBuffer(UART_index_e UART_index)
 }
 
 
+/* 清空指定 UART 的一次性接收状态。 */
+static void HW_UART_ResetRxOnce(UART_index_e UART_index)
+{
+    HW_UART_RxOnce_t *rx_once = &s_uart_rx_once[UART_index];
+
+    rx_once->data = NULL;
+    rx_once->capacity = 0U;
+    rx_once->length = 0U;
+    rx_once->activity_count = 0U;
+    rx_once->active = 0U;
+    rx_once->overflow = 0U;
+    rx_once->rx_error = 0U;
+}
+
+
 /*
  * 向指定 UART 的接收环形缓冲区中写入一个字节。
  *
@@ -858,6 +902,42 @@ static void HW_UART_PushRxByte(UART_index_e UART_index,
 
 
 /*
+ * 把一个新字节写入当前的一次性接收数组。
+ *
+ * 一次性接收未开启时直接返回；数组已满时不覆盖已有内容，
+ * 只记录溢出并继续累计活动次数，供接收函数判断后续静默时间。
+ */
+static void HW_UART_PushRxOnceByte(UART_index_e UART_index,
+                                    uint8_t data,
+                                    uint8_t receive_error)
+{
+    HW_UART_RxOnce_t *rx_once = &s_uart_rx_once[UART_index];
+
+    if (rx_once->active == 0U)
+    {
+        return;
+    }
+
+    rx_once->activity_count++;
+
+    if (rx_once->length < rx_once->capacity)
+    {
+        rx_once->data[rx_once->length] = data;
+        rx_once->length++;
+    }
+    else
+    {
+        rx_once->overflow = 1U;
+    }
+
+    if (receive_error != 0U)
+    {
+        rx_once->rx_error = 1U;
+    }
+}
+
+
+/*
  * UART 接收中断处理函数。
  *
  * 处理内容包括：
@@ -910,7 +990,17 @@ static void HW_UART_ReceiveIRQHandler(
          */
         if (s_uart_active_instance[UART_index] == uart_instance)
         {
-            HW_UART_PushRxByte(UART_index, rx_data);
+            if (s_uart_rx_once[UART_index].active != 0U)
+            {
+                /* 一次性窗口拥有本字节，不再复制到环形缓冲。 */
+                HW_UART_PushRxOnceByte(UART_index,
+                                       rx_data,
+                                       receive_error);
+            }
+            else
+            {
+                HW_UART_PushRxByte(UART_index, rx_data);
+            }
 
             /*
              * 如果读取数据前检测到了接收错误，
@@ -918,7 +1008,10 @@ static void HW_UART_ReceiveIRQHandler(
              */
             if (receive_error != 0U)
             {
-                s_uart_rx_buffer[UART_index].overflow = 1U;
+                if (s_uart_rx_once[UART_index].active == 0U)
+                {
+                    s_uart_rx_buffer[UART_index].overflow = 1U;
+                }
             }
         }
     }
@@ -935,7 +1028,14 @@ static void HW_UART_ReceiveIRQHandler(
 
         if (s_uart_active_instance[UART_index] == uart_instance)
         {
-            s_uart_rx_buffer[UART_index].overflow = 1U;
+            if (s_uart_rx_once[UART_index].active != 0U)
+            {
+                s_uart_rx_once[UART_index].rx_error = 1U;
+            }
+            else
+            {
+                s_uart_rx_buffer[UART_index].overflow = 1U;
+            }
         }
     }
 }
@@ -1249,6 +1349,7 @@ HW_UART_Status_e HW_UART_init(
      * 清空该 UART 的接收缓冲区。
      */
     HW_UART_ResetRxBuffer(UART_index);
+    HW_UART_ResetRxOnce(UART_index);
 
 
     /*
@@ -1370,7 +1471,217 @@ HW_UART_Status_e HW_UART_Send(
 
 
 /*
- * 从 UART 的中断接收缓冲区中读取已经接收到的数据。
+ * 一次性接收一段不定长 UART 回复。
+ *
+ * 本函数每次都从用户数组 data[0] 开始保存本轮新收到的字节，
+ * 最多保存 data_capacity 个字节。字节仍由 RXNE 中断写入数组，
+ * 本函数只同步等待以下任一结束条件：
+ *
+ * 1. 收到至少一个字节后，连续 silence_timeout_ms 没有新字节；
+ * 2. 整个接收过程达到 timeout_ms；
+ * 3. 本轮发生 UART 接收错误。
+ *
+ * 返回后会关闭本轮数组的写入许可，后续字节不会继续追加到 data。
+ */
+HW_UART_Status_e HW_UART_Receive_IT(
+    UART_index_e UART_index,
+    uint8_t *data,
+    uint16_t data_capacity,
+    uint16_t *received_length,
+    uint32_t timeout_ms,
+    uint32_t silence_timeout_ms)
+{
+    HW_UART_RxOnce_t *rx_once;
+    uint32_t interrupt_state;
+    uint32_t silence_elapsed_ms = 0U;
+    uint32_t last_activity_count = 0U;
+    uint32_t current_activity_count;
+    uint16_t final_length;
+    uint8_t final_overflow;
+    uint8_t final_rx_error;
+    uint8_t is_complete = 0U;
+    uint8_t is_timeout = 0U;
+
+
+    if (received_length != NULL)
+    {
+        *received_length = 0U;
+    }
+
+
+    /* 检查实例、数组、容量以及两个毫秒时间参数。 */
+    if (((uint32_t)UART_index >= (uint32_t)UART_COUNT) ||
+        (data == NULL) ||
+        (data_capacity == 0U) ||
+        (received_length == NULL) ||
+        (timeout_ms == 0U) ||
+        (silence_timeout_ms == 0U))
+    {
+        return HW_UART_STATUS_INVALID_ARG;
+    }
+
+
+    /* UART 中断必须能运行，因此禁止从 ISR 或关中断临界区调用。 */
+    if ((__get_IPSR() != 0U) || ((__get_PRIMASK() & 1U) != 0U))
+    {
+        return HW_UART_STATUS_INVALID_CONTEXT;
+    }
+
+
+    if (s_uart_active_instance[UART_index] == NULL)
+    {
+        return HW_UART_STATUS_NOT_READY;
+    }
+
+
+    rx_once = &s_uart_rx_once[UART_index];
+
+
+    /*
+     * 原子地建立本轮接收窗口。
+     * active 最后置 1，确保中断看到 active 时其他成员已经有效。
+     */
+    interrupt_state = __get_PRIMASK();
+    __disable_irq();
+
+    if (rx_once->active != 0U)
+    {
+        if ((interrupt_state & 1U) == 0U)
+        {
+            __enable_irq();
+        }
+        return HW_UART_STATUS_BUSY;
+    }
+
+    rx_once->data = data;
+    rx_once->capacity = data_capacity;
+    rx_once->length = 0U;
+    rx_once->activity_count = 0U;
+    rx_once->overflow = 0U;
+    rx_once->rx_error = 0U;
+    rx_once->active = 1U;
+
+    if ((interrupt_state & 1U) == 0U)
+    {
+        __enable_irq();
+    }
+
+
+    /*
+     * 接收字节由 UART 中断完成；这里按 1 ms 周期判断本轮是否结束。
+     * activity_count 在数组已满时仍会变化，因此不会把持续到来的
+     * 超长回复误判成已经静默。
+     */
+    while (timeout_ms != 0U)
+    {
+        /* 此 LL 实现会额外加一个 tick，传 0 才等待一个 1 ms tick。 */
+        LL_mDelay(0U);
+        timeout_ms--;
+
+        if (rx_once->rx_error != 0U)
+        {
+            break;
+        }
+
+        current_activity_count = rx_once->activity_count;
+
+        if (current_activity_count != last_activity_count)
+        {
+            last_activity_count = current_activity_count;
+            silence_elapsed_ms = 0U;
+        }
+        else if (current_activity_count != 0U)
+        {
+            silence_elapsed_ms++;
+
+            if (silence_elapsed_ms >= silence_timeout_ms)
+            {
+                /*
+                 * 锁住中断后再次确认没有新字节，避免恰好在判断边界
+                 * 到来的字节被错误地排除在本轮回复之外。
+                 */
+                interrupt_state = __get_PRIMASK();
+                __disable_irq();
+
+                if ((rx_once->activity_count == last_activity_count) &&
+                    (LL_USART_IsActiveFlag_RXNE(
+                         s_uart_active_instance[UART_index]) == 0U) &&
+                    (LL_USART_IsActiveFlag_ORE(
+                         s_uart_active_instance[UART_index]) == 0U) &&
+                    (LL_USART_IsActiveFlag_FE(
+                         s_uart_active_instance[UART_index]) == 0U) &&
+                    (LL_USART_IsActiveFlag_NE(
+                         s_uart_active_instance[UART_index]) == 0U))
+                {
+                    rx_once->active = 0U;
+                    is_complete = 1U;
+                }
+                else
+                {
+                    last_activity_count = rx_once->activity_count;
+                    silence_elapsed_ms = 0U;
+                }
+
+                if ((interrupt_state & 1U) == 0U)
+                {
+                    __enable_irq();
+                }
+
+                if (is_complete != 0U)
+                {
+                    break;
+                }
+            }
+        }
+    }
+
+
+    /* 关闭本轮写入并原子地取回最终长度及错误状态。 */
+    interrupt_state = __get_PRIMASK();
+    __disable_irq();
+
+    if ((is_complete == 0U) && (rx_once->rx_error == 0U))
+    {
+        is_timeout = 1U;
+    }
+
+    rx_once->active = 0U;
+    final_length = rx_once->length;
+    final_overflow = rx_once->overflow;
+    final_rx_error = rx_once->rx_error;
+
+    rx_once->data = NULL;
+    rx_once->capacity = 0U;
+
+    if ((interrupt_state & 1U) == 0U)
+    {
+        __enable_irq();
+    }
+
+
+    *received_length = final_length;
+
+    if (final_rx_error != 0U)
+    {
+        return HW_UART_STATUS_RX_ERROR;
+    }
+
+    if (final_overflow != 0U)
+    {
+        return HW_UART_STATUS_BUFFER_OVERFLOW;
+    }
+
+    if (is_timeout != 0U)
+    {
+        return HW_UART_STATUS_TIMEOUT;
+    }
+
+    return HW_UART_STATUS_OK;
+}
+
+
+/*
+ * 从 UART 的中断环形缓冲区中读取已经接收到的数据。
  *
  * 参数：
  *
@@ -1399,7 +1710,7 @@ HW_UART_Status_e HW_UART_Send(
  * HW_UART_STATUS_NOT_READY：
  *     UART 尚未初始化。
  */
-HW_UART_Status_e HW_UART_Receive_IT(
+HW_UART_Status_e HW_UART_ReceiveRingBuffer_IT(
     UART_index_e UART_index,
     uint8_t *data,
     uint16_t *data_length)
@@ -1445,6 +1756,28 @@ HW_UART_Status_e HW_UART_Receive_IT(
     if (s_uart_active_instance[UART_index] == NULL)
     {
         return HW_UART_STATUS_NOT_READY;
+    }
+
+
+    /*
+     * 调用此接口表示本轮选择环形缓冲模式。
+     * 一次性接收正在运行时，两种消费者不能同时读取同一 UART。
+     */
+    interrupt_state = __get_PRIMASK();
+    __disable_irq();
+
+    if (s_uart_rx_once[UART_index].active != 0U)
+    {
+        if ((interrupt_state & 1U) == 0U)
+        {
+            __enable_irq();
+        }
+        return HW_UART_STATUS_BUSY;
+    }
+
+    if ((interrupt_state & 1U) == 0U)
+    {
+        __enable_irq();
     }
 
 
@@ -1534,4 +1867,3 @@ HW_UART_Status_e HW_UART_Receive_IT(
      */
     return HW_UART_STATUS_OK;
 }
-
