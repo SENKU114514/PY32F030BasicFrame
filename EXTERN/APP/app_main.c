@@ -9,6 +9,23 @@
 static uint8_t lowpower_key_default_level;
 static uint32_t lowpower_last_activity_tick;
 
+/*
+ * UART 单字节接收回调。
+ *
+ * 该普通定义会覆盖 USART 驱动中的默认 weak 实现；目前只接收 UART1
+ * 的通知。将实际的单字节处理逻辑或外部函数调用添加到 if 代码块中。
+ * 本函数运行于中断上下文，不能做延时或阻塞操作。
+ */
+void HW_UART_RX_IT_Callback(UART_index_e UART_index,
+                            uint8_t received_data)
+{
+    if (UART_index == UART1)
+    {
+        /* 在此处理 UART1 收到的 received_data。 */
+        (void)received_data;
+    }
+}
+
 #if defined(MAG_USE_SCHEDULER)
 static MAG_TaskHandle_t s_key_fsm_task_handle;
 #ifdef __IWDG_INIT_H__

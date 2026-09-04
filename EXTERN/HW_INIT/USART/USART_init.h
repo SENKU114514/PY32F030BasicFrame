@@ -111,5 +111,24 @@ HW_UART_Status_e HW_UART_ReceiveRingBuffer_IT(UART_index_e UART_index,
                                               uint8_t *data,
                                               uint16_t *data_length);
 
+/*
+ * 使用例
+ *void HW_UART_RX_IT_Callback(UART_index_e UART_index,
+ *														uint8_t received_data)
+ *{
+ *		if (UART_index == UART1)
+ *		{
+ *				/在此处理 UART1 收到的 received_data
+ *		}
+ * 		if (UART_index == UART2)
+ *		{
+ *				/在此处理 UART2 收到的 received_data
+ *		}
+ *}
+ */
+void HW_UART_RX_IT_Callback(UART_index_e UART_index,
+                            uint8_t received_data);
+
+
 
 #endif

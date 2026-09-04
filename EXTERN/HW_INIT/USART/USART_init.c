@@ -1013,6 +1013,12 @@ static void HW_UART_ReceiveIRQHandler(
                     s_uart_rx_buffer[UART_index].overflow = 1U;
                 }
             }
+
+            /*
+             * 数据已交给当前接收机制后，通知 APP 层本次收到的字节。
+             * 默认实现为空，APP 层可用同名非 weak 函数覆盖。
+             */
+            HW_UART_RX_IT_Callback(UART_index, rx_data);
         }
     }
     else if (receive_error != 0U)
@@ -1176,6 +1182,19 @@ static HW_UART_Status_e HW_UART_WaitFlag(
     }
 
     return HW_UART_STATUS_OK;
+}
+
+
+/*
+ * UART 单字节接收中断的默认回调。
+ * APP 层可在其他 .c 文件中提供同名函数覆盖，并通过参数获得来源 UART
+ * 和本次收到的字节。
+ */
+__weak void HW_UART_RX_IT_Callback(UART_index_e UART_index,
+                                   uint8_t received_data)
+{
+    (void)UART_index;
+    (void)received_data;
 }
 
 
