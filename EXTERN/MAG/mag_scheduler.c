@@ -1,3 +1,18 @@
+/*
+ * 调度流程：
+ *
+ * 初始化：MAG_SchedulerInit()（清空任务池、建立空闲链、启动毫秒时基）
+ *     → 列表注册：MAG_SchedulerRegisterTable()（for 循环遍历任务表）
+ *     → 单项注册：MAG_SchedulerRegister()（取出空闲节点、保存参数、挂入活动链）
+ *     → 循环调度：MAG_SchedulerProcess()（遍历活动链，到期则调用任务函数）
+ *     → 执行后处理：更新下次执行时间；次数用完则回收节点
+ *     → 返回主循环，继续调用 MAG_SchedulerProcess()。
+ *
+ * 取消任务：MAG_SchedulerCancel()（根据句柄取消任务；调度期间标记删除，否则立即回收）。
+ *
+ * 注意：先初始化，再注册；任务在主循环执行，执行间隔从任务函数返回后开始计算。
+ */
+
 #include "mag_scheduler.h"
 #include "mag_tick.h"
 #include <stddef.h>
@@ -18,14 +33,14 @@
 /* 一块任务木牌，next_index 用来把所有活动任务串成单向链表。 */
 typedef struct
 {
-    MAG_TaskCallback_t callback;
-    void *p_context;
-    uint32_t next_due_tick;
-    uint32_t period_ms;
-    uint32_t remaining_runs;
-    uint32_t generation;
-    uint8_t next_index;
-    uint8_t state;
+    MAG_TaskCallback_t callback;      // 任务执行函数
+    void *p_context;                  // 传给任务函数的参数
+    uint32_t next_due_tick;           // 下次执行的 tick 时刻
+    uint32_t period_ms;               // 执行间隔，单位 ms
+    uint32_t remaining_runs;          // 剩余执行次数
+    uint32_t generation;              // 节点代次，用于识别失效句柄
+    uint8_t next_index;               // 链表中下一个节点的索引
+    uint8_t state;                    // 节点当前状态
 } MAG_SchedulerNode_t;
 
 static MAG_SchedulerNode_t s_task_pool[MAG_SCHEDULER_MAX_TASKS];
@@ -315,6 +330,48 @@ MAG_SchedulerStatus_e MAG_SchedulerRegister(const MAG_TaskConfig_t *p_config,
     p_handle->index = node_index;
     p_handle->generation = p_node->generation;
 
+    return MAG_SCHEDULER_STATUS_OK;
+}
+
+/* 自动遍历四参数任务表，整表失败时撤销本次注册的任务。 */
+MAG_SchedulerStatus_e MAG_SchedulerRegisterTable(const MAG_TaskTableEntry_t *p_table,
+                                                 uint32_t task_count)
+{
+    MAG_TaskHandle_t handles[MAG_SCHEDULER_MAX_TASKS];
+    MAG_TaskConfig_t config;
+    MAG_SchedulerStatus_e status;
+    uint32_t index;
+
+    if (s_is_initialized == 0U)
+    {
+        return MAG_SCHEDULER_STATUS_NOT_INITIALIZED;
+    }
+    if ((p_table == NULL) || (task_count == 0U))
+    {
+        return MAG_SCHEDULER_STATUS_INVALID_ARGUMENT;
+    }
+    if (task_count > MAG_SCHEDULER_MAX_TASKS)
+    {
+        return MAG_SCHEDULER_STATUS_FULL;
+    }
+    for (index = 0U; index < task_count; index++)
+    {
+        config.callback = p_table[index].callback;
+        config.p_context = NULL;
+        config.period_ms = p_table[index].period_ms;
+        config.first_delay_ms = p_table[index].first_delay_ms;
+        config.run_count = p_table[index].run_count;
+        status = MAG_SchedulerRegister(&config, &handles[index]);
+        if (status != MAG_SCHEDULER_STATUS_OK)
+        {
+            while (index > 0U)
+            {
+                index--;
+                (void)MAG_SchedulerCancel(handles[index]);
+            }
+            return status;
+        }
+    }
     return MAG_SCHEDULER_STATUS_OK;
 }
 

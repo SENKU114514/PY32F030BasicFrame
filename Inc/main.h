@@ -71,23 +71,9 @@ extern "C" {
 /*任务管理-----------------------------------------------------------------------------------*/
 //#include "RTOS.h"               			//实时操作系统
 
-/* MAG 两种模式只能启用一行：注释当前行，再取消另一行的注释即可切换。 */
-#define MAG_USE_LEGACY_TASK                      //旧版固定 1/50/100/500/1000 ms 调度
-//#define MAG_USE_SCHEDULER                          //新版无序链表计划调度器
-
-#if defined(MAG_USE_LEGACY_TASK) && defined(MAG_USE_SCHEDULER)
-#error "Only one MAG scheduler mode can be enabled"
-#elif !defined(MAG_USE_LEGACY_TASK) && !defined(MAG_USE_SCHEDULER)
-#error "One MAG scheduler mode must be enabled"
-#endif
-
-#include "./MAG/mag_tick.h"                       //两种模式共用的 1 ms 时基
-
-#if defined(MAG_USE_LEGACY_TASK)
-#include "./MAG/mag_task.h"                       //旧版非阻塞分时任务
-#else
+#include "./MAG/mag_tick.h"                       //1 ms 时基
+//#include "./MAG/mag_task.h"                     //旧版暂停使用，源文件仍参与编译
 #include "./MAG/mag_scheduler.h"                  //新版无序链表计划调度器
-#endif
 
 /*APP-----------------------------------------------------------------------------------------*/
 #include "./APP/app_main.h"						//业务函数

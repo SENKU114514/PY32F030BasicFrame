@@ -27,11 +27,14 @@ Project File Date:  09/06/2026
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\allSoftware\keil5\ARM\ARMCC\Bin'
 Build target 'Project'
-compiling Queue.c...
+compiling app_main.c...
+..\EXTERN\APP\app_main.c(10): warning:  #550-D: variable "lowpower_last_activity_tick"  was set but never used
+  static uint32_t lowpower_last_activity_tick;
+..\EXTERN\APP\app_main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=12404 RO-data=2636 RW-data=252 ZI-data=1540  
+Program Size: Code=10300 RO-data=2652 RW-data=244 ZI-data=1468  
 FromELF: creating hex file...
-".\Objects\Project.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\Project.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -45,7 +48,7 @@ Package Vendor: Puya
   E:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

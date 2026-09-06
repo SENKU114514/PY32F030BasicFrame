@@ -51,9 +51,11 @@
 .\objects\adc_init.o: ..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h
 .\objects\adc_init.o: ..\EXTERN\./SERVER/LOG/LOG.h
 .\objects\adc_init.o: ..\EXTERN\./MAG/mag_tick.h
-.\objects\adc_init.o: ..\EXTERN\./MAG/mag_task.h
+.\objects\adc_init.o: ..\EXTERN\./MAG/mag_scheduler.h
 .\objects\adc_init.o: ..\EXTERN\./APP/app_main.h
 .\objects\adc_init.o: ..\EXTERN\./APP/APP_INPUT/APP_input.h
 .\objects\adc_init.o: ..\EXTERN\./APP/APP_OUTPUT/APP_output.h
 .\objects\adc_init.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\adc_init.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
+.\objects\adc_init.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
+.\objects\adc_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h

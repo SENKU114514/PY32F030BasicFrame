@@ -51,11 +51,13 @@
 .\objects\lowpower.o: ..\EXTERN\./HW_INIT/I2C/I2C_init.h
 .\objects\lowpower.o: ..\EXTERN\./SERVER/LOG/LOG.h
 .\objects\lowpower.o: ..\EXTERN\./MAG/mag_tick.h
-.\objects\lowpower.o: ..\EXTERN\./MAG/mag_task.h
+.\objects\lowpower.o: ..\EXTERN\./MAG/mag_scheduler.h
 .\objects\lowpower.o: ..\EXTERN\./APP/app_main.h
 .\objects\lowpower.o: ..\EXTERN\./APP/APP_INPUT/APP_input.h
 .\objects\lowpower.o: ..\EXTERN\./APP/APP_OUTPUT/APP_output.h
 .\objects\lowpower.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\lowpower.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
+.\objects\lowpower.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
+.\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\lowpower.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_adc.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h

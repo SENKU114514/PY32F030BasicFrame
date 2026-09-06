@@ -407,6 +407,11 @@
               <FileType>1</FileType>
               <FilePath>..\Src\py32f0xx_it.c</FilePath>
             </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\main.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

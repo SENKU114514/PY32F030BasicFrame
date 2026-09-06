@@ -50,10 +50,12 @@
 .\objects\main.o: ..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h
 .\objects\main.o: ..\EXTERN\./SERVER/LOG/LOG.h
 .\objects\main.o: ..\EXTERN\./MAG/mag_tick.h
-.\objects\main.o: ..\EXTERN\./MAG/mag_task.h
+.\objects\main.o: ..\EXTERN\./MAG/mag_scheduler.h
 .\objects\main.o: ..\EXTERN\./APP/app_main.h
 .\objects\main.o: ..\EXTERN\./APP/APP_INPUT/APP_input.h
 .\objects\main.o: ..\EXTERN\./APP/APP_OUTPUT/APP_output.h
 .\objects\main.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\main.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
+.\objects\main.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
+.\objects\main.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\main.o: ..\Drivers\BSP\PY32F030xx_Start_Kit\py32f030xx_ll_Start_Kit.h

@@ -51,9 +51,11 @@
 .\objects\i2c_init.o: ..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h
 .\objects\i2c_init.o: ..\EXTERN\./SERVER/LOG/LOG.h
 .\objects\i2c_init.o: ..\EXTERN\./MAG/mag_tick.h
-.\objects\i2c_init.o: ..\EXTERN\./MAG/mag_task.h
+.\objects\i2c_init.o: ..\EXTERN\./MAG/mag_scheduler.h
 .\objects\i2c_init.o: ..\EXTERN\./APP/app_main.h
 .\objects\i2c_init.o: ..\EXTERN\./APP/APP_INPUT/APP_input.h
 .\objects\i2c_init.o: ..\EXTERN\./APP/APP_OUTPUT/APP_output.h
 .\objects\i2c_init.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\i2c_init.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
+.\objects\i2c_init.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
+.\objects\i2c_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h

@@ -50,10 +50,12 @@
 .\objects\py32f0xx_it.o: ..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h
 .\objects\py32f0xx_it.o: ..\EXTERN\./SERVER/LOG/LOG.h
 .\objects\py32f0xx_it.o: ..\EXTERN\./MAG/mag_tick.h
-.\objects\py32f0xx_it.o: ..\EXTERN\./MAG/mag_task.h
+.\objects\py32f0xx_it.o: ..\EXTERN\./MAG/mag_scheduler.h
 .\objects\py32f0xx_it.o: ..\EXTERN\./APP/app_main.h
 .\objects\py32f0xx_it.o: ..\EXTERN\./APP/APP_INPUT/APP_input.h
 .\objects\py32f0xx_it.o: ..\EXTERN\./APP/APP_OUTPUT/APP_output.h
 .\objects\py32f0xx_it.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\py32f0xx_it.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
+.\objects\py32f0xx_it.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
+.\objects\py32f0xx_it.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\py32f0xx_it.o: ..\Inc\py32f0xx_it.h

@@ -51,9 +51,11 @@
 .\objects\rtos.o: ..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h
 .\objects\rtos.o: ..\EXTERN\./SERVER/LOG/LOG.h
 .\objects\rtos.o: ..\EXTERN\./MAG/mag_tick.h
-.\objects\rtos.o: ..\EXTERN\./MAG/mag_task.h
+.\objects\rtos.o: ..\EXTERN\./MAG/mag_scheduler.h
 .\objects\rtos.o: ..\EXTERN\./APP/app_main.h
 .\objects\rtos.o: ..\EXTERN\./APP/APP_INPUT/APP_input.h
 .\objects\rtos.o: ..\EXTERN\./APP/APP_OUTPUT/APP_output.h
 .\objects\rtos.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\rtos.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
+.\objects\rtos.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
+.\objects\rtos.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
