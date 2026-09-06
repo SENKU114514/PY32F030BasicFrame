@@ -1213,6 +1213,12 @@ Removing Unused input sections from the image.
     Removing key_fsm.o(.revsh_text), (4 bytes).
     Removing json_parse.o(i.SERVER_JSON_ParseObject), (874 bytes).
     Removing json_parse.o(i.SERVER_JSON_SplitByDelimiter), (168 bytes).
+    Removing queue.o(.rev16_text), (4 bytes).
+    Removing queue.o(.revsh_text), (4 bytes).
+    Removing queue.o(i.Queue_Init), (16 bytes).
+    Removing queue.o(i.Queue_Pop), (62 bytes).
+    Removing queue.o(i.Queue_Push), (60 bytes).
+    Removing queue.o(.constdata), (38 bytes).
     Removing rtos.o(.rev16_text), (4 bytes).
     Removing rtos.o(.revsh_text), (4 bytes).
     Removing rtos.o(i.RTOS_init), (52 bytes).
@@ -1273,7 +1279,7 @@ Removing Unused input sections from the image.
     Removing py32f0xx_ll_rcc.o(i.__ARM_common_switch8), (28 bytes).
     Removing depilogue.o(i.__ARM_clz), (46 bytes).
 
-342 unused section(s) (total 21650 bytes) removed from the image.
+348 unused section(s) (total 21834 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1283,35 +1289,35 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
@@ -1358,6 +1364,7 @@ Image Symbol Table
     ..\EXTERN\SERVER\JSON\JSON_Parse.c       0x00000000   Number         0  json_parse.o ABSOLUTE
     ..\EXTERN\SERVER\KEY\KEY_FSM.c           0x00000000   Number         0  key_fsm.o ABSOLUTE
     ..\EXTERN\SERVER\LOG\LOG.c               0x00000000   Number         0  log.o ABSOLUTE
+    ..\EXTERN\SERVER\QUEUE\Queue.c           0x00000000   Number         0  queue.o ABSOLUTE
     ..\EXTERN\SYS\system_init.c              0x00000000   Number         0  system_init.o ABSOLUTE
     ..\Src\main.c                            0x00000000   Number         0  main.o ABSOLUTE
     ..\Src\py32f0xx_it.c                     0x00000000   Number         0  py32f0xx_it.o ABSOLUTE
@@ -1397,6 +1404,7 @@ Image Symbol Table
     ..\\EXTERN\\RTOS\\RTOS.c                 0x00000000   Number         0  rtos.o ABSOLUTE
     ..\\EXTERN\\SERVER\\KEY\\KEY_FSM.c       0x00000000   Number         0  key_fsm.o ABSOLUTE
     ..\\EXTERN\\SERVER\\LOG\\LOG.c           0x00000000   Number         0  log.o ABSOLUTE
+    ..\\EXTERN\\SERVER\\QUEUE\\Queue.c       0x00000000   Number         0  queue.o ABSOLUTE
     ..\\EXTERN\\SYS\\system_init.c           0x00000000   Number         0  system_init.o ABSOLUTE
     ..\\Src\\main.c                          0x00000000   Number         0  main.o ABSOLUTE
     ..\\Src\\py32f0xx_it.c                   0x00000000   Number         0  py32f0xx_it.o ABSOLUTE
@@ -1976,30 +1984,30 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000000c0   Data   RO           67    RESET               startup_py32f030xx.o
-    0x080000c0   0x080000c0   0x00000000   Code   RO         3211  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
-    0x080000c0   0x080000c0   0x00000004   Code   RO         3481    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
-    0x080000c4   0x080000c4   0x00000004   Code   RO         3484    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
-    0x080000c8   0x080000c8   0x00000000   Code   RO         3486    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
-    0x080000c8   0x080000c8   0x00000000   Code   RO         3488    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
-    0x080000c8   0x080000c8   0x00000008   Code   RO         3489    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
-    0x080000d0   0x080000d0   0x00000000   Code   RO         3491    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
-    0x080000d0   0x080000d0   0x00000000   Code   RO         3493    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
-    0x080000d0   0x080000d0   0x00000004   Code   RO         3482    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x080000c0   0x080000c0   0x00000000   Code   RO         3251  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x080000c0   0x080000c0   0x00000004   Code   RO         3521    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x080000c4   0x080000c4   0x00000004   Code   RO         3524    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x080000c8   0x080000c8   0x00000000   Code   RO         3526    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x080000c8   0x080000c8   0x00000000   Code   RO         3528    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x080000c8   0x080000c8   0x00000008   Code   RO         3529    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x080000d0   0x080000d0   0x00000000   Code   RO         3531    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
+    0x080000d0   0x080000d0   0x00000000   Code   RO         3533    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
+    0x080000d0   0x080000d0   0x00000004   Code   RO         3522    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
     0x080000d4   0x080000d4   0x0000001c   Code   RO           68    .text               startup_py32f030xx.o
-    0x080000f0   0x080000f0   0x0000002c   Code   RO         3214    .text               mc_p.l(uidiv.o)
-    0x0800011c   0x0800011c   0x00000060   Code   RO         3216    .text               mc_p.l(uldiv.o)
-    0x0800017c   0x0800017c   0x00000024   Code   RO         3218    .text               mc_p.l(memseta.o)
-    0x080001a0   0x080001a0   0x00000020   Code   RO         3496    .text               mc_p.l(llshl.o)
-    0x080001c0   0x080001c0   0x00000022   Code   RO         3498    .text               mc_p.l(llushr.o)
+    0x080000f0   0x080000f0   0x0000002c   Code   RO         3254    .text               mc_p.l(uidiv.o)
+    0x0800011c   0x0800011c   0x00000060   Code   RO         3256    .text               mc_p.l(uldiv.o)
+    0x0800017c   0x0800017c   0x00000024   Code   RO         3258    .text               mc_p.l(memseta.o)
+    0x080001a0   0x080001a0   0x00000020   Code   RO         3536    .text               mc_p.l(llshl.o)
+    0x080001c0   0x080001c0   0x00000022   Code   RO         3538    .text               mc_p.l(llushr.o)
     0x080001e2   0x080001e2   0x00000002   PAD
-    0x080001e4   0x080001e4   0x00000024   Code   RO         3511    .text               mc_p.l(init.o)
+    0x080001e4   0x080001e4   0x00000024   Code   RO         3551    .text               mc_p.l(init.o)
     0x08000208   0x08000208   0x00000034   Code   RO            3    i.$Sub$$main        system_py32f0xx.o
-    0x0800023c   0x0800023c   0x00000004   Code   RO         3191    i.APP_Comm_init     app_comm.o
-    0x08000240   0x08000240   0x00000044   Code   RO         3122    i.APP_INPUT_KEY1    app_input.o
-    0x08000284   0x08000284   0x00000018   Code   RO         3123    i.APP_Input_init    app_input.o
-    0x0800029c   0x0800029c   0x0000002a   Code   RO         3157    i.APP_Output_LED1   app_output.o
-    0x080002c6   0x080002c6   0x0000002a   Code   RO         3158    i.APP_Output_LED2   app_output.o
-    0x080002f0   0x080002f0   0x00000022   Code   RO         3159    i.APP_Output_init   app_output.o
+    0x0800023c   0x0800023c   0x00000004   Code   RO         3231    i.APP_Comm_init     app_comm.o
+    0x08000240   0x08000240   0x00000044   Code   RO         3162    i.APP_INPUT_KEY1    app_input.o
+    0x08000284   0x08000284   0x00000018   Code   RO         3163    i.APP_Input_init    app_input.o
+    0x0800029c   0x0800029c   0x0000002a   Code   RO         3197    i.APP_Output_LED1   app_output.o
+    0x080002c6   0x080002c6   0x0000002a   Code   RO         3198    i.APP_Output_LED2   app_output.o
+    0x080002f0   0x080002f0   0x00000022   Code   RO         3199    i.APP_Output_init   app_output.o
     0x08000312   0x08000312   0x00000002   PAD
     0x08000314   0x08000314   0x0000019c   Code   RO         1485    i.APP_SystemClockConfig  system_init.o
     0x080004b0   0x080004b0   0x00000094   Code   RO         1660    i.DMA1_Channel1_IRQHandler  spi_init.o
@@ -2012,7 +2020,7 @@ Memory Map of the image
     0x08000614   0x08000614   0x0000004c   Code   RO         1536    i.HW_GPIO_EnableClock  gpio_init.o
     0x08000660   0x08000660   0x00000028   Code   RO         1537    i.HW_GPIO_FindEXTIMap  gpio_init.o
     0x08000688   0x08000688   0x0000004c   Code   RO         1538    i.HW_GPIO_Get_SingleKey  gpio_init.o
-    0x080006d4   0x080006d4   0x00000014   Code   RO         3124    i.HW_GPIO_INPUT_IT_Callback  app_input.o
+    0x080006d4   0x080006d4   0x00000014   Code   RO         3164    i.HW_GPIO_INPUT_IT_Callback  app_input.o
     0x080006e8   0x080006e8   0x00000158   Code   RO         1540    i.HW_GPIO_INPUT_IT_init  gpio_init.o
     0x08000840   0x08000840   0x00000078   Code   RO         1541    i.HW_GPIO_INPUT_init  gpio_init.o
     0x080008b8   0x080008b8   0x000000c0   Code   RO         1542    i.HW_GPIO_OUT_init  gpio_init.o
@@ -2033,7 +2041,7 @@ Memory Map of the image
     0x0800101a   0x0800101a   0x00000002   PAD
     0x0800101c   0x0800101c   0x00000044   Code   RO         2041    i.HW_UART_PushRxByte  usart_init.o
     0x08001060   0x08001060   0x00000044   Code   RO         2042    i.HW_UART_PushRxOnceByte  usart_init.o
-    0x080010a4   0x080010a4   0x00000008   Code   RO         3049    i.HW_UART_RX_IT_Callback  app_main.o
+    0x080010a4   0x080010a4   0x00000008   Code   RO         3089    i.HW_UART_RX_IT_Callback  app_main.o
     0x080010ac   0x080010ac   0x000000e4   Code   RO         2044    i.HW_UART_ReceiveIRQHandler  usart_init.o
     0x08001190   0x08001190   0x00000028   Code   RO         2047    i.HW_UART_ResetRxBuffer  usart_init.o
     0x080011b8   0x080011b8   0x00000020   Code   RO         2048    i.HW_UART_ResetRxOnce  usart_init.o
@@ -2138,27 +2146,27 @@ Memory Map of the image
     0x0800212c   0x0800212c   0x00000002   Code   RO         1895    i.TIM17_UpdateCallback  tim_init.o
     0x0800212e   0x0800212e   0x00000002   PAD
     0x08002130   0x08002130   0x00000028   Code   RO         1896    i.TIM1_BRK_UP_TRG_COM_IRQHandler  tim_init.o
-    0x08002158   0x08002158   0x00000010   Code   RO         2916    i.TIM1_UpdateCallback  mag_tick.o
+    0x08002158   0x08002158   0x00000010   Code   RO         2956    i.TIM1_UpdateCallback  mag_tick.o
     0x08002168   0x08002168   0x00000028   Code   RO         1898    i.TIM3_IRQHandler   tim_init.o
     0x08002190   0x08002190   0x00000002   Code   RO         1899    i.TIM3_UpdateCallback  tim_init.o
     0x08002192   0x08002192   0x00000002   PAD
     0x08002194   0x08002194   0x00000010   Code   RO         2062    i.USART1_IRQHandler  usart_init.o
     0x080021a4   0x080021a4   0x00000010   Code   RO         2063    i.USART2_IRQHandler  usart_init.o
-    0x080021b4   0x080021b4   0x00000034   Code   RO         3376    i.__0snprintf$6     mc_p.l(printf6.o)
+    0x080021b4   0x080021b4   0x00000034   Code   RO         3416    i.__0snprintf$6     mc_p.l(printf6.o)
     0x080021e8   0x080021e8   0x00000030   Code   RO         2023    i.__ARM_common_ll_muluu  tim_init.o
-    0x08002218   0x08002218   0x0000000e   Code   RO         3521    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x08002226   0x08002226   0x00000002   Code   RO         3522    i.__scatterload_null  mc_p.l(handlers.o)
-    0x08002228   0x08002228   0x0000000e   Code   RO         3523    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x08002218   0x08002218   0x0000000e   Code   RO         3561    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x08002226   0x08002226   0x00000002   Code   RO         3562    i.__scatterload_null  mc_p.l(handlers.o)
+    0x08002228   0x08002228   0x0000000e   Code   RO         3563    i.__scatterload_zeroinit  mc_p.l(handlers.o)
     0x08002236   0x08002236   0x00000002   PAD
-    0x08002238   0x08002238   0x00000304   Code   RO         3382    i._printf_core      mc_p.l(printf6.o)
-    0x0800253c   0x0800253c   0x00000020   Code   RO         3383    i._printf_post_padding  mc_p.l(printf6.o)
-    0x0800255c   0x0800255c   0x0000002c   Code   RO         3384    i._printf_pre_padding  mc_p.l(printf6.o)
-    0x08002588   0x08002588   0x00000016   Code   RO         3385    i._snputc           mc_p.l(printf6.o)
+    0x08002238   0x08002238   0x00000304   Code   RO         3422    i._printf_core      mc_p.l(printf6.o)
+    0x0800253c   0x0800253c   0x00000020   Code   RO         3423    i._printf_post_padding  mc_p.l(printf6.o)
+    0x0800255c   0x0800255c   0x0000002c   Code   RO         3424    i._printf_pre_padding  mc_p.l(printf6.o)
+    0x08002588   0x08002588   0x00000016   Code   RO         3425    i._snputc           mc_p.l(printf6.o)
     0x0800259e   0x0800259e   0x00000002   PAD
-    0x080025a0   0x080025a0   0x00000034   Code   RO         3050    i.app_key_fsm_schedule_task  app_main.o
-    0x080025d4   0x080025d4   0x0000004c   Code   RO         3051    i.app_main          app_main.o
-    0x08002620   0x08002620   0x0000003c   Code   RO         3052    i.app_main_init     app_main.o
-    0x0800265c   0x0800265c   0x0000000c   Code   RO         2917    i.get_mag_tick      mag_tick.o
+    0x080025a0   0x080025a0   0x00000034   Code   RO         3090    i.app_key_fsm_schedule_task  app_main.o
+    0x080025d4   0x080025d4   0x0000004c   Code   RO         3091    i.app_main          app_main.o
+    0x08002620   0x08002620   0x0000003c   Code   RO         3092    i.app_main_init     app_main.o
+    0x0800265c   0x0800265c   0x0000000c   Code   RO         2957    i.get_mag_tick      mag_tick.o
     0x08002668   0x08002668   0x00000024   Code   RO         2488    i.lowpower_configure_stop_mode  lowpower.o
     0x0800268c   0x0800268c   0x00000020   Code   RO         2489    i.lowpower_irq_is_enabled  lowpower.o
     0x080026ac   0x080026ac   0x000001e0   Code   RO         2490    i.lowpower_peripheral_is_busy  lowpower.o
@@ -2176,15 +2184,15 @@ Memory Map of the image
     0x08002f3a   0x08002f3a   0x0000001a   Code   RO         2502    i.lowpower_timer_clock_enable  lowpower.o
     0x08002f54   0x08002f54   0x0000001a   Code   RO         2503    i.lowpower_timer_clock_is_enabled  lowpower.o
     0x08002f6e   0x08002f6e   0x00000002   PAD
-    0x08002f70   0x08002f70   0x000000c0   Code   RO         2853    i.mag_task          mag_task.o
-    0x08003030   0x08003030   0x000000b4   Code   RO         2854    i.mag_task_init     mag_task.o
-    0x080030e4   0x080030e4   0x0000001c   Code   RO         2918    i.mag_tick_init     mag_tick.o
+    0x08002f70   0x08002f70   0x000000c0   Code   RO         2893    i.mag_task          mag_task.o
+    0x08003030   0x08003030   0x000000b4   Code   RO         2894    i.mag_task_init     mag_task.o
+    0x080030e4   0x080030e4   0x0000001c   Code   RO         2958    i.mag_tick_init     mag_tick.o
     0x08003100   0x08003100   0x00000020   Code   RO           74    i.main              main.o
-    0x08003120   0x08003120   0x00000002   Code   RO         3053    i.task_100ms        app_main.o
-    0x08003122   0x08003122   0x0000000a   Code   RO         3054    i.task_1ms          app_main.o
-    0x0800312c   0x0800312c   0x00000002   Code   RO         3055    i.task_1s           app_main.o
-    0x0800312e   0x0800312e   0x00000002   Code   RO         3056    i.task_500ms        app_main.o
-    0x08003130   0x08003130   0x00000002   Code   RO         3057    i.task_50ms         app_main.o
+    0x08003120   0x08003120   0x00000002   Code   RO         3093    i.task_100ms        app_main.o
+    0x08003122   0x08003122   0x0000000a   Code   RO         3094    i.task_1ms          app_main.o
+    0x0800312c   0x0800312c   0x00000002   Code   RO         3095    i.task_1s           app_main.o
+    0x0800312e   0x0800312e   0x00000002   Code   RO         3096    i.task_500ms        app_main.o
+    0x08003130   0x08003130   0x00000002   Code   RO         3097    i.task_50ms         app_main.o
     0x08003132   0x08003132   0x00000002   PAD
     0x08003134   0x08003134   0x00000080   Data   RO            7    .constdata          system_py32f0xx.o
     0x080031b4   0x080031b4   0x000003c4   Data   RO         1550    .constdata          gpio_init.o
@@ -2192,7 +2200,7 @@ Memory Map of the image
     0x08003720   0x08003720   0x00000358   Data   RO         2066    .constdata          usart_init.o
     0x08003a78   0x08003a78   0x00000026   Data   RO         2505    .constdata          lowpower.o
     0x08003a9e   0x08003a9e   0x00000002   PAD
-    0x08003aa0   0x08003aa0   0x00000020   Data   RO         3519    Region$$Table       anon$$obj.o
+    0x08003aa0   0x08003aa0   0x00000020   Data   RO         3559    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08003ac0, Size: 0x00000700, Max: 0x00002000, ABSOLUTE)
@@ -2206,13 +2214,13 @@ Memory Map of the image
     0x200000d4   0x08003b94   0x00000008   Data   RW         2067    .data               usart_init.o
     0x200000dc   0x08003b9c   0x00000001   Data   RW         2747    .data               key_fsm.o
     0x200000dd   0x08003b9d   0x00000003   PAD
-    0x200000e0   0x08003ba0   0x00000010   Data   RW         2861    .data               mag_task.o
-    0x200000f0   0x08003bb0   0x00000004   Data   RW         2920    .data               mag_tick.o
-    0x200000f4   0x08003bb4   0x00000008   Data   RW         3059    .data               app_main.o
+    0x200000e0   0x08003ba0   0x00000010   Data   RW         2901    .data               mag_task.o
+    0x200000f0   0x08003bb0   0x00000004   Data   RW         2960    .data               mag_tick.o
+    0x200000f4   0x08003bb4   0x00000008   Data   RW         3099    .data               app_main.o
     0x200000fc        -       0x00000024   Zero   RW         1549    .bss                gpio_init.o
     0x20000120        -       0x000000ac   Zero   RW         2065    .bss                usart_init.o
     0x200001cc        -       0x00000128   Zero   RW         2504    .bss                lowpower.o
-    0x200002f4        -       0x0000000c   Zero   RW         3125    .bss                app_input.o
+    0x200002f4        -       0x0000000c   Zero   RW         3165    .bss                app_input.o
     0x20000300        -       0x00000400   Zero   RW           65    STACK               startup_py32f030xx.o
 
 

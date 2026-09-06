@@ -590,6 +590,11 @@
               <FileType>1</FileType>
               <FilePath>..\EXTERN\SERVER\JSON\JSON_Parse.c</FilePath>
             </File>
+            <File>
+              <FileName>Queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\EXTERN\SERVER\QUEUE\Queue.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

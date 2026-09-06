@@ -32,6 +32,7 @@
 ".\objects\log.o"
 ".\objects\key_fsm.o"
 ".\objects\json_parse.o"
+".\objects\queue.o"
 ".\objects\rtos.o"
 ".\objects\switch.o"
 ".\objects\mag_task.o"
