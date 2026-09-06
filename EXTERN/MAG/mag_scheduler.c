@@ -1,8 +1,8 @@
 /*
  * 调度流程：
  *
- * 初始化：MAG_SchedulerInit()（清空任务池、建立空闲链、启动毫秒时基）
- *     → 列表注册：MAG_SchedulerRegisterTable()（for 循环遍历任务表）
+ * 初始化：MAG_SchedulerInit(任务表, 数量)（清空任务池、建立空闲链、启动毫秒时基）
+ *     → 内部自动注册：mag_scheduler_register_table()（for 循环遍历任务表，无需外部调用）
  *     → 单项注册：MAG_SchedulerRegister()（取出空闲节点、保存参数、挂入活动链）
  *     → 循环调度：MAG_SchedulerProcess()（遍历活动链，到期则调用任务函数）
  *     → 执行后处理：更新下次执行时间；次数用完则回收节点
@@ -10,7 +10,7 @@
  *
  * 取消任务：MAG_SchedulerCancel()（根据句柄取消任务；调度期间标记删除，否则立即回收）。
  *
- * 注意：先初始化，再注册；任务在主循环执行，执行间隔从任务函数返回后开始计算。
+ * 注意：业务初始化完成后调用一次 Init 即完成整表注册；任务在主循环执行，间隔从函数返回后计算。
  */
 
 #include "mag_scheduler.h"
@@ -43,12 +43,12 @@ typedef struct
     uint8_t state;                    // 节点当前状态
 } MAG_SchedulerNode_t;
 
-static MAG_SchedulerNode_t s_task_pool[MAG_SCHEDULER_MAX_TASKS];
-static uint8_t s_free_head = MAG_SCHEDULER_NODE_NONE;
-static uint8_t s_active_head = MAG_SCHEDULER_NODE_NONE;
-static uint8_t s_pending_head = MAG_SCHEDULER_NODE_NONE;
-static uint8_t s_is_initialized = 0U;
-static uint8_t s_is_processing = 0U;
+static MAG_SchedulerNode_t s_task_pool[MAG_SCHEDULER_MAX_TASKS];	// 静态任务池，存放所有木牌
+static uint8_t s_free_head = MAG_SCHEDULER_NODE_NONE;           	// 空闲链首节点索引，NONE 表示空链
+static uint8_t s_active_head = MAG_SCHEDULER_NODE_NONE;         	// 活动链首节点索引，NONE 表示空链
+static uint8_t s_pending_head = MAG_SCHEDULER_NODE_NONE;        	// 等待链首节点索引，NONE 表示空链
+static uint8_t s_is_initialized = 0U;                           	// 初始化完成标志：0 未完成，1 已完成
+static uint8_t s_is_processing = 0U;                            	// 正在调度标志：0 否，1 是
 
 /* 增加节点代次，使已经失效的旧句柄不能操作复用后的任务。 */
 static void mag_scheduler_advance_generation(MAG_SchedulerNode_t *p_node)
@@ -235,10 +235,16 @@ static void mag_scheduler_commit_pending_nodes(void)
     }
 }
 
-/* 初始化调度器的木牌池、链表和毫秒时基。 */
-MAG_SchedulerStatus_e MAG_SchedulerInit(void)
+/* 内部遍历任务表并注册，失败时撤销本次已注册的任务。 */
+static MAG_SchedulerStatus_e mag_scheduler_register_table(
+    const MAG_TaskTableEntry_t *p_table, uint32_t task_count);
+
+/* 初始化木牌池、链表和毫秒时基，并自动注册整张任务表。 */
+MAG_SchedulerStatus_e MAG_SchedulerInit(const MAG_TaskTableEntry_t *p_table,
+                                      uint32_t task_count)
 {
     uint8_t node_index;
+    MAG_SchedulerStatus_e status;
 
     if (s_is_processing != 0U)
     {
@@ -252,10 +258,7 @@ MAG_SchedulerStatus_e MAG_SchedulerInit(void)
     s_free_head = 0U;
 
     /* 第二步：把所有静态木牌依次串成空闲链表。 */
-    for (node_index = 0U;
-         node_index < (uint8_t)MAG_SCHEDULER_MAX_TASKS;
-         node_index++)
-    {
+    for (node_index = 0U;node_index < (uint8_t)MAG_SCHEDULER_MAX_TASKS; node_index++){
         MAG_SchedulerNode_t *p_node = &s_task_pool[node_index];
 
         p_node->callback = NULL;
@@ -277,7 +280,13 @@ MAG_SchedulerStatus_e MAG_SchedulerInit(void)
     }
 
     s_is_initialized = 1U;
-    return MAG_SCHEDULER_STATUS_OK;
+    /* 第四步：自动装入任务表；注册失败时保持调度器不可用。 */
+    status = mag_scheduler_register_table(p_table, task_count);
+    if (status != MAG_SCHEDULER_STATUS_OK)
+    {
+        s_is_initialized = 0U;
+    }
+    return status;
 }
 
 /* 注册任务并把任务挂到活动链表中。 */
@@ -334,40 +343,44 @@ MAG_SchedulerStatus_e MAG_SchedulerRegister(const MAG_TaskConfig_t *p_config,
 }
 
 /* 自动遍历四参数任务表，整表失败时撤销本次注册的任务。 */
-MAG_SchedulerStatus_e MAG_SchedulerRegisterTable(const MAG_TaskTableEntry_t *p_table,
-                                                 uint32_t task_count)
-{
-    MAG_TaskHandle_t handles[MAG_SCHEDULER_MAX_TASKS];
-    MAG_TaskConfig_t config;
-    MAG_SchedulerStatus_e status;
-    uint32_t index;
-
+static MAG_SchedulerStatus_e mag_scheduler_register_table(
+	const MAG_TaskTableEntry_t *p_table,
+	uint32_t task_count){
+    MAG_TaskHandle_t handles[MAG_SCHEDULER_MAX_TASKS]; 		// 保存本次注册的任务句柄，失败时用于撤销
+    MAG_TaskConfig_t config;                          		// 临时存放当前这一行的任务配置
+    MAG_SchedulerStatus_e status;                     		// 保存单个任务注册的返回状态
+    uint32_t index;                                   		// 遍历任务表时使用的下标
+		
+		//判断是否调度
     if (s_is_initialized == 0U)
     {
         return MAG_SCHEDULER_STATUS_NOT_INITIALIZED;
     }
+		//判断任务栏是否为空
     if ((p_table == NULL) || (task_count == 0U))
     {
         return MAG_SCHEDULER_STATUS_INVALID_ARGUMENT;
     }
+		//判断任务数量是否大于任务总数
     if (task_count > MAG_SCHEDULER_MAX_TASKS)
     {
         return MAG_SCHEDULER_STATUS_FULL;
     }
+		//循环执行保存任务句柄
     for (index = 0U; index < task_count; index++)
     {
-        config.callback = p_table[index].callback;
-        config.p_context = NULL;
-        config.period_ms = p_table[index].period_ms;
-        config.first_delay_ms = p_table[index].first_delay_ms;
-        config.run_count = p_table[index].run_count;
-        status = MAG_SchedulerRegister(&config, &handles[index]);
+        config.callback = p_table[index].callback;              	//
+        config.p_context = NULL;                                	//
+        config.period_ms = p_table[index].period_ms;            	//
+        config.first_delay_ms = p_table[index].first_delay_ms;		//
+        config.run_count = p_table[index].run_count;            	//
+        status = MAG_SchedulerRegister(&config, &handles[index]);	//
         if (status != MAG_SCHEDULER_STATUS_OK)
         {
             while (index > 0U)
             {
                 index--;
-                (void)MAG_SchedulerCancel(handles[index]);
+                (void)MAG_SchedulerCancel(handles[index]);//取消任务
             }
             return status;
         }

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Sep 06 20:04:46 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Sep 06 22:35:27 2026
 <BR><P>
 <H3>Maximum Stack Usage =        484 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -476,48 +476,40 @@ Global Symbols
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_release_node
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_handle_is_valid
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegisterTable
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_register_table
 </UL>
 
-<P><STRONG><a name="[84]"></a>MAG_SchedulerInit</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, mag_scheduler.o(i.MAG_SchedulerInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = MAG_SchedulerInit &rArr; mag_tick_init &rArr; HW_TIM_COUNT_IT_init &rArr; HW_TIM_CalculatePeriod &rArr; __aeabi_uldivmod &rArr; __aeabi_llsr
+<P><STRONG><a name="[84]"></a>MAG_SchedulerInit</STRONG> (Thumb, 138 bytes, Stack size 32 bytes, mag_scheduler.o(i.MAG_SchedulerInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = MAG_SchedulerInit &rArr; mag_tick_init &rArr; HW_TIM_COUNT_IT_init &rArr; HW_TIM_CalculatePeriod &rArr; __aeabi_uldivmod &rArr; __aeabi_llsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_advance_generation
+<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_register_table
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_advance_generation
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_tick_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_main_init
 </UL>
 
-<P><STRONG><a name="[87]"></a>MAG_SchedulerProcess</STRONG> (Thumb, 216 bytes, Stack size 32 bytes, mag_scheduler.o(i.MAG_SchedulerProcess))
+<P><STRONG><a name="[88]"></a>MAG_SchedulerProcess</STRONG> (Thumb, 216 bytes, Stack size 32 bytes, mag_scheduler.o(i.MAG_SchedulerProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = MAG_SchedulerProcess &rArr; mag_scheduler_commit_pending_nodes &rArr; mag_scheduler_release_node
 </UL>
-<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_time_reached
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_time_reached
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_release_node
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_commit_pending_nodes
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_cleanup_removed_nodes
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_commit_pending_nodes
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_cleanup_removed_nodes
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_main
 </UL>
 
-<P><STRONG><a name="[8c]"></a>MAG_SchedulerRegister</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, mag_scheduler.o(i.MAG_SchedulerRegister))
+<P><STRONG><a name="[8d]"></a>MAG_SchedulerRegister</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, mag_scheduler.o(i.MAG_SchedulerRegister))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = MAG_SchedulerRegister
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_link_active_front
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_config_is_valid
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_allocate_node
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
+<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_link_active_front
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_config_is_valid
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_allocate_node
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegisterTable
-</UL>
-
-<P><STRONG><a name="[90]"></a>MAG_SchedulerRegisterTable</STRONG> (Thumb, 178 bytes, Stack size 112 bytes, mag_scheduler.o(i.MAG_SchedulerRegisterTable))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = MAG_SchedulerRegisterTable &rArr; MAG_SchedulerCancel &rArr; mag_scheduler_release_node
-</UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerCancel
-</UL>
-<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_main_init
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_register_table
 </UL>
 
 <P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, py32f0xx_it.o(i.NMI_Handler))
@@ -715,34 +707,33 @@ Global Symbols
 <P><STRONG><a name="[a1]"></a>app_main</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, app_main.o(i.app_main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = app_main &rArr; MAG_SchedulerProcess &rArr; mag_scheduler_commit_pending_nodes &rArr; mag_scheduler_release_node
 </UL>
-<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[a2]"></a>app_main_init</STRONG> (Thumb, 162 bytes, Stack size 144 bytes, app_main.o(i.app_main_init))
+<P><STRONG><a name="[a2]"></a>app_main_init</STRONG> (Thumb, 106 bytes, Stack size 144 bytes, app_main.o(i.app_main_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 468<LI>Call Chain = app_main_init &rArr; Log_init &rArr; HW_UART_init &rArr; LL_USART_Init &rArr; LL_USART_SetBaudRate &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_UART_Send
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GPIO_INPUT_IT_init
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GPIO_Get_SingleKey
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Log_init
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2snprintf
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APP_Output_init
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APP_Input_init
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APP_Comm_init
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegisterTable
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[88]"></a>get_mag_tick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mag_tick.o(i.get_mag_tick))
+<P><STRONG><a name="[89]"></a>get_mag_tick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mag_tick.o(i.get_mag_tick))
 <BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_main_init
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_fsm_schedule_task
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
 </UL>
 
 <P><STRONG><a name="[86]"></a>mag_tick_init</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, mag_tick.o(i.mag_tick_init))
@@ -1100,29 +1091,29 @@ Local Symbols
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerInit
 </UL>
 
-<P><STRONG><a name="[8e]"></a>mag_scheduler_allocate_node</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_allocate_node))
-<BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
+<P><STRONG><a name="[8f]"></a>mag_scheduler_allocate_node</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_allocate_node))
+<BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
 </UL>
 
-<P><STRONG><a name="[8a]"></a>mag_scheduler_cleanup_removed_nodes</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, mag_scheduler.o(i.mag_scheduler_cleanup_removed_nodes))
+<P><STRONG><a name="[8b]"></a>mag_scheduler_cleanup_removed_nodes</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, mag_scheduler.o(i.mag_scheduler_cleanup_removed_nodes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = mag_scheduler_cleanup_removed_nodes &rArr; mag_scheduler_release_node
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_release_node
 </UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
 </UL>
 
-<P><STRONG><a name="[8b]"></a>mag_scheduler_commit_pending_nodes</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, mag_scheduler.o(i.mag_scheduler_commit_pending_nodes))
+<P><STRONG><a name="[8c]"></a>mag_scheduler_commit_pending_nodes</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, mag_scheduler.o(i.mag_scheduler_commit_pending_nodes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = mag_scheduler_commit_pending_nodes &rArr; mag_scheduler_release_node
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_release_node
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_link_active_front
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_link_active_front
 </UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
 </UL>
 
-<P><STRONG><a name="[8d]"></a>mag_scheduler_config_is_valid</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_config_is_valid))
-<BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
+<P><STRONG><a name="[8e]"></a>mag_scheduler_config_is_valid</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_config_is_valid))
+<BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
 </UL>
 
 <P><STRONG><a name="[81]"></a>mag_scheduler_handle_is_valid</STRONG> (Thumb, 60 bytes, Stack size 12 bytes, mag_scheduler.o(i.mag_scheduler_handle_is_valid))
@@ -1131,9 +1122,18 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerCancel
 </UL>
 
-<P><STRONG><a name="[8f]"></a>mag_scheduler_link_active_front</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_link_active_front))
-<BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_commit_pending_nodes
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
+<P><STRONG><a name="[90]"></a>mag_scheduler_link_active_front</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_link_active_front))
+<BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_commit_pending_nodes
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
+</UL>
+
+<P><STRONG><a name="[87]"></a>mag_scheduler_register_table</STRONG> (Thumb, 178 bytes, Stack size 112 bytes, mag_scheduler.o(i.mag_scheduler_register_table))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = mag_scheduler_register_table &rArr; MAG_SchedulerCancel &rArr; mag_scheduler_release_node
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerRegister
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerCancel
+</UL>
+<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerInit
 </UL>
 
 <P><STRONG><a name="[83]"></a>mag_scheduler_release_node</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, mag_scheduler.o(i.mag_scheduler_release_node))
@@ -1141,14 +1141,14 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_advance_generation
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_commit_pending_nodes
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_cleanup_removed_nodes
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
+<BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_commit_pending_nodes
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mag_scheduler_cleanup_removed_nodes
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerCancel
 </UL>
 
-<P><STRONG><a name="[89]"></a>mag_scheduler_time_reached</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_time_reached))
-<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
+<P><STRONG><a name="[8a]"></a>mag_scheduler_time_reached</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mag_scheduler.o(i.mag_scheduler_time_reached))
+<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MAG_SchedulerProcess
 </UL>
 
 <P><STRONG><a name="[82]"></a>mag_scheduler_unlink_active</STRONG> (Thumb, 92 bytes, Stack size 12 bytes, mag_scheduler.o(i.mag_scheduler_unlink_active))
@@ -1161,7 +1161,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = app_key_fsm_schedule_task &rArr; APP_INPUT_KEY1 &rArr; SERVER_KEY_FSM_ALL_STATE &rArr; HW_GPIO_Get_SingleKey
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GPIO_Get_SingleKey
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_mag_tick
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APP_INPUT_KEY1
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> app_main.o(.constdata)
