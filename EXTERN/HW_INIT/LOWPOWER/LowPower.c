@@ -11,6 +11,55 @@
 #include "py32f0xx_ll_tim.h"
 #include "py32f0xx_ll_usart.h"
 
+
+#include "LowPower_key.h"
+#include "py32f0xx_ll_exti.h"
+
+/*
+ * 长按唤醒使用示例：
+ *
+ * 1. 初始化一次，示例为 B2 上拉、按下接地，具体引脚由应用选择。
+ *    status = HW_LowPower_init(B2, UP, LOW);
+ *
+ * 2. 初始化成功后，在主循环需要休眠的位置调用。
+ *    status = HW_LowPower_Enter();
+ *    // OK：已连续长按 3 秒，系统时钟和原外设已恢复。
+ *    // BUSY / SUSPEND_FAILED：外设忙或无法暂停，本次未进入休眠。
+ *
+ * 3. LED、电源使能等板级负载在 PrepareCallback 中关闭，在 RestoreCallback 中恢复。
+ *    // 芯片 GPIO 保持原输出；模块无法推断板外设备的关闭电平。
+ *
+ * 工作过程：Stop1 等按键 → 1MHz 确认长按 → 短按继续 Stop / 满 3 秒恢复业务。
+ * 按键确认期间普通外设保持暂停，使用 SysTick 轮询，不开放业务中断。
+ */
+
+/* Stop档位配置：Stop0唤醒快，Stop1功耗更低。 */
+#define LOWPOWER_STOP_MODE_STOP0           0U
+#define LOWPOWER_STOP_MODE_STOP1_1V2       1U
+#define LOWPOWER_STOP_MODE_STOP1_1V0       2U
+#define LOWPOWER_STOP_MODE                 LOWPOWER_STOP_MODE_STOP1_1V0		//此处设置具体功耗
+
+/* 外设管理开关：1表示暂停、清旧事件并按原状态恢复，0表示低功耗模块不处理。 */
+#define LOWPOWER_MANAGE_TIM1               1U
+#define LOWPOWER_MANAGE_TIM3               1U
+#define LOWPOWER_MANAGE_TIM14              1U
+#define LOWPOWER_MANAGE_TIM16              1U
+#define LOWPOWER_MANAGE_TIM17              1U
+#define LOWPOWER_MANAGE_ADC1               1U
+#define LOWPOWER_MANAGE_SPI1               1U
+#define LOWPOWER_MANAGE_I2C1               1U
+#define LOWPOWER_MANAGE_USART1             1U
+#define LOWPOWER_MANAGE_USART2             1U
+#define LOWPOWER_MANAGE_DMA1               1U
+
+/* 固定管理当前框架支持的普通外设，调用者无需逐项选择。 */
+
+#if ((LOWPOWER_STOP_MODE != LOWPOWER_STOP_MODE_STOP0) && \
+     (LOWPOWER_STOP_MODE != LOWPOWER_STOP_MODE_STOP1_1V2) && \
+     (LOWPOWER_STOP_MODE != LOWPOWER_STOP_MODE_STOP1_1V0))
+#error "LOWPOWER_STOP_MODE is invalid"
+#endif
+
 #define LOWPOWER_IRQ_UNUSED                 (-1)
 
 typedef enum
@@ -605,6 +654,123 @@ static void lowpower_configure_stop_mode(void)
 #endif
 }
 
+/* 保存应用指定的唤醒按键，不在模块中固定具体引脚。 */
+static GPIO_index_e s_wakeup_pin;
+static GPIO_mode_e s_wakeup_level;
+static uint32_t s_wakeup_line;
+static IRQn_Type s_wakeup_irq;
+static uint8_t s_wakeup_initialized;
+
+/* 初始化双边沿唤醒，下降或上升由实际有效电平决定。 */
+HW_LowPower_Status_e HW_LowPower_init(GPIO_index_e pin, GPIO_pull_e pull,
+                                     GPIO_mode_e active_level)
+{
+    uint32_t line_index;
+
+    /* 第一步：检查参数和调用环境，保持原有配置直到新配置成功。 */
+    if (__get_IPSR() != 0U)
+        return HW_LOWPOWER_STATUS_HANDLER_MODE;
+    if (__get_PRIMASK() != 0U)
+        return HW_LOWPOWER_STATUS_INTERRUPTS_DISABLED;
+    if (((pull != NO) && (pull != UP) && (pull != DOWN)) ||
+        ((active_level != LOW) && (active_level != HIGH)))
+        return HW_LOWPOWER_STATUS_INVALID_ARG;
+    if (HW_GPIO_INPUT_IT_init(pin, pull, GPIO_IT_RISING_FALLING) != HW_GPIO_STATUS_OK)
+        return HW_LOWPOWER_STATUS_WAKEUP_CONFIG_FAILED;
+
+    /* 第二步：GPIO_index 每个端口连续定义 16 个引脚，取端口内编号。 */
+    line_index = (uint32_t)pin % 16U;
+    s_wakeup_line = 1UL << line_index;
+    s_wakeup_irq = (line_index < 2U) ? EXTI0_1_IRQn :
+                   ((line_index < 4U) ? EXTI2_3_IRQn : EXTI4_15_IRQn);
+    s_wakeup_pin = pin;
+    s_wakeup_level = active_level;
+    s_wakeup_initialized = 1U;
+    return HW_LOWPOWER_STATUS_OK;
+}
+
+/* 读取按下状态，把 GPIO 读失败交给外层恢复处理。 */
+static uint8_t lowpower_read_pressed(uint8_t *pressed)
+{
+    uint8_t level;
+    if (HW_GPIO_Get_SingleKey(s_wakeup_pin, &level) != HW_GPIO_STATUS_OK)
+        return 0U;
+    *pressed = (level == (uint8_t)s_wakeup_level) ? 1U : 0U;
+    return 1U;
+}
+
+/* 先切离 PLL 再降频，使用 HSI 4MHz / AHB 4 分频得到 1MHz。 */
+static void lowpower_use_check_clock(void)
+{
+    LL_PWR_DisableLowPowerRunMode();
+    LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1);
+    LL_RCC_HSI_Enable();
+    while (LL_RCC_HSI_IsReady() == 0U) {}
+    LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
+    LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_HSISYS);
+    while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_HSISYS) {}
+    LL_RCC_PLL_Disable();
+    while (LL_RCC_PLL_IsReady() != 0U) {}
+    APP_SystemClockConfig(4U);
+    LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_4);
+    LL_SetSystemCoreClock(1000000U);
+    SysTick->CTRL = 0U;
+}
+
+/* 等待长按确认，短按和松手不会恢复普通外设。 */
+static HW_LowPower_Status_e lowpower_wait_long_press(uint8_t initially_pressed)
+{
+    LowPower_KeyState_t key;
+    uint8_t pressed;
+    lowpower_key_reset(&key, initially_pressed);
+    lowpower_use_check_clock();
+
+    for (;;)
+    {
+        /* 第一步：先清旧边沿再读电平，避免清除检查后刚到来的唤醒事件。 */
+        LL_EXTI_ClearFlag(s_wakeup_line);
+        NVIC_ClearPendingIRQ(s_wakeup_irq);
+        if (lowpower_read_pressed(&pressed) == 0U)
+            return HW_LOWPOWER_STATUS_KEY_READ_FAILED;
+        if (pressed == 0U)
+            (void)lowpower_key_sample(&key, 0U);
+
+        /* 第二步：按下后启用 10ms 轮询时基，业务中断和普通外设仍暂停。 */
+        if ((pressed != 0U) && (key.wait_release == 0U))
+        {
+            SysTick->LOAD = 1000000U / (1000U / LOWPOWER_KEY_SAMPLE_MS) - 1U;
+            SysTick->VAL = 0U;
+            SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk;
+            do
+            {
+                while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0U) {}
+                if (lowpower_read_pressed(&pressed) == 0U)
+                {
+                    SysTick->CTRL = 0U;
+                    return HW_LOWPOWER_STATUS_KEY_READ_FAILED;
+                }
+                if (lowpower_key_sample(&key, pressed) != 0U)
+                {
+                    SysTick->CTRL = 0U;
+                    return HW_LOWPOWER_STATUS_OK;
+                }
+            } while (pressed != 0U);
+            SysTick->CTRL = 0U;
+            continue;
+        }
+
+        /* 第三步：未按下或等待松手时进入 Stop1，不用周期中断反复唤醒。 */
+        lowpower_configure_stop_mode();
+        LL_LPM_DisableSleepOnExit();
+        LL_LPM_EnableDeepSleep();
+        __DSB();
+        __WFI();
+        __ISB();
+        LL_LPM_EnableSleep();
+        lowpower_use_check_clock();
+    }
+}
+
 /* 默认不处理板级负载，用户可在APP层用同名函数覆盖。 */
 __weak uint8_t HW_LowPower_PrepareCallback(void)
 {
@@ -616,32 +782,53 @@ __weak void HW_LowPower_RestoreCallback(void)
 {
 }
 
-/* 自动暂停已选择的外设并进入Stop，唤醒且恢复完成后才返回。 */
+/* 暂停普通外设，等待长按确认，再恢复休眠前的运行状态。 */
 HW_LowPower_Status_e HW_LowPower_Enter(void)
 {
-    HW_GPIO_Status_e gpio_status;
     uint32_t was_pwr_clock_enabled;
+    uint32_t saved_irq_mask;
+    uint32_t saved_exti_mask;
+    uint32_t saved_systick_ctrl;
+    uint32_t saved_systick_load;
+    uint32_t saved_scr;
+    uint32_t saved_system_pending;
+    uint32_t saved_flash_latency;
+    uint32_t saved_core_clock = SystemCoreClock;
+    uint32_t saved_source = LL_RCC_GetSysClkSource();
+    uint8_t pressed;
+    HW_LowPower_Status_e status;
 
-    /* 第一步：检查调用环境并让板级负载完成休眠准备。 */
+    /* 第一步：只接收主循环调用，支持本框架 HSI/PLL 的常用频率。 */
     if (__get_IPSR() != 0U)
-    {
         return HW_LOWPOWER_STATUS_HANDLER_MODE;
-    }
     if (__get_PRIMASK() != 0U)
-    {
         return HW_LOWPOWER_STATUS_INTERRUPTS_DISABLED;
-    }
+    if (s_wakeup_initialized == 0U)
+        return HW_LOWPOWER_STATUS_NOT_INITIALIZED;
+    if (((saved_core_clock != 4000000U) && (saved_core_clock != 8000000U) &&
+         (saved_core_clock != 16000000U) && (saved_core_clock != 24000000U) &&
+         (saved_core_clock != 48000000U)) ||
+        (LL_RCC_GetAHBPrescaler() != LL_RCC_SYSCLK_DIV_1) ||
+        (LL_RCC_GetAPB1Prescaler() != LL_RCC_APB1_DIV_1) ||
+        (LL_RCC_GetHSIDiv() != LL_RCC_HSI_DIV_1) ||
+        ((saved_core_clock == 48000000U) !=
+         (saved_source == LL_RCC_SYS_CLKSOURCE_STATUS_PLL)) ||
+        ((saved_source != LL_RCC_SYS_CLKSOURCE_STATUS_HSISYS) &&
+         (saved_source != LL_RCC_SYS_CLKSOURCE_STATUS_PLL)) ||
+        ((saved_source == LL_RCC_SYS_CLKSOURCE_STATUS_PLL) &&
+         (LL_RCC_PLL_GetMainSource() != LL_RCC_PLLSOURCE_HSI)))
+        return HW_LOWPOWER_STATUS_UNSUPPORTED_CLOCK;
+    if (lowpower_read_pressed(&pressed) == 0U)
+        return HW_LOWPOWER_STATUS_KEY_READ_FAILED;
+
+    /* 第二步：完成板级准备并检查外设空闲，不强停正在进行的通信。 */
     if (HW_LowPower_PrepareCallback() == 0U)
-    {
         return HW_LOWPOWER_STATUS_PERIPHERAL_BUSY;
-    }
     if (lowpower_prepare_adc() == 0U)
     {
         HW_LowPower_RestoreCallback();
         return HW_LOWPOWER_STATUS_SUSPEND_FAILED;
     }
-
-    /* 第二步：锁住进入窗口并确认外设空闲，避免检查后又启动新的传输。 */
     __disable_irq();
     if (lowpower_peripheral_is_busy() != 0U)
     {
@@ -651,46 +838,52 @@ HW_LowPower_Status_e HW_LowPower_Enter(void)
         return HW_LOWPOWER_STATUS_PERIPHERAL_BUSY;
     }
 
-    /* 第三步：配置按键唤醒，再保存并暂停所有由开关选中的模块。 */
-    gpio_status = HW_GPIO_INPUT_IT_init(LOWPOWER_WAKEUP_KEY_PIN,
-                                        LOWPOWER_WAKEUP_KEY_PULL,
-                                        LOWPOWER_WAKEUP_KEY_TRIGGER);
-    if (gpio_status != HW_GPIO_STATUS_OK)
-    {
-        lowpower_restore_adc();
-        HW_LowPower_RestoreCallback();
-        __enable_irq();
-        return HW_LOWPOWER_STATUS_WAKEUP_CONFIG_FAILED;
-    }
+    /* 第三步：保存系统状态，暂停普通外设，只保留指定按键的唤醒通路。 */
+    saved_irq_mask = NVIC->ISER[0];
+    saved_exti_mask = EXTI->IMR;
+    saved_systick_ctrl = SysTick->CTRL;
+    saved_systick_load = SysTick->LOAD;
+    saved_scr = SCB->SCR;
+    saved_system_pending = SCB->ICSR & (SCB_ICSR_PENDSTSET_Msk | SCB_ICSR_PENDSVSET_Msk);
+    saved_flash_latency = LL_FLASH_GetLatency();
+    SysTick->CTRL = 0U;
+    SCB->ICSR = SCB_ICSR_PENDSTCLR_Msk | SCB_ICSR_PENDSVCLR_Msk;
     lowpower_suspend_peripherals();
     lowpower_suspend_timers();
-
-    /* 第四步：选择Stop档位并等待唤醒，高速时钟由芯片自动停止。 */
+    NVIC->ICER[0] = 0xFFFFFFFFUL;
+    EXTI->IMR = s_wakeup_line;
+    NVIC_EnableIRQ(s_wakeup_irq);
     was_pwr_clock_enabled = LL_APB1_GRP1_IsEnabledClock(LL_APB1_GRP1_PERIPH_PWR);
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
-    lowpower_configure_stop_mode();
-    LL_LPM_DisableSleepOnExit();
-    LL_LPM_EnableDeepSleep();
-    __DSB();
-    __WFI();
-    __ISB();
 
-    /* 第五步：唤醒后先退出DeepSleep并恢复系统主频。 */
+    /* 第四步：进入低功耗等待，连续长按 3 秒才返回成功。 */
+    status = lowpower_wait_long_press(pressed);
+
+    /* 第五步：先恢复主频和时基，再恢复外设，避免分频变化影响运行。 */
     LL_LPM_EnableSleep();
     LL_PWR_DisableLowPowerRunMode();
     LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1);
-    APP_SystemClockConfig(LOWPOWER_RESTORE_CLOCK_MHZ);
-
-    /* 第六步：先恢复普通外设和定时器，最后再开放全局中断。 */
+    APP_SystemClockConfig((uint8_t)(saved_core_clock / 1000000U));
+    LL_FLASH_SetLatency(saved_flash_latency);
+    SysTick->CTRL = 0U;
+    SysTick->LOAD = saved_systick_load;
+    SysTick->VAL = 0U;
     lowpower_resume_peripherals();
     lowpower_resume_timers();
     HW_LowPower_RestoreCallback();
+
+    /* 第六步：消费本次唤醒边沿，恢复原中断配置后把控制权交还主循环。 */
+    LL_EXTI_ClearFlag(s_wakeup_line);
+    NVIC_ClearPendingIRQ(s_wakeup_irq);
+    EXTI->IMR = saved_exti_mask;
+    NVIC->ICER[0] = 0xFFFFFFFFUL;
+    NVIC->ISER[0] = saved_irq_mask;
+    SCB->SCR = saved_scr;
+    SCB->ICSR = saved_system_pending;
+    SysTick->CTRL = saved_systick_ctrl;
     if (was_pwr_clock_enabled == 0U)
-    {
         LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_PWR);
-    }
     __enable_irq();
     __ISB();
-
-    return HW_LOWPOWER_STATUS_OK;
+    return status;
 }

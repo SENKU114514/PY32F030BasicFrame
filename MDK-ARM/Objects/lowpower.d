@@ -61,3 +61,4 @@
 .\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\lowpower.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_adc.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
+.\objects\lowpower.o: ..\EXTERN\HW_INIT\LOWPOWER\LowPower_key.h

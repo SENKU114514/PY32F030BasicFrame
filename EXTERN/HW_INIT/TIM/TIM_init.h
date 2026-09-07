@@ -66,6 +66,10 @@ typedef enum
     HW_TIM_STATUS_PERIOD_OUT_OF_RANGE,
     HW_TIM_STATUS_FREQUENCY_OUT_OF_RANGE,
     HW_TIM_STATUS_INIT_FAILED,
+    HW_TIM_STATUS_BUSY,
+    HW_TIM_STATUS_NOT_INITIALIZED,
+    HW_TIM_STATUS_NOT_STARTED,
+    HW_TIM_STATUS_OVERFLOW,
 } HW_TIM_Status_e;
 
 //中断返回
@@ -94,6 +98,37 @@ HW_TIM_Status_e HW_TIM_PWM_init(TIM_TypeDef *TIMx,
                                 TIM_PWM_Channel_e channel,
                                 uint32_t frequency_hz,
                                 uint8_t duty_percent);
+
+
+
+
+
+/* 手动计时使用约定，US 与 MS 接口必须成组使用。 */
+/*
+ * 1. TIMx 必须空闲且由计时功能独占；框架的 TIM1 已用于 MAG 时基。
+ * 2. US 的量程为 0~65535 微秒，MS 的量程为 0~65535 毫秒。
+ * 3. 时钟不能准确分出所选单位时返回频率错误，不启用溢出中断。
+ * 4. 同一定时器的接口不能交叉执行；开始和停止可在 GPIO 中断中调用。
+ */
+/* 初始化微秒计时，量程 0~65535 微秒，初始化后保持停止。 */
+HW_TIM_Status_e HW_TIM_TIME_US_init(TIM_TypeDef *TIMx);
+/* 清零并开始微秒计时，重复调用会重新开始。 */
+HW_TIM_Status_e HW_TIM_TIME_US_Start(TIM_TypeDef *TIMx);
+/* 停止微秒计时，通过 elapsed_us 输出耗时，返回执行状态。 */
+HW_TIM_Status_e HW_TIM_TIME_US_Stop(TIM_TypeDef *TIMx, uint32_t *elapsed_us);
+
+/* 初始化毫秒计时，量程 0~65535 毫秒，初始化后保持停止。 */
+HW_TIM_Status_e HW_TIM_TIME_MS_init(TIM_TypeDef *TIMx);
+/* 清零并开始毫秒计时，重复调用会重新开始。 */
+HW_TIM_Status_e HW_TIM_TIME_MS_Start(TIM_TypeDef *TIMx);
+/* 停止毫秒计时，通过 elapsed_ms 输出耗时，返回执行状态。 */
+HW_TIM_Status_e HW_TIM_TIME_MS_Stop(TIM_TypeDef *TIMx, uint32_t *elapsed_ms);
+
+/*
+ * 1. 停止时不清零，重复停止可读取同一结果，下次开始时才清零。
+ * 2. 未开始返回 NOT_STARTED；超量程返回 OVERFLOW；单位不匹配返回 INVALID_ARG。
+ * 3. 仅 OK 时写入输出变量，发生错误时保持输出变量不变。
+ */
 
 
 #endif

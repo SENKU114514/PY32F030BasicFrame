@@ -65,6 +65,9 @@ void app_main_init(void){
 	/*业务通信初始化*/
 	APP_Comm_init();
 
+	/* 使用下方休眠示例前，先初始化空闲唤醒按键，并检查返回状态。 */
+//	HW_LowPower_init(B2, UP, LOW); // 示例：B2 按下接地，连续长按 3 秒唤醒
+
 	/* 业务模块准备完成后，一次初始化自动装入整张任务表。 */
 	scheduler_status = MAG_SchedulerInit(s_app_tasks,
 		sizeof(s_app_tasks) / sizeof(s_app_tasks[0]));
