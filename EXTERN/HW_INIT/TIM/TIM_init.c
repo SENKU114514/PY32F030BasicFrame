@@ -1,13 +1,36 @@
 #include "./HW_INIT/TIM/TIM_init.h"
 
 /*
-* HW_TIM_COUNT_IT_init(TIM1, DOWN, 1U);
-* HW_TIM_PWM_init(TIM1, PWM_TIM1_CH1_A3, 1000U, 50U);
-
-
-
-
-*/
+ * TIM 使用示例（各模式独立使用，同一定时器不能同时承担多种功能）：
+ *
+ * 1. 周期中断：向下计数，每 1ms 进入 TIM3_UpdateCallback()。
+ *    status = HW_TIM_COUNT_IT_init(TIM3, DOWN, 1U);
+ *
+ * 2. PWM 输出：TIM3 的 CH1 使用 A6，频率 1000Hz，占空比 50%。
+ *    status = HW_TIM_PWM_init(TIM3, PWM_TIM3_CH1_A6, 1000U, 50U);
+ *
+ * 3. 手动计时：以下三步在对应的初始化、开始和结束位置分别调用。
+ *    uint32_t elapsed = 0U;
+ *    HW_TIM_Status_e status;
+ *    status = HW_TIM_TIME_US_init(TIM3);
+ *    // 初始化成功后，在需要开始的位置调用：
+ *    status = HW_TIM_TIME_US_Start(TIM3);
+ *    // 开始成功后，在需要结束的位置调用：
+ *    status = HW_TIM_TIME_US_Stop(TIM3, &elapsed);
+ *    // status 为 OK 时，elapsed 为本次耗时，单位为微秒。
+ *
+ * 4. 毫秒计时：在对应位置依次调用，检查成功后再进行下一步。
+ *    status = HW_TIM_TIME_MS_init(TIM3);
+ *    status = HW_TIM_TIME_MS_Start(TIM3);
+ *    status = HW_TIM_TIME_MS_Stop(TIM3, &elapsed);
+ *    // status 为 OK 时，elapsed 为本次耗时，单位为毫秒。
+ *    // 两组接口不能混用，切换单位前必须先停止，再重新初始化。
+ *
+ * 注意：每次调用均需检查 status，成功后再进行下一步。
+ *       开始时清零，停止时保留结果；量程为 0~65535 个所选单位。
+ *       OVERFLOW 表示超出量程，本次输出无效，应重新开始计时。
+ *       示例假设 TIM3 空闲；框架 TIM1 已用于 MAG，不要占用。
+ */
 
 /* PWM 默认电气参数：推挽、无上下拉、高速输出、有效高电平、PWM1 模式。 */
 #define HW_TIM_PWM_GPIO_SPEED       LL_GPIO_SPEED_FREQ_HIGH
@@ -145,6 +168,197 @@ static HW_TIM_Status_e HW_TIM_EnableClockAndGetIRQ(TIM_TypeDef *TIMx,
     return HW_TIM_STATUS_UNSUPPORTED;
 }
 
+
+/* 计时单位，停止时输出的耗时与初始化选择的单位一致。 */
+typedef enum
+{
+    HW_TIM_TIME_UNIT_US = 0,
+    HW_TIM_TIME_UNIT_MS,
+} HW_TIM_TimeUnit_e;
+
+/* 保存每个定时器的计时状态。 */
+typedef struct
+{
+    TIM_TypeDef *instance; // 定时器实例
+    HW_TIM_TimeUnit_e unit; // 当前计时单位，防止两组接口混用
+    uint8_t initialized;   // 初始化完成标志
+    uint8_t started;       // 是否开始过计时，停止后保留
+} HW_TIM_TimeState_t;
+
+static HW_TIM_TimeState_t s_time_states[] =
+{
+#ifdef TIM1
+    {TIM1, HW_TIM_TIME_UNIT_US, 0U, 0U},
+#endif
+#ifdef TIM3
+    {TIM3, HW_TIM_TIME_UNIT_US, 0U, 0U},
+#endif
+#ifdef TIM14
+    {TIM14, HW_TIM_TIME_UNIT_US, 0U, 0U},
+#endif
+#ifdef TIM16
+    {TIM16, HW_TIM_TIME_UNIT_US, 0U, 0U},
+#endif
+#ifdef TIM17
+    {TIM17, HW_TIM_TIME_UNIT_US, 0U, 0U},
+#endif
+};
+
+/* 根据定时器实例查找对应的计时状态。 */
+static HW_TIM_TimeState_t *HW_TIM_TimeState(TIM_TypeDef *TIMx)
+{
+    uint32_t i;
+    for (i = 0U; i < sizeof(s_time_states) / sizeof(s_time_states[0]); i++)
+    {
+        if (s_time_states[i].instance == TIMx)
+            return &s_time_states[i];
+    }
+    return NULL;
+}
+
+/* 初始化手动计时，配置计时单位并保持停止。 */
+static HW_TIM_Status_e HW_TIM_TimeInit(TIM_TypeDef *TIMx, HW_TIM_TimeUnit_e unit)
+{
+    HW_TIM_TimeState_t *state = HW_TIM_TimeState(TIMx);
+    LL_RCC_ClocksTypeDef clocks;
+    LL_TIM_InitTypeDef config = {0};
+    HW_TIM_Status_e status;
+    uint32_t frequency;
+    uint32_t divider;
+
+    /* 第一步：检查参数和当前计时状态。 */
+    if ((TIMx == NULL) || ((unit != HW_TIM_TIME_UNIT_US) &&
+                              (unit != HW_TIM_TIME_UNIT_MS)))
+        return HW_TIM_STATUS_INVALID_ARG;
+    if (state == NULL)
+        return HW_TIM_STATUS_UNSUPPORTED;
+
+    /* 第二步：按当前 APB1 = HCLK 的时钟配置计算分频，保证计时单位准确。 */
+    LL_RCC_GetSystemClocksFreq(&clocks);
+    frequency = (unit == HW_TIM_TIME_UNIT_US) ? 1000000U : 1000U;
+    divider = clocks.PCLK1_Frequency / frequency;
+    if ((divider == 0U) || (divider > 65536U) ||
+        ((clocks.PCLK1_Frequency % frequency) != 0U))
+        return HW_TIM_STATUS_FREQUENCY_OUT_OF_RANGE;
+
+    /* 第三步：使能时钟，检查定时器是否已被其他功能占用。 */
+    status = HW_TIM_EnableClockAndGetIRQ(TIMx, NULL);
+    if (status != HW_TIM_STATUS_OK)
+        return status;
+    if (LL_TIM_IsEnabledCounter(TIMx) || (TIMx->CCER != 0U) ||
+        (TIMx->DIER != 0U))
+        return HW_TIM_STATUS_BUSY;
+
+    /* 第四步：复位外设，配置向上计数和 65535 的计数上限。 */
+    config.Prescaler = divider - 1U;
+    config.Autoreload = 65535U;
+    config.CounterMode = LL_TIM_COUNTERMODE_UP;
+    config.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
+    config.RepetitionCounter = 0U;
+    state->initialized = 0U;
+    if (LL_TIM_DeInit(TIMx) != SUCCESS)
+        return HW_TIM_STATUS_INIT_FAILED;
+    if (LL_TIM_Init(TIMx, &config) != SUCCESS)
+        return HW_TIM_STATUS_INIT_FAILED;
+    /* 第五步：装载分频参数并清零，记录初始化完成，等待手动开始。 */
+    LL_TIM_GenerateEvent_UPDATE(TIMx);
+    LL_TIM_ClearFlag_UPDATE(TIMx);
+    LL_TIM_SetCounter(TIMx, 0U);
+    state->started = 0U;
+    state->unit = unit;
+    state->initialized = 1U;
+    return HW_TIM_STATUS_OK;
+}
+
+/* 清零计数和溢出标志，开始本次计时。 */
+static HW_TIM_Status_e HW_TIM_TimeStart(TIM_TypeDef *TIMx, HW_TIM_TimeUnit_e unit)
+{
+    HW_TIM_TimeState_t *state = HW_TIM_TimeState(TIMx);
+    /* 第一步：检查参数和当前计时状态。 */
+    if (TIMx == NULL)
+        return HW_TIM_STATUS_INVALID_ARG;
+    if (state == NULL)
+        return HW_TIM_STATUS_UNSUPPORTED;
+    if (state->initialized == 0U)
+        return HW_TIM_STATUS_NOT_INITIALIZED;
+    /* 检查单位，防止微秒与毫秒接口混用。 */
+    if (state->unit != unit)
+        return HW_TIM_STATUS_INVALID_ARG;
+
+    /* 第二步：停止计数，清零计数值和预分频进度，并清除上次溢出标志。 */
+    LL_TIM_DisableCounter(TIMx);
+    LL_TIM_GenerateEvent_UPDATE(TIMx);
+    LL_TIM_SetCounter(TIMx, 0U);
+    LL_TIM_ClearFlag_UPDATE(TIMx);
+    /* 第三步：记录已经开始，并启动计数器。 */
+    state->started = 1U;
+    LL_TIM_EnableCounter(TIMx);
+    return HW_TIM_STATUS_OK;
+}
+
+/* 停止计时，检查量程并输出本次耗时。 */
+static HW_TIM_Status_e HW_TIM_TimeStop(TIM_TypeDef *TIMx, HW_TIM_TimeUnit_e unit, uint32_t *elapsed)
+{
+    HW_TIM_TimeState_t *state = HW_TIM_TimeState(TIMx);
+    /* 第一步：检查参数和当前计时状态。 */
+    if ((TIMx == NULL) || (elapsed == NULL))
+        return HW_TIM_STATUS_INVALID_ARG;
+    if (state == NULL)
+        return HW_TIM_STATUS_UNSUPPORTED;
+    if (state->initialized == 0U)
+        return HW_TIM_STATUS_NOT_INITIALIZED;
+    /* 检查单位，防止微秒与毫秒接口混用。 */
+    if (state->unit != unit)
+        return HW_TIM_STATUS_INVALID_ARG;
+    if (state->started == 0U)
+        return HW_TIM_STATUS_NOT_STARTED;
+
+    /* 第二步：先停止计数，使本次测量结果固定。 */
+    LL_TIM_DisableCounter(TIMx);
+    /* 第三步：检查是否超出量程；溢出时保留原输出变量，不返回回绕后的数值。 */
+    if (LL_TIM_IsActiveFlag_UPDATE(TIMx))
+        return HW_TIM_STATUS_OVERFLOW;
+    /* 第四步：按初始化选择的单位输出结果，保留计数值供重复读取。 */
+    *elapsed = LL_TIM_GetCounter(TIMx);
+    return HW_TIM_STATUS_OK;
+}
+
+/* 初始化微秒计时，配置完成后等待手动开始。 */
+HW_TIM_Status_e HW_TIM_TIME_US_init(TIM_TypeDef *TIMx)
+{
+    return HW_TIM_TimeInit(TIMx, HW_TIM_TIME_UNIT_US);
+}
+
+/* 清零并开始微秒计时。 */
+HW_TIM_Status_e HW_TIM_TIME_US_Start(TIM_TypeDef *TIMx)
+{
+    return HW_TIM_TimeStart(TIMx, HW_TIM_TIME_UNIT_US);
+}
+
+/* 停止微秒计时并输出耗时，保留计数结果。 */
+HW_TIM_Status_e HW_TIM_TIME_US_Stop(TIM_TypeDef *TIMx, uint32_t *elapsed_us)
+{
+    return HW_TIM_TimeStop(TIMx, HW_TIM_TIME_UNIT_US, elapsed_us);
+}
+
+/* 初始化毫秒计时，配置完成后等待手动开始。 */
+HW_TIM_Status_e HW_TIM_TIME_MS_init(TIM_TypeDef *TIMx)
+{
+    return HW_TIM_TimeInit(TIMx, HW_TIM_TIME_UNIT_MS);
+}
+
+/* 清零并开始毫秒计时。 */
+HW_TIM_Status_e HW_TIM_TIME_MS_Start(TIM_TypeDef *TIMx)
+{
+    return HW_TIM_TimeStart(TIMx, HW_TIM_TIME_UNIT_MS);
+}
+
+/* 停止毫秒计时并输出耗时，保留计数结果。 */
+HW_TIM_Status_e HW_TIM_TIME_MS_Stop(TIM_TypeDef *TIMx, uint32_t *elapsed_ms)
+{
+    return HW_TIM_TimeStop(TIMx, HW_TIM_TIME_UNIT_MS, elapsed_ms);
+}
+
 /* 根据 GPIO 端口自动使能 I/O 时钟。 */
 static HW_TIM_Status_e HW_TIM_EnableGPIOClock(GPIO_TypeDef *gpio_port)
 {
@@ -277,6 +491,10 @@ HW_TIM_Status_e HW_TIM_COUNT_IT_init(TIM_TypeDef *TIMx,
         return HW_TIM_STATUS_INVALID_ARG;
     }
 
+    if ((HW_TIM_TimeState(TIMx) != NULL) &&
+        (HW_TIM_TimeState(TIMx)->initialized != 0U))
+        return HW_TIM_STATUS_BUSY;
+
     status = HW_TIM_EnableClockAndGetIRQ(TIMx, &update_irq);
     if (status != HW_TIM_STATUS_OK)
     {
@@ -341,6 +559,10 @@ HW_TIM_Status_e HW_TIM_PWM_init(TIM_TypeDef *TIMx,
     {
         return HW_TIM_STATUS_INVALID_ARG;
     }
+
+    if ((HW_TIM_TimeState(TIMx) != NULL) &&
+        (HW_TIM_TimeState(TIMx)->initialized != 0U))
+        return HW_TIM_STATUS_BUSY;
 
     pwm_cfg = &HW_TIM_PWM_MAP[channel];
     if ((TIMx == NULL) || (pwm_cfg->tim_instance != TIMx) ||
