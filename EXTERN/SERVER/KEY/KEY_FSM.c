@@ -61,6 +61,7 @@ KEY_FSM_State_e SERVER_KEY_FSM_ALL_STATE(KEY_FSM_Key_Info_t *KEY_Info){
 		/*松开*/
 		case KEY_FSM_UP:
 			status = HW_GPIO_Get_SingleKey(KEY_Info->GPIO_index,&key_value);
+            if (status != HW_GPIO_STATUS_OK) return KEY_FSM_GPIO_GET_FAIL;
 			if(key_value != KEY_Info->Default_Value){
 				KEY_Info->Key_Infomation = KEY_FSM_DOWN_DELAY;
 				KEY_Info->Key_Delay_Time = 0;
@@ -71,6 +72,7 @@ KEY_FSM_State_e SERVER_KEY_FSM_ALL_STATE(KEY_FSM_Key_Info_t *KEY_Info){
 		case KEY_FSM_DOWN_DELAY:
 			KEY_Info->Key_Delay_Time++;
 			status = HW_GPIO_Get_SingleKey(KEY_Info->GPIO_index,&key_value);
+            if (status != HW_GPIO_STATUS_OK) return KEY_FSM_GPIO_GET_FAIL;
 			Times_Delay = 0;
 			if(key_value == KEY_Info->Default_Value){
 				KEY_Info->Key_Infomation = KEY_FSM_UP;
@@ -85,6 +87,7 @@ KEY_FSM_State_e SERVER_KEY_FSM_ALL_STATE(KEY_FSM_Key_Info_t *KEY_Info){
 		/*按下*/
 		case KEY_FSM_DOWN:
 			status = HW_GPIO_Get_SingleKey(KEY_Info->GPIO_index,&key_value);
+            if (status != HW_GPIO_STATUS_OK) return KEY_FSM_GPIO_GET_FAIL;
 			if (key_value == KEY_Info->Default_Value)
 			{
 					KEY_Info->Key_Infomation = KEY_FSM_UP_DELAY;
@@ -96,6 +99,7 @@ KEY_FSM_State_e SERVER_KEY_FSM_ALL_STATE(KEY_FSM_Key_Info_t *KEY_Info){
     case KEY_FSM_UP_DELAY:
 				KEY_Info->Key_Delay_Time++;
 				status = HW_GPIO_Get_SingleKey(KEY_Info->GPIO_index,&key_value);
+            if (status != HW_GPIO_STATUS_OK) return KEY_FSM_GPIO_GET_FAIL;
 				Times_Delay = 0;
         if (key_value != KEY_Info->Default_Value)
         {

@@ -36,24 +36,24 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
 I (..\Drivers\BSP\PY32F030xx_Start_Kit\py32f030xx_ll_Start_Kit.h)(0x636B96E8)
 F (..\Src\py32f0xx_it.c)(0x6A1BCE7D)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\py32f0xx_it.o --omf_browse .\objects\py32f0xx_it.crf --depend .\objects\py32f0xx_it.d)
@@ -83,24 +83,24 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
 I (..\Inc\py32f0xx_it.h)(0x6A1BF595)
 F (..\Inc\main.h)(0x6A9D51E3)()
@@ -304,8 +304,8 @@ I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\system_py32f0xx.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_bus.h)(0x636B96E8)
 F (..\readme.txt)(0x6A996FEA)()
-F (..\EXTERN\SYS\system_init.c)(0x6A8BF537)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\system_init.o --omf_browse .\objects\system_init.crf --depend .\objects\system_init.d)
-I (..\EXTERN\SYS\system_init.h)(0x6A1D8572)
+F (..\EXTERN\SYS\system_init.c)(0x6AA69FEF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\system_init.o --omf_browse .\objects\system_init.crf --depend .\objects\system_init.d)
+I (..\EXTERN\SYS\system_init.h)(0x6AA60C7F)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -332,29 +332,28 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\GPIO\GPIO_init.c)(0x6A90436E)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\gpio_init.o --omf_browse .\objects\gpio_init.crf --depend .\objects\gpio_init.d)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h)(0x636B96E8)
+F (..\EXTERN\HW_INIT\GPIO\GPIO_init.c)(0x6AA69FEF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\gpio_init.o --omf_browse .\objects\gpio_init.crf --depend .\objects\gpio_init.d)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h)(0x6A47972B)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\core_cm0plus.h)(0x636B96E8)
@@ -363,10 +362,11 @@ I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\cmsis_armcc.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\system_py32f0xx.h)(0x636B96E8)
+I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h)(0x636B96E8)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_bus.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdarg.h)(0x5CEB79E4)
@@ -381,24 +381,24 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_tim.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\SPI\SPI_init.c)(0x6A8BE7D0)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\spi_init.o --omf_browse .\objects\spi_init.crf --depend .\objects\spi_init.d)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
+F (..\EXTERN\HW_INIT\SPI\SPI_init.c)(0x6AA69FEF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\spi_init.o --omf_browse .\objects\spi_init.crf --depend .\objects\spi_init.d)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -425,26 +425,26 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\TIM\TIM_init.c)(0x6A9EB37A)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\tim_init.o --omf_browse .\objects\tim_init.crf --depend .\objects\tim_init.d)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
+F (..\EXTERN\HW_INIT\TIM\TIM_init.c)(0x6AA69FEF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\tim_init.o --omf_browse .\objects\tim_init.crf --depend .\objects\tim_init.d)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -471,26 +471,26 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\USART\USART_init.c)(0x6A9ABEA3)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\usart_init.o --omf_browse .\objects\usart_init.crf --depend .\objects\usart_init.d)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
+F (..\EXTERN\HW_INIT\USART\USART_init.c)(0x6AA61189)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\usart_init.o --omf_browse .\objects\usart_init.crf --depend .\objects\usart_init.d)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -517,26 +517,26 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\ADC\ADC_init.c)(0x6A8BE7CC)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\adc_init.o --omf_browse .\objects\adc_init.crf --depend .\objects\adc_init.d)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
+F (..\EXTERN\HW_INIT\ADC\ADC_init.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\adc_init.o --omf_browse .\objects\adc_init.crf --depend .\objects\adc_init.d)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -563,26 +563,26 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\IWDG\IWDG_init.c)(0x6A8BF664)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\iwdg_init.o --omf_browse .\objects\iwdg_init.crf --depend .\objects\iwdg_init.d)
-I (..\EXTERN\./HW_INIT/IWDG/IWDG_Init.h)(0x6A48A7DC)
+F (..\EXTERN\HW_INIT\IWDG\IWDG_init.c)(0x6AA61EE7)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\iwdg_init.o --omf_browse .\objects\iwdg_init.crf --depend .\objects\iwdg_init.d)
+I (..\EXTERN\HW_INIT\IWDG\IWDG_init.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -609,27 +609,27 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\I2C\I2C_init.c)(0x6A8BE7C9)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\i2c_init.o --omf_browse .\objects\i2c_init.crf --depend .\objects\i2c_init.d)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
+F (..\EXTERN\HW_INIT\I2C\I2C_init.c)(0x6AA69FEF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\i2c_init.o --omf_browse .\objects\i2c_init.crf --depend .\objects\i2c_init.d)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -656,30 +656,29 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\HW_INIT\LOWPOWER\LowPower.c)(0x6A9EC0AC)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\lowpower.o --omf_browse .\objects\lowpower.crf --depend .\objects\lowpower.d)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
+F (..\EXTERN\HW_INIT\LOWPOWER\LowPower.c)(0x6AA69FEF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\lowpower.o --omf_browse .\objects\lowpower.crf --depend .\objects\lowpower.d)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdint.h)(0x5CEB79E2)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h)(0x636B96E8)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h)(0x6A47972B)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\core_cm0plus.h)(0x636B96E8)
@@ -687,7 +686,8 @@ I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\cmsis_armcc.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\system_py32f0xx.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
+I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h)(0x636B96E8)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -705,25 +705,25 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_adc.h)(0x636B96E8)
-I (..\EXTERN\HW_INIT\LOWPOWER\LowPower_key.h)(0x6A9EBC9F)
-F (..\EXTERN\SERVER\LOG\LOG.c)(0x6A8BF6FA)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\log.o --omf_browse .\objects\log.crf --depend .\objects\log.d)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
+I (..\EXTERN\HW_INIT\LOWPOWER\LowPower_key.h)(0x6AA00D6E)
+F (..\EXTERN\SERVER\LOG\LOG.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\log.o --omf_browse .\objects\log.crf --depend .\objects\log.d)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -750,28 +750,27 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\SERVER\KEY\KEY_FSM.c)(0x6A92FC69)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\key_fsm.o --omf_browse .\objects\key_fsm.crf --depend .\objects\key_fsm.d)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h)(0x636B96E8)
+F (..\EXTERN\SERVER\KEY\KEY_FSM.c)(0x6AA61189)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\key_fsm.o --omf_browse .\objects\key_fsm.crf --depend .\objects\key_fsm.d)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h)(0x6A47972B)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\core_cm0plus.h)(0x636B96E8)
@@ -780,13 +779,14 @@ I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\cmsis_armcc.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x636B96E8)
 I (..\Drivers\CMSIS\Device\PY32F0xx\Include\system_py32f0xx.h)(0x636B96E8)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-F (..\EXTERN\SERVER\JSON\JSON_Parse.c)(0x6A981A50)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\json_parse.o --omf_browse .\objects\json_parse.crf --depend .\objects\json_parse.d)
-I (..\EXTERN\./SERVER/JSON/JSON_Parse.h)(0x6A981A4B)
+I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h)(0x636B96E8)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+F (..\EXTERN\SERVER\JSON\JSON_Parse.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\json_parse.o --omf_browse .\objects\json_parse.crf --depend .\objects\json_parse.d)
+I (..\EXTERN\./SERVER/JSON/JSON_Parse.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdint.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
-F (..\EXTERN\SERVER\QUEUE\Queue.c)(0x6A9D3E2C)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\queue.o --omf_browse .\objects\queue.crf --depend .\objects\queue.d)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+F (..\EXTERN\SERVER\QUEUE\Queue.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\queue.o --omf_browse .\objects\queue.crf --depend .\objects\queue.d)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -813,26 +813,26 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\SERVER\IR\IR_Receive.c)(0x6A9EB7CF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\ir_receive.o --omf_browse .\objects\ir_receive.crf --depend .\objects\ir_receive.d)
-I (..\EXTERN\SERVER\IR\IR_Receive.h)(0x6A9EB7CC)
+F (..\EXTERN\SERVER\IR\IR_Receive.c)(0x6AA00D6E)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\ir_receive.o --omf_browse .\objects\ir_receive.crf --depend .\objects\ir_receive.d)
+I (..\EXTERN\SERVER\IR\IR_Receive.h)(0x6AA00D6E)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdint.h)(0x5CEB79E2)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
@@ -859,28 +859,28 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\string.h)(0x5CEB79E2)
-F (..\EXTERN\RTOS\RTOS.c)(0x6A489D10)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\rtos.o --omf_browse .\objects\rtos.crf --depend .\objects\rtos.d)
-I (..\EXTERN\RTOS\RTOS.h)(0x6A2572BD)
+F (..\EXTERN\RTOS\RTOS.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\rtos.o --omf_browse .\objects\rtos.crf --depend .\objects\rtos.d)
+I (..\EXTERN\RTOS\RTOS.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -907,28 +907,28 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\RTOS\switch.s)(0x6A257C3F)(--cpu Cortex-M0+ -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 528"--list .\listings\switch.lst --xref -o .\objects\switch.o --depend .\objects\switch.d)
-F (..\EXTERN\MAG\mag_task.c)(0x6A93DA56)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\mag_task.o --omf_browse .\objects\mag_task.crf --depend .\objects\mag_task.d)
-I (..\EXTERN\MAG\mag_task.h)(0x6A93DA54)
+F (..\EXTERN\RTOS\switch.s)(0x6AA0BC63)(--cpu Cortex-M0+ -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 528"--list .\listings\switch.lst --xref -o .\objects\switch.o --depend .\objects\switch.d)
+F (..\EXTERN\MAG\mag_task.c)(0x6AA60C7F)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\mag_task.o --omf_browse .\objects\mag_task.crf --depend .\objects\mag_task.d)
+I (..\EXTERN\MAG\mag_task.h)(0x6AA60CBA)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -955,27 +955,27 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\MAG\mag_tick.c)(0x6A93D949)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\mag_tick.o --omf_browse .\objects\mag_tick.crf --depend .\objects\mag_tick.d)
-I (..\EXTERN\MAG\mag_tick.h)(0x6A93D946)
+F (..\EXTERN\MAG\mag_tick.c)(0x6AA60F8A)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\mag_tick.o --omf_browse .\objects\mag_tick.crf --depend .\objects\mag_tick.d)
+I (..\EXTERN\MAG\mag_tick.h)(0x6AA61057)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -1002,29 +1002,29 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\MAG\mag_scheduler.c)(0x6A9D799D)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\mag_scheduler.o --omf_browse .\objects\mag_scheduler.crf --depend .\objects\mag_scheduler.d)
-I (..\EXTERN\MAG\mag_scheduler.h)(0x6A9D79A0)
+F (..\EXTERN\MAG\mag_scheduler.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\mag_scheduler.o --omf_browse .\objects\mag_scheduler.crf --depend .\objects\mag_scheduler.d)
+I (..\EXTERN\MAG\mag_scheduler.h)(0x6AA61927)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdint.h)(0x5CEB79E2)
-I (..\EXTERN\MAG\mag_tick.h)(0x6A93D946)
+I (..\EXTERN\MAG\mag_tick.h)(0x6AA61057)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -1050,26 +1050,26 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\APP\app_main.c)(0x6A9EBDDA)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_main.o --omf_browse .\objects\app_main.crf --depend .\objects\app_main.d)
-I (..\EXTERN\APP\app_main.h)(0x6A479029)
+F (..\EXTERN\APP\app_main.c)(0x6AA6A41F)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_main.o --omf_browse .\objects\app_main.crf --depend .\objects\app_main.d)
+I (..\EXTERN\APP\app_main.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -1096,27 +1096,27 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\APP\APP_INPUT\APP_input.c)(0x6A93AD95)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_input.o --omf_browse .\objects\app_input.crf --depend .\objects\app_input.d)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
+F (..\EXTERN\APP\APP_INPUT\APP_input.c)(0x6AA615BD)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_input.o --omf_browse .\objects\app_input.crf --depend .\objects\app_input.d)
+I (..\EXTERN\APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -1143,26 +1143,27 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\APP\APP_OUTPUT\APP_output.c)(0x6A92F399)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_output.o --omf_browse .\objects\app_output.crf --depend .\objects\app_output.d)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
+F (..\EXTERN\APP\APP_OUTPUT\APP_output.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_output.o --omf_browse .\objects\app_output.crf --depend .\objects\app_output.d)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -1189,26 +1190,26 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)
-F (..\EXTERN\APP\APP_COMM\APP_comm.c)(0x6A8C38DC)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_comm.o --omf_browse .\objects\app_comm.crf --depend .\objects\app_comm.d)
-I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6A8C38D9)
+F (..\EXTERN\APP\APP_COMM\APP_comm.c)(0x6AA0BC63)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\PY32F0xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Device\PY32F0xx\Include -I ..\Drivers\BSP\PY32F030xx_Start_Kit -I ..\EXTERN-I.\RTE\_Project-IE:\allSoftware\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-IE:\allSoftware\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="528" -DPY32F030x8 -DUSE_FULL_LL_DRIVER -DLOG_ENABLE="1"-o .\objects\app_comm.o --omf_browse .\objects\app_comm.crf --depend .\objects\app_comm.d)
+I (..\EXTERN\./APP/APP_COMM/APP_comm.h)(0x6AA0BC63)
 I (..\Inc\main.h)(0x6A9D51E3)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stddef.h)(0x5CEB79E2)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -1235,21 +1236,21 @@ I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_iwdg.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_usart.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_i2c.h)(0x636B96E8)
 I (..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_exti.h)(0x636B96E8)
-I (..\EXTERN\./SYS/system_init.h)(0x6A1D8572)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6A904645)
-I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6A90463F)
-I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6A8ABF29)
-I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6A9EB37A)
-I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6A48A15E)
-I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6A9AC1E2)
-I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6A8AB0DF)
-I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6A9EBDD4)
-I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6A8DA1D8)
-I (..\EXTERN\./MAG/mag_tick.h)(0x6A93D946)
-I (..\EXTERN\./MAG/mag_scheduler.h)(0x6A9D79A0)
-I (..\EXTERN\./APP/app_main.h)(0x6A479029)
-I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6A92F38A)
-I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6A92E95C)
-I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6A92F35E)
-I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6A9D3D5D)
+I (..\EXTERN\./SYS/system_init.h)(0x6AA60C7F)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/GPIO/GPIO_types.h)(0x6AA69FEF)
+I (..\EXTERN\./HW_INIT/SPI/SPI_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/TIM/TIM_init.h)(0x6AA61EF8)
+I (..\EXTERN\./HW_INIT/ADC/ADC_init.h)(0x6AA0BC63)
+I (..\EXTERN\./HW_INIT/USART/USART_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/I2C/I2C_init.h)(0x6AA61189)
+I (..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h)(0x6AA0BC64)
+I (..\EXTERN\./SERVER/LOG/LOG.h)(0x6AA69FEF)
+I (..\EXTERN\./MAG/mag_tick.h)(0x6AA61057)
+I (..\EXTERN\./MAG/mag_scheduler.h)(0x6AA61927)
+I (..\EXTERN\./APP/app_main.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_INPUT/APP_input.h)(0x6AA0BC63)
+I (..\EXTERN\./APP/APP_OUTPUT/APP_output.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/KEY/KEY_FSM.h)(0x6AA0BC63)
+I (..\EXTERN\./SERVER/QUEUE/Queue.h)(0x6AA0BC63)
 I (E:\allSoftware\keil5\ARM\ARMCC\include\stdbool.h)(0x5CEB79DE)

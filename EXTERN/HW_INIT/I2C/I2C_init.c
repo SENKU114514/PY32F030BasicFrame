@@ -135,21 +135,19 @@ static const HW_I2C_ChipMap_t s_i2c_chip_map =
 
 
 #elif defined(PY32F002BPRE)
-
-
-/*
- * PY32F002B 扩展位置。
- * 当前没有加入未经该芯片手册确认的 I2C 引脚映射。
- */
-static const HW_I2C_ChipMap_t s_i2c_chip_map =
-{
-    NULL,
-    0U,
-    NULL,
-    0U
+/* PY32F002B datasheet tables 3-4/3-5. */
+static const I2C_SCL_MAP_t I2C_SCL_MAP_TABLE[] = {
+    I2C_SCL_MAP(I2C_BUS1, SCL_A2, I2C1, GPIOA, LL_GPIO_PIN_2, LL_GPIO_AF_6),
+    I2C_SCL_MAP(I2C_BUS1, SCL_B3, I2C1, GPIOB, LL_GPIO_PIN_3, LL_GPIO_AF_6),
 };
-
-
+static const I2C_SDA_MAP_t I2C_SDA_MAP_TABLE[] = {
+    I2C_SDA_MAP(I2C_BUS1, SDA_B4, I2C1, GPIOB, LL_GPIO_PIN_4, LL_GPIO_AF_6),
+    I2C_SDA_MAP(I2C_BUS1, SDA_B6, I2C1, GPIOB, LL_GPIO_PIN_6, LL_GPIO_AF_6),
+};
+static const HW_I2C_ChipMap_t s_i2c_chip_map = {
+    I2C_SCL_MAP_TABLE, sizeof(I2C_SCL_MAP_TABLE)/sizeof(I2C_SCL_MAP_TABLE[0]),
+    I2C_SDA_MAP_TABLE, sizeof(I2C_SDA_MAP_TABLE)/sizeof(I2C_SDA_MAP_TABLE[0])
+};
 #else
 
 
@@ -783,10 +781,20 @@ static HW_I2C_Status_e HW_I2C_ReadPhase(
     data[data_index] = LL_I2C_ReceiveData8(i2c_instance);
     data_index++;
 
+#if defined(PY32F002BPRE)
+    /* RM 19.3 master receiver method 2: the last byte receives NACK;
+     * once BTF is set, SCL is stretched until software reads DR. */
+    __set_PRIMASK(interrupt_state);
+    status = HW_I2C_WaitFlag(i2c_instance, HW_I2C_WAIT_BTF);
+    __disable_irq();
+#elif defined(PY32F030PRE)
     status = HW_I2C_WaitFlagLimit(
         i2c_instance,
         HW_I2C_WAIT_BTF,
         HW_I2C_CRITICAL_WAIT_COUNT);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
     if (status != HW_I2C_STATUS_OK)
     {
         if ((interrupt_state & 1U) == 0U)

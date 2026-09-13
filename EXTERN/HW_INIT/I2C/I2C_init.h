@@ -46,6 +46,7 @@ typedef enum
     SCL_B6,         /* PB6  -> I2C1_SCL，AF6  */
     SCL_B8,         /* PB8  -> I2C1_SCL，AF6  */
     SCL_F1,         /* PF1  -> I2C1_SCL，AF12；使用 HSE 时不能同时占用 */
+    SCL_A2, SCL_B3, /* PY32F002B AF6 */
     SCL_PIN_COUNT,
 } I2C_SCL_Pin_e;
 
@@ -64,6 +65,7 @@ typedef enum
     SDA_B7,         /* PB7  -> I2C1_SDA，AF6  */
     SDA_B8,         /* PB8  -> I2C1_SDA，AF12 */
     SDA_F0,         /* PF0  -> I2C1_SDA，AF12；使用 HSE 时不能同时占用 */
+    SDA_B4, SDA_B6, /* PY32F002B AF6 */
     SDA_PIN_COUNT,
 } I2C_SDA_Pin_e;
 

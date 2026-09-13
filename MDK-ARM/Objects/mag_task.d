@@ -43,6 +43,7 @@
 .\objects\mag_task.o: ..\Inc\main.h
 .\objects\mag_task.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\mag_task.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
+.\objects\mag_task.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\mag_task.o: ..\EXTERN\./HW_INIT/SPI/SPI_init.h
 .\objects\mag_task.o: ..\EXTERN\./HW_INIT/TIM/TIM_init.h
 .\objects\mag_task.o: ..\EXTERN\./HW_INIT/ADC/ADC_init.h

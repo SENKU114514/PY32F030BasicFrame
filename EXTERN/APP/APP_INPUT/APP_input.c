@@ -1,4 +1,4 @@
-#include "./APP/APP_INPUT/APP_input.h"
+#include "APP/APP_INPUT/APP_input.h"
 
 #define KEY_PIN A5
 

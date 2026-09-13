@@ -27,7 +27,14 @@ Project File Date:  09/07/2026
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\allSoftware\keil5\ARM\ARMCC\Bin'
 Build target 'Project'
-".\Objects\Project.axf" - 0 Error(s), 0 Warning(s).
+compiling app_main.c...
+..\EXTERN\APP\app_main.c(37): warning:  #550-D: variable "lowpower_last_activity_tick"  was set but never used
+  static uint32_t lowpower_last_activity_tick;
+..\EXTERN\APP\app_main.c: 1 warning, 0 errors
+linking...
+Program Size: Code=10368 RO-data=2652 RW-data=284 ZI-data=1468  
+FromELF: creating hex file...
+".\Objects\Project.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

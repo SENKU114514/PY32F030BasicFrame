@@ -53,6 +53,23 @@ typedef enum
     PWM_TIM17_CH1_B8,     /* PB8  -> TIM17_CH1, AF13 */
 #endif
 
+#if defined(PY32F002BPRE)
+    /* PY32F002B datasheet tables 3-4/3-5; original enum values retained. */
+    PWM_TIM1_CH2_A1,
+    PWM_TIM1_CH1_A0,
+    PWM_TIM1_CH1_A5,
+    PWM_TIM1_CH2_A3,
+    PWM_TIM1_CH2_B0,
+    PWM_TIM1_CH3_A4,
+    PWM_TIM1_CH3_B2,
+    PWM_TIM1_CH3_B5,
+    PWM_TIM1_CH4_A2,
+    PWM_TIM1_CH4_A7,
+    PWM_TIM1_CH4_B1,
+    PWM_TIM14_CH1_A5,
+    PWM_TIM14_CH1_B5,
+    PWM_TIM14_CH1_B7,
+#endif
     PWM_CHANNEL_COUNT,
 } TIM_PWM_Channel_e;
 
@@ -73,11 +90,11 @@ typedef enum
 } HW_TIM_Status_e;
 
 //ÖÐ¶Ï·µ»Ø
-__weak void TIM1_UpdateCallback	(void);
-__weak void TIM3_UpdateCallback	(void);
-__weak void TIM14_UpdateCallback(void);
-__weak void TIM16_UpdateCallback(void);
-__weak void TIM17_UpdateCallback(void);
+void TIM1_UpdateCallback	(void);
+void TIM3_UpdateCallback	(void);
+void TIM14_UpdateCallback(void);
+void TIM16_UpdateCallback(void);
+void TIM17_UpdateCallback(void);
 
 
 /*

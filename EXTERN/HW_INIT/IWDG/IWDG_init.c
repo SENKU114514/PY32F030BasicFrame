@@ -1,4 +1,5 @@
-#include "./HW_INIT/IWDG/IWDG_Init.h"
+#include "IWDG_init.h"
+#include "../../SERVER/LOG/LOG.h"
 
 /**
   * @brief  HW_IWDG_Init
@@ -18,6 +19,12 @@ void HW_IWDG_Init(uint8_t FeedTime)
   LL_IWDG_EnableWriteAccess(IWDG);
  
   /* 设置IWDG分频 */
+#if defined(PY32F002BPRE)
+  /* RM 18.4: PVU/RVU must clear before rewriting PR/RLR. */
+  while (LL_IWDG_IsReady(IWDG) == 0U) {;}
+  /* Existing FeedTime is the raw reload value, not an exact millisecond unit.
+   * Nominal timeout = (FeedTime + 1) * 32 / 32768 seconds. */
+#endif
   LL_IWDG_SetPrescaler(IWDG, LL_IWDG_PRESCALER_32); /*LSI=32.768K   T=1MS */
   
   /* 设置喂狗事件*/

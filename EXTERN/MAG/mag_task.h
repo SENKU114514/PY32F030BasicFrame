@@ -11,11 +11,11 @@
 /*命名规则:HW_GPIO_类型_名字，类型全大写，名称开头大写，后小写*/
 
 /*任务跳转位置*/
-__weak void task_1ms	(void);
-__weak void task_50ms	(void);
-__weak void task_100ms(void);
-__weak void task_500ms(void);
-__weak void task_1s		(void);
+void task_1ms	(void);
+void task_50ms	(void);
+void task_100ms(void);
+void task_500ms(void);
+void task_1s		(void);
 
 #define MAG_TASK_INIT_OK       0U
 #define MAG_TASK_INIT_FAILED   1U

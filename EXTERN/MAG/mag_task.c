@@ -4,6 +4,13 @@
 
 #include "mag_task.h"
 
+/* Logging is optional; do not require the unrelated UART/LOG module. */
+#ifndef LOG_DEBUG
+#define MAG_TASK_LOG(...) ((void)0)
+#else
+#define MAG_TASK_LOG(...) LOG_DEBUG(__VA_ARGS__)
+#endif
+
 uint32_t mag_tick;
 uint32_t mag_old_tick;
 
@@ -11,12 +18,12 @@ uint32_t mag_old_tick;
 uint8_t mag_task_init(void)
 {
 	if(mag_tick_init() != MAG_TICK_INIT_OK){//初始化(定时器)
-		LOG_DEBUG("legacy MAG tick init failed\r\n");
+		MAG_TASK_LOG("legacy MAG tick init failed\r\n");
 		return MAG_TASK_INIT_FAILED;
 	}
 	mag_tick = get_mag_tick();//获取时间
 	mag_old_tick = mag_tick;//更新时间
-	LOG_DEBUG("task init success\r\n");
+	MAG_TASK_LOG("task init success\r\n");
 	return MAG_TASK_INIT_OK;
 }
 

@@ -1,7 +1,6 @@
 .\objects\gpio_init.o: ..\EXTERN\HW_INIT\GPIO\GPIO_init.c
 .\objects\gpio_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\gpio_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
-.\objects\gpio_init.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h
 .\objects\gpio_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\gpio_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
 .\objects\gpio_init.o: ..\Drivers\CMSIS\Include\core_cm0plus.h
@@ -10,6 +9,8 @@
 .\objects\gpio_init.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\gpio_init.o: ..\Drivers\CMSIS\Include\core_cmFunc.h
 .\objects\gpio_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\system_py32f0xx.h
+.\objects\gpio_init.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h
+.\objects\gpio_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\gpio_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\gpio_init.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_bus.h
 .\objects\gpio_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h

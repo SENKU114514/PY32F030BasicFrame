@@ -1,11 +1,13 @@
 #include "system_init.h"
 
+#if defined(PY32F030PRE)
+
 /**
   * @brief  系统时钟配置函数
   * @param  无
   * @retval 无
   */
-void APP_SystemClockConfig(uint8_t FRE)
+static void sys_legacy_clock_config(uint8_t FRE)
 {
   /* 使能HSI */
   LL_RCC_HSI_Enable();
@@ -53,3 +55,56 @@ void APP_SystemClockConfig(uint8_t FRE)
   LL_SetSystemCoreClock(FRE*1000000);
 }
 
+
+#endif
+
+SYS_ClockStatus_e SYS_ClockConfig(uint8_t frequency_mhz)
+{
+#if defined(PY32F002BPRE)
+    uint32_t calibration;
+    /* Validate before touching any clock register. No PLL on PY32F002B. */
+    switch (frequency_mhz)
+    {
+        case 4U: calibration = LL_RCC_HSICALIBRATION_4MHz; break;
+        case 8U: calibration = LL_RCC_HSICALIBRATION_8MHz; break;
+        case 24U: calibration = LL_RCC_HSICALIBRATION_24MHz; break;
+        default: return SYS_CLOCK_UNSUPPORTED;
+    }
+
+    LL_RCC_HSI_Enable();
+    while (LL_RCC_HSI_IsReady() == 0U) {}
+    LL_RCC_HSI_SetCalibFreq(calibration);
+    LL_RCC_SetHSIDiv(LL_RCC_HSI_DIV_1);
+    LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_HSISYS);
+    while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_HSISYS) {}
+    LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+    LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
+    /* All supported clocks are <= 24 MHz. Lower latency after switching. */
+    LL_FLASH_SetLatency(LL_FLASH_LATENCY_0);
+    SystemCoreClockUpdate();
+    LL_Init1msTick(SystemCoreClock);
+#elif defined(PY32F030PRE)
+    switch (frequency_mhz)
+    {
+        case 4U: case 8U: case 16U: case 24U: case 48U: break;
+        default: return SYS_CLOCK_UNSUPPORTED;
+    }
+    sys_legacy_clock_config(frequency_mhz);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
+    return SYS_CLOCK_OK;
+}
+
+/* Existing applications retain their original entry point. */
+void APP_SystemClockConfig(uint8_t FRE)
+{
+#if defined(PY32F002BPRE)
+    /* Unsupported requests leave the current clock unchanged. */
+    (void)SYS_ClockConfig(FRE);
+#elif defined(PY32F030PRE)
+    sys_legacy_clock_config(FRE);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
+}

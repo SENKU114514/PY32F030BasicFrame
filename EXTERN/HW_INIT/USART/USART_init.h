@@ -29,6 +29,7 @@ typedef enum
     TX_F0,     /* USART2_TX，AF9 */
     TX_F1,     /* USART1_TX，AF8；USART2_TX，AF4 */
     TX_F3,     /* USART1_TX，AF0；USART2_TX，AF4 */
+    TX_A3, TX_A6, TX_B4, /* PY32F002B additions; existing indices retained. */
 } UART_TX_Pin_e;
 
 /*RX引脚*/
@@ -49,6 +50,7 @@ typedef enum
     RX_F0,     /* USART1_RX，AF8；USART2_RX，AF4 */
     RX_F1,     /* USART2_RX，AF9 */
     RX_F2,     /* USART2_RX，AF4 */
+    RX_A2, RX_A4, RX_A7, RX_B5, /* PY32F002B additions. */
 } UART_RX_Pin_e;
 
 /* UART 操作状态：供上层判断初始化、发送或接收是否成功。 */

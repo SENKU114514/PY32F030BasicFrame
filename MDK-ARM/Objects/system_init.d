@@ -42,6 +42,7 @@
 .\objects\system_init.o: ..\EXTERN\./SYS/system_init.h
 .\objects\system_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\system_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
+.\objects\system_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\system_init.o: ..\EXTERN\./HW_INIT/SPI/SPI_init.h
 .\objects\system_init.o: ..\Inc\main.h
 .\objects\system_init.o: ..\EXTERN\./HW_INIT/TIM/TIM_init.h

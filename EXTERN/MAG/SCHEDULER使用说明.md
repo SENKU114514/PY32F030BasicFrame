@@ -9,9 +9,19 @@
 
 # 固定准备
 
-在调用文件中引用 `MAG/mag_scheduler.h`；任务函数和任务表放在 `EXTERN/APP/app_main.c`，任务函数放在任务表之前。
+-> 将 EXTERN 根目录加入搜索路径，将 mag_tick.c、mag_scheduler.c、HW_INIT/TIM/TIM_init.c 加入编译；需要旧版固定周期接口时再加入 mag_task.c。当前仓库 Keil/IAR 已接入基础模块。
 
-初始化放在 `app_main_init()` 的业务模块初始化完成后，执行一次；`MAG_SchedulerProcess()` 放在 `app_main()` 中，每轮主循环执行。
+-> 在调用文件中引用 `MAG/mag_scheduler.h`，将任务函数和任务表放在自己的业务文件中，任务函数放在任务表之前；无需启用尚未适配的 APP 模块。
+
+-> 目标工程 main.h 引入设备头文件后自动识别芯片；002B 与 F030 均通过 HW_INIT/TIM/TIM_init.c 提供定时中断，002B 的 PWM 映射暂不启用。
+
+-> 系统时钟配置完成后初始化一次；每轮主循环调用 `MAG_SchedulerProcess()`。当前 main.c 已通过 app_main_init/app_main 接通初始化和循环调度。
+
+-> 002B 默认由 TIM_init.c 提供 TIM1_BRK_UP_TRG_COM_IRQHandler；如果目标工程已有该函数，在工程预定义宏中设置 MAG_TICK_EXTERNAL_IRQ=1，并在已有函数内调用 MAG_TickIRQHandler()。
+
+-> TIM1 由 MAG 独占，不同时用于 PWM 或其他计时；TIM_init.c 负责中断分发，mag_tick.c 负责 tick 累加，调度器不依赖串口、日志或低功耗。
+
+-> 旧版 mag_task.c 未提供 LOG_DEBUG 时自动关闭自身日志；提供该宏时继续使用原日志。task_1ms 等回调仍可由业务文件覆盖，默认空实现保留在 mag_task.c 中。
 
 # 填写任务表
 
@@ -31,15 +41,19 @@
 
 # 初始化调度器
 
-业务模块准备完成 → `MAG_SchedulerInit()`，传入 `s_app_tasks` 和任务表元素个数 → 仅返回 `MAG_SCHEDULER_STATUS_OK` 后开始正常调度；现有工程已接入此调用。
+业务模块准备完成 → `MAG_SchedulerInit()`，传入任务表和任务表元素个数 → 仅返回 `MAG_SCHEDULER_STATUS_OK` 后开始正常调度；当前 app_main_init 已接入。
 
-初始化时 → 接口自动装入整张任务表并通过 `mag_tick_init()` 启动 TIM1 的 1ms 时基 → 保留 `mag_tick.c` 中的 `TIM1_UpdateCallback()`，不要将 TIM1 改作其他用途。
+初始化时 → 接口自动装入整张任务表并通过 `mag_tick_init()` 启动 TIM1 的 1ms 时基 → TIM 中断调用 `TIM1_UpdateCallback()` 累加 tick；不要将 TIM1 改作其他用途。
+
+时基 → TIM 根据实际 APB 时钟及定时器倍频计算 PSC/ARR → 产生 1ms 更新事件；4/8/24 MHz 均能精确整分频，参数不支持时返回初始化失败。
+
+中断运行条件 → 保持全局中断开启，避免连续屏蔽中断超过 1ms → 长时间屏蔽会合并更新事件、丢失计时；重新初始化时基保留软件 tick 的连续性。
 
 初始化失败 → 按返回状态处理参数、容量或时基问题 → 修正后重新初始化；再次初始化会清空旧任务并使旧句柄失效，任务回调中调用则返回 `MAG_SCHEDULER_STATUS_BUSY`。
 
 # 循环调度
 
-进入主循环 → 每轮调用 `MAG_SchedulerProcess()` → 到期任务在主循环中依次执行，未到期任务跳过；现有 `app_main()` 已接入此调用。
+进入主循环 → 每轮调用 `MAG_SchedulerProcess()` → 到期任务在主循环中依次执行，未到期任务跳过。
 
 编写任务内容 → 每次只做一小步并尽快返回，不使用阻塞延时或等待循环 → 长任务会推迟其他任务，包括按键扫描和喂狗。
 

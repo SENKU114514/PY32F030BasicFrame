@@ -1,25 +1,22 @@
-/*时钟基准，使用中断定时*/
-
+/* Shared TIM1 millisecond time base for both device branches. */
 #include "mag_tick.h"
-
+#include "../HW_INIT/TIM/TIM_init.h"
+#include "../HW_INIT/GPIO/GPIO_init.h"
 static volatile uint32_t s_mag_tick = 0xFFFFF000U;
-
-/*初始化定时器*/
-uint8_t mag_tick_init(void){
-	/* 初始化定时器并把底层结果交给调用者。 */
-	return (HW_TIM_COUNT_IT_init(TIM1, DOWN, 1U) == HW_TIM_STATUS_OK) ?
-		MAG_TICK_INIT_OK : MAG_TICK_INIT_FAILED;//定时1ms
-}
-
-/*中断启动后自动对系统时间+1*/
-void TIM1_UpdateCallback(void)//TIM1中断返回
+uint8_t mag_tick_init(void)
 {
-	s_mag_tick++;
+    return (HW_TIM_COUNT_IT_init(TIM1, UP, 1U) == HW_TIM_STATUS_OK) ?
+        MAG_TICK_INIT_OK : MAG_TICK_INIT_FAILED;
 }
-
-/* 获取当前 1 ms 系统时基。 */
-uint32_t get_mag_tick()
+void TIM1_UpdateCallback(void) { s_mag_tick++; }
+#if defined(PY32F002BPRE)
+void MAG_TickIRQHandler(void)
 {
-	return s_mag_tick;
+    if (LL_TIM_IsActiveFlag_UPDATE(TIM1) && LL_TIM_IsEnabledIT_UPDATE(TIM1))
+    {
+        LL_TIM_ClearFlag_UPDATE(TIM1);
+        TIM1_UpdateCallback();
+    }
 }
-
+#endif
+uint32_t get_mag_tick(void) { return s_mag_tick; }

@@ -3,7 +3,6 @@
 .\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\lowpower.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\lowpower.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
-.\objects\lowpower.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Include\core_cm0plus.h
@@ -11,6 +10,8 @@
 .\objects\lowpower.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Include\core_cmFunc.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\system_py32f0xx.h
+.\objects\lowpower.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_gpio.h
+.\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\lowpower.o: ..\EXTERN\./SYS/system_init.h
 .\objects\lowpower.o: ..\Inc\main.h
 .\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h

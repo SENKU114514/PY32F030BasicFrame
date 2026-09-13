@@ -1,6 +1,17 @@
 #include "./HW_INIT/LOWPOWER/LowPower.h"
 
 #include "./SYS/system_init.h"
+#if defined(PY32F002BPRE)
+#include "py32f002b_ll_adc.h"
+#include "py32f002b_ll_bus.h"
+#include "py32f002b_ll_cortex.h"
+#include "py32f002b_ll_i2c.h"
+#include "py32f002b_ll_pwr.h"
+#include "py32f002b_ll_spi.h"
+#include "py32f002b_ll_tim.h"
+#include "py32f002b_ll_usart.h"
+#include "py32f002b_ll_exti.h"
+#elif defined(PY32F030PRE)
 #include "py32f0xx_ll_adc.h"
 #include "py32f0xx_ll_bus.h"
 #include "py32f0xx_ll_cortex.h"
@@ -12,8 +23,13 @@
 #include "py32f0xx_ll_usart.h"
 
 
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
 #include "LowPower_key.h"
+#if defined(PY32F030PRE)
 #include "py32f0xx_ll_exti.h"
+#endif
 
 /*
  * 长按唤醒使用示例：
@@ -34,10 +50,21 @@
  */
 
 /* Stop档位配置：Stop0唤醒快，Stop1功耗更低。 */
+#if defined(PY32F002BPRE)
+/* PWR_CR1.LPR: 00 = MR, 01 = LPR; F030 voltage selectors do not apply. */
+#define LOWPOWER_002B_REGULATOR LL_PWR_LPR_MODE_LPR
+#if ((LOWPOWER_002B_REGULATOR != LL_PWR_LPR_MODE_MR) && \
+     (LOWPOWER_002B_REGULATOR != LL_PWR_LPR_MODE_LPR))
+#error "LOWPOWER_002B_REGULATOR is invalid"
+#endif
+#elif defined(PY32F030PRE)
 #define LOWPOWER_STOP_MODE_STOP0           0U
 #define LOWPOWER_STOP_MODE_STOP1_1V2       1U
 #define LOWPOWER_STOP_MODE_STOP1_1V0       2U
 #define LOWPOWER_STOP_MODE                 LOWPOWER_STOP_MODE_STOP1_1V0		//此处设置具体功耗
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
 
 /* 外设管理开关：1表示暂停、清旧事件并按原状态恢复，0表示低功耗模块不处理。 */
 #define LOWPOWER_MANAGE_TIM1               1U
@@ -54,10 +81,12 @@
 
 /* 固定管理当前框架支持的普通外设，调用者无需逐项选择。 */
 
+#if defined(PY32F030PRE)
 #if ((LOWPOWER_STOP_MODE != LOWPOWER_STOP_MODE_STOP0) && \
      (LOWPOWER_STOP_MODE != LOWPOWER_STOP_MODE_STOP1_1V2) && \
      (LOWPOWER_STOP_MODE != LOWPOWER_STOP_MODE_STOP1_1V0))
 #error "LOWPOWER_STOP_MODE is invalid"
+#endif
 #endif
 
 #define LOWPOWER_IRQ_UNUSED                 (-1)
@@ -319,12 +348,28 @@ static uint32_t lowpower_prepare_adc(void)
     s_peripheral_state.adc1_was_prepared = 1U;
     ADC1->IER = 0U;
 
+#if defined(PY32F002BPRE)
+    if (s_peripheral_state.adc1_was_enabled != 0U)
+    {
+        uint32_t wait = 10000U;
+        LL_ADC_Disable(ADC1); /* ADDIS request; wait until ADEN clears. */
+        while (LL_ADC_IsEnabled(ADC1) && wait != 0U) wait--;
+        if (LL_ADC_IsEnabled(ADC1))
+        {
+            lowpower_restore_adc();
+            return 0U;
+        }
+    }
+#elif defined(PY32F030PRE)
     if ((s_peripheral_state.adc1_was_enabled != 0U) &&
         (LL_ADC_Disable(ADC1) != SUCCESS))
     {
         lowpower_restore_adc();
         return 0U;
     }
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
 #endif
 
     return 1U;
@@ -444,7 +489,13 @@ static void lowpower_suspend_peripherals(void)
         s_peripheral_state.apb1_group1_clock_mask |= LL_APB1_GRP1_PERIPH_I2C1;
         s_peripheral_state.i2c1_cr1 = I2C1->CR1;
         s_peripheral_state.i2c1_cr2 = I2C1->CR2;
+#if defined(PY32F002BPRE)
+        CLEAR_BIT(I2C1->CR2, I2C_CR2_ITEVTEN | I2C_CR2_ITBUFEN | I2C_CR2_ITERREN);
+#elif defined(PY32F030PRE)
         CLEAR_BIT(I2C1->CR2, I2C_CR2_ITEVTEN | I2C_CR2_ITBUFEN | I2C_CR2_ITERREN | I2C_CR2_DMAEN);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
         LL_I2C_Disable(I2C1);
     }
 #endif
@@ -477,8 +528,14 @@ static void lowpower_suspend_peripherals(void)
         s_peripheral_state.apb1_group2_clock_mask |= LL_APB1_GRP2_PERIPH_SPI1;
         s_peripheral_state.spi1_cr1 = SPI1->CR1;
         s_peripheral_state.spi1_cr2 = SPI1->CR2;
+#if defined(PY32F002BPRE)
+        CLEAR_BIT(SPI1->CR2, SPI_CR2_ERRIE | SPI_CR2_RXNEIE | SPI_CR2_TXEIE);
+#elif defined(PY32F030PRE)
         CLEAR_BIT(SPI1->CR2, SPI_CR2_ERRIE | SPI_CR2_RXNEIE | SPI_CR2_TXEIE |
                                 SPI_CR2_RXDMAEN | SPI_CR2_TXDMAEN);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
         LL_SPI_Disable(SPI1);
     }
 #endif
@@ -490,7 +547,13 @@ static void lowpower_suspend_peripherals(void)
         s_peripheral_state.apb1_group2_clock_mask |= LL_APB1_GRP2_PERIPH_USART1;
         s_peripheral_state.usart1_cr1 = USART1->CR1;
         s_peripheral_state.usart1_cr3 = USART1->CR3;
+#if defined(PY32F002BPRE)
+        CLEAR_BIT(USART1->CR3, USART_CR3_EIE | USART_CR3_CTSIE);
+#elif defined(PY32F030PRE)
         CLEAR_BIT(USART1->CR3, USART_CR3_EIE | USART_CR3_CTSIE | USART_CR3_DMAR | USART_CR3_DMAT);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
         CLEAR_BIT(USART1->CR1, USART_CR1_IDLEIE | USART_CR1_RXNEIE | USART_CR1_TCIE |
                                   USART_CR1_TXEIE | USART_CR1_PEIE);
         LL_USART_Disable(USART1);
@@ -642,6 +705,13 @@ static void lowpower_resume_timers(void)
 /* 根据头文件配置选择Stop0或Stop1的稳压器和保持电压。 */
 static void lowpower_configure_stop_mode(void)
 {
+#if defined(PY32F002BPRE)
+    /* RM 6.6.1: PWR_CR1, no F030 VOS/Stop1 voltage encoding. */
+    LL_PWR_SetLprMode(LOWPOWER_002B_REGULATOR);
+    LL_PWR_SetStopModeSramVoltCtrl(LL_PWR_SRAM_RETENTION_VOLT_CTRL_LDO);
+    LL_PWR_SetWakeUpHSIOnMode(LL_PWR_WAKEUP_HSION_AFTER_MR);
+    LL_PWR_SetWakeUpFlashDelay(LL_PWR_WAKEUP_FLASH_DELAY_5US);
+#elif defined(PY32F030PRE)
 #if (LOWPOWER_STOP_MODE == LOWPOWER_STOP_MODE_STOP0)
     LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1);
     LL_PWR_DisableLowPowerRunMode();
@@ -651,6 +721,9 @@ static void lowpower_configure_stop_mode(void)
 #else
     LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE2);
     LL_PWR_EnableLowPowerRunMode();
+#endif
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
 #endif
 }
 
@@ -702,15 +775,23 @@ static uint8_t lowpower_read_pressed(uint8_t *pressed)
 /* 先切离 PLL 再降频，使用 HSI 4MHz / AHB 4 分频得到 1MHz。 */
 static void lowpower_use_check_clock(void)
 {
+#if defined(PY32F002BPRE)
+    LL_PWR_SetLprMode(LL_PWR_LPR_MODE_MR);
+#elif defined(PY32F030PRE)
     LL_PWR_DisableLowPowerRunMode();
     LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
     LL_RCC_HSI_Enable();
     while (LL_RCC_HSI_IsReady() == 0U) {}
     LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
     LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_HSISYS);
     while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_HSISYS) {}
+#if defined(PY32F030PRE)
     LL_RCC_PLL_Disable();
     while (LL_RCC_PLL_IsReady() != 0U) {}
+#endif
     APP_SystemClockConfig(4U);
     LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_4);
     LL_SetSystemCoreClock(1000000U);
@@ -785,6 +866,9 @@ __weak void HW_LowPower_RestoreCallback(void)
 /* 暂停普通外设，等待长按确认，再恢复休眠前的运行状态。 */
 HW_LowPower_Status_e HW_LowPower_Enter(void)
 {
+#if defined(PY32F002BPRE)
+    uint32_t saved_pwr_cr1;
+#endif
     uint32_t was_pwr_clock_enabled;
     uint32_t saved_irq_mask;
     uint32_t saved_exti_mask;
@@ -805,6 +889,15 @@ HW_LowPower_Status_e HW_LowPower_Enter(void)
         return HW_LOWPOWER_STATUS_INTERRUPTS_DISABLED;
     if (s_wakeup_initialized == 0U)
         return HW_LOWPOWER_STATUS_NOT_INITIALIZED;
+#if defined(PY32F002BPRE)
+    if (((saved_core_clock != 4000000U) && (saved_core_clock != 8000000U) &&
+         (saved_core_clock != 24000000U)) ||
+        LL_RCC_GetAHBPrescaler() != LL_RCC_SYSCLK_DIV_1 ||
+        LL_RCC_GetAPB1Prescaler() != LL_RCC_APB1_DIV_1 ||
+        LL_RCC_GetHSIDiv() != LL_RCC_HSI_DIV_1 ||
+        saved_source != LL_RCC_SYS_CLKSOURCE_STATUS_HSISYS)
+        return HW_LOWPOWER_STATUS_UNSUPPORTED_CLOCK;
+#elif defined(PY32F030PRE)
     if (((saved_core_clock != 4000000U) && (saved_core_clock != 8000000U) &&
          (saved_core_clock != 16000000U) && (saved_core_clock != 24000000U) &&
          (saved_core_clock != 48000000U)) ||
@@ -818,6 +911,9 @@ HW_LowPower_Status_e HW_LowPower_Enter(void)
         ((saved_source == LL_RCC_SYS_CLKSOURCE_STATUS_PLL) &&
          (LL_RCC_PLL_GetMainSource() != LL_RCC_PLLSOURCE_HSI)))
         return HW_LOWPOWER_STATUS_UNSUPPORTED_CLOCK;
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
     if (lowpower_read_pressed(&pressed) == 0U)
         return HW_LOWPOWER_STATUS_KEY_READ_FAILED;
 
@@ -855,14 +951,23 @@ HW_LowPower_Status_e HW_LowPower_Enter(void)
     NVIC_EnableIRQ(s_wakeup_irq);
     was_pwr_clock_enabled = LL_APB1_GRP1_IsEnabledClock(LL_APB1_GRP1_PERIPH_PWR);
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
+#if defined(PY32F002BPRE)
+    saved_pwr_cr1 = PWR->CR1;
+#endif
 
     /* 第四步：进入低功耗等待，连续长按 3 秒才返回成功。 */
     status = lowpower_wait_long_press(pressed);
 
     /* 第五步：先恢复主频和时基，再恢复外设，避免分频变化影响运行。 */
     LL_LPM_EnableSleep();
+#if defined(PY32F002BPRE)
+    LL_PWR_SetLprMode(LL_PWR_LPR_MODE_MR);
+#elif defined(PY32F030PRE)
     LL_PWR_DisableLowPowerRunMode();
     LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1);
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
     APP_SystemClockConfig((uint8_t)(saved_core_clock / 1000000U));
     LL_FLASH_SetLatency(saved_flash_latency);
     SysTick->CTRL = 0U;
@@ -881,6 +986,9 @@ HW_LowPower_Status_e HW_LowPower_Enter(void)
     SCB->SCR = saved_scr;
     SCB->ICSR = saved_system_pending;
     SysTick->CTRL = saved_systick_ctrl;
+#if defined(PY32F002BPRE)
+    PWR->CR1 = saved_pwr_cr1;
+#endif
     if (was_pwr_clock_enabled == 0U)
         LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_PWR);
     __enable_irq();

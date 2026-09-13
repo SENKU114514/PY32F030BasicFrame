@@ -412,23 +412,24 @@ static const HW_UART_ChipMap_t s_uart_chip_map =
 
 
 #elif defined(PY32F002BPRE)
-
-
-/*
- * PY32F002B 芯片扩展位置。
- *
- * 当前暂未添加经过确认的 TX/RX 引脚映射表。
- * 后续支持该芯片时，可以在此处添加对应的映射表。
- */
-static const HW_UART_ChipMap_t s_uart_chip_map =
-{
-    NULL,
-    0U,
-    NULL,
-    0U
+/* PY32F002B datasheet tables 3-4/3-5. */
+static const USART_TX_MAP_t USART_TX_MAP[] = {
+    UART_TX_MAP(UART1, TX_A3, USART1, GPIOA, LL_GPIO_PIN_3, LL_GPIO_AF_1),
+    UART_TX_MAP(UART1, TX_A6, USART1, GPIOA, LL_GPIO_PIN_6, LL_GPIO_AF_1),
+    UART_TX_MAP(UART1, TX_A7, USART1, GPIOA, LL_GPIO_PIN_7, LL_GPIO_AF_1),
+    UART_TX_MAP(UART1, TX_B4, USART1, GPIOB, LL_GPIO_PIN_4, LL_GPIO_AF_1),
+    UART_TX_MAP(UART1, TX_B6, USART1, GPIOB, LL_GPIO_PIN_6, LL_GPIO_AF_1),
 };
-
-
+static const USART_RX_MAP_t USART_RX_MAP[] = {
+    UART_RX_MAP(UART1, RX_A2, USART1, GPIOA, LL_GPIO_PIN_2, LL_GPIO_AF_1),
+    UART_RX_MAP(UART1, RX_A4, USART1, GPIOA, LL_GPIO_PIN_4, LL_GPIO_AF_1),
+    UART_RX_MAP(UART1, RX_A7, USART1, GPIOA, LL_GPIO_PIN_7, LL_GPIO_AF_3),
+    UART_RX_MAP(UART1, RX_B5, USART1, GPIOB, LL_GPIO_PIN_5, LL_GPIO_AF_1),
+};
+static const HW_UART_ChipMap_t s_uart_chip_map = {
+    USART_TX_MAP, sizeof(USART_TX_MAP)/sizeof(USART_TX_MAP[0]),
+    USART_RX_MAP, sizeof(USART_RX_MAP)/sizeof(USART_RX_MAP[0])
+};
 #else
 
 

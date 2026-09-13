@@ -3,6 +3,15 @@
 
 #include "main.h"
 
+/* TIM_init.c supplies the TIM1 vector by default. Set to 1 project-wide
+ * only when an existing vector calls MAG_TickIRQHandler() explicitly. */
+#ifndef MAG_TICK_EXTERNAL_IRQ
+#define MAG_TICK_EXTERNAL_IRQ 0
+#endif
+
+#if defined(PY32F002BPRE)
+void MAG_TickIRQHandler(void);
+#endif
 
 
 /*配置引脚结构体*/

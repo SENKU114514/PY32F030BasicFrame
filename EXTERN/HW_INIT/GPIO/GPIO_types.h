@@ -6,7 +6,14 @@
  * Keep only types and constants that are part of the GPIO module API here.
  * Private GPIO mapping tables stay in GPIO_init.c.
  */
+#include "py32f0xx.h"
+#if defined(PY32F002BPRE)
+#include "py32f002b_ll_gpio.h"
+#elif defined(PY32F030PRE)
 #include "py32f0xx_ll_gpio.h"
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
 
 /* GPIO index definitions, generated for each port available on the target MCU. */
 #define GPIO_INDEX_PORT(P) \

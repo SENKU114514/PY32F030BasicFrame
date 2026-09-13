@@ -1,5 +1,5 @@
 .\objects\iwdg_init.o: ..\EXTERN\HW_INIT\IWDG\IWDG_init.c
-.\objects\iwdg_init.o: ..\EXTERN\./HW_INIT/IWDG/IWDG_Init.h
+.\objects\iwdg_init.o: ..\EXTERN\HW_INIT\IWDG\IWDG_init.h
 .\objects\iwdg_init.o: ..\Inc\main.h
 .\objects\iwdg_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\iwdg_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
@@ -43,6 +43,7 @@
 .\objects\iwdg_init.o: ..\Inc\main.h
 .\objects\iwdg_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\iwdg_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
+.\objects\iwdg_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\iwdg_init.o: ..\EXTERN\./HW_INIT/SPI/SPI_init.h
 .\objects\iwdg_init.o: ..\EXTERN\./HW_INIT/TIM/TIM_init.h
 .\objects\iwdg_init.o: ..\EXTERN\./HW_INIT/ADC/ADC_init.h

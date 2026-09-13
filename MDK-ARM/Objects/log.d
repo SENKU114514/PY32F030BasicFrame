@@ -43,6 +43,7 @@
 .\objects\log.o: ..\Inc\main.h
 .\objects\log.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\log.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
+.\objects\log.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\log.o: ..\EXTERN\./HW_INIT/SPI/SPI_init.h
 .\objects\log.o: ..\EXTERN\./HW_INIT/TIM/TIM_init.h
 .\objects\log.o: ..\EXTERN\./HW_INIT/ADC/ADC_init.h

@@ -1,4 +1,5 @@
 #include "./HW_INIT/TIM/TIM_init.h"
+#include "../GPIO/GPIO_init.h"
 
 /*
  * TIM 使用示例（各模式独立使用，同一定时器不能同时承担多种功能）：
@@ -51,6 +52,24 @@ typedef struct
 /* PWM 专用映射表：索引由 TIM_PWM_Channel_e 提供。 */
 static const HW_TIM_PWM_Map_t HW_TIM_PWM_MAP[PWM_CHANNEL_COUNT] =
 {
+#if defined(PY32F002BPRE)
+    /* PY32F002B: GPIO AFR, TIM CCMR/CCER and TIM1 BDTR.MOE. */
+    [PWM_TIM1_CH1_A0] = {TIM1, LL_TIM_CHANNEL_CH1, GPIOA, LL_GPIO_PIN_0, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH1_A5] = {TIM1, LL_TIM_CHANNEL_CH1, GPIOA, LL_GPIO_PIN_5, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH2_A1] = {TIM1, LL_TIM_CHANNEL_CH2, GPIOA, LL_GPIO_PIN_1, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH2_A3] = {TIM1, LL_TIM_CHANNEL_CH2, GPIOA, LL_GPIO_PIN_3, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH2_B0] = {TIM1, LL_TIM_CHANNEL_CH2, GPIOB, LL_GPIO_PIN_0, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH3_A4] = {TIM1, LL_TIM_CHANNEL_CH3, GPIOA, LL_GPIO_PIN_4, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH3_B2] = {TIM1, LL_TIM_CHANNEL_CH3, GPIOB, LL_GPIO_PIN_2, LL_GPIO_AF_3, 1U},
+    [PWM_TIM1_CH3_B5] = {TIM1, LL_TIM_CHANNEL_CH3, GPIOB, LL_GPIO_PIN_5, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH4_A2] = {TIM1, LL_TIM_CHANNEL_CH4, GPIOA, LL_GPIO_PIN_2, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH4_A7] = {TIM1, LL_TIM_CHANNEL_CH4, GPIOA, LL_GPIO_PIN_7, LL_GPIO_AF_2, 1U},
+    [PWM_TIM1_CH4_B1] = {TIM1, LL_TIM_CHANNEL_CH4, GPIOB, LL_GPIO_PIN_1, LL_GPIO_AF_3, 1U},
+    [PWM_TIM14_CH1_A4] = {TIM14, LL_TIM_CHANNEL_CH1, GPIOA, LL_GPIO_PIN_4, LL_GPIO_AF_5, 0U},
+    [PWM_TIM14_CH1_A5] = {TIM14, LL_TIM_CHANNEL_CH1, GPIOA, LL_GPIO_PIN_5, LL_GPIO_AF_5, 0U},
+    [PWM_TIM14_CH1_B5] = {TIM14, LL_TIM_CHANNEL_CH1, GPIOB, LL_GPIO_PIN_5, LL_GPIO_AF_5, 0U},
+    [PWM_TIM14_CH1_B7] = {TIM14, LL_TIM_CHANNEL_CH1, GPIOB, LL_GPIO_PIN_7, LL_GPIO_AF_5, 0U},
+#elif defined(PY32F030PRE)
 #ifdef TIM1
     [PWM_TIM1_CH1_A3]  = {TIM1, LL_TIM_CHANNEL_CH1, GPIOA, LL_GPIO_PIN_3,  LL_GPIO_AF_13, 1U},
     [PWM_TIM1_CH1_A8]  = {TIM1, LL_TIM_CHANNEL_CH1, GPIOA, LL_GPIO_PIN_8,  LL_GPIO_AF_2,  1U},
@@ -93,6 +112,9 @@ static const HW_TIM_PWM_Map_t HW_TIM_PWM_MAP[PWM_CHANNEL_COUNT] =
 #ifdef TIM17
     [PWM_TIM17_CH1_A7] = {TIM17, LL_TIM_CHANNEL_CH1, GPIOA, LL_GPIO_PIN_7, LL_GPIO_AF_5,  1U},
     [PWM_TIM17_CH1_B8] = {TIM17, LL_TIM_CHANNEL_CH1, GPIOB, LL_GPIO_PIN_8, LL_GPIO_AF_13, 1U},
+#endif
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
 #endif
 };
 
@@ -235,6 +257,7 @@ static HW_TIM_Status_e HW_TIM_TimeInit(TIM_TypeDef *TIMx, HW_TIM_TimeUnit_e unit
 
     /* 第二步：按当前 APB1 = HCLK 的时钟配置计算分频，保证计时单位准确。 */
     LL_RCC_GetSystemClocksFreq(&clocks);
+    if (LL_RCC_GetAPB1Prescaler() != LL_RCC_APB1_DIV_1) clocks.PCLK1_Frequency *= 2U;
     frequency = (unit == HW_TIM_TIME_UNIT_US) ? 1000000U : 1000U;
     divider = clocks.PCLK1_Frequency / frequency;
     if ((divider == 0U) || (divider > 65536U) ||
@@ -486,6 +509,11 @@ HW_TIM_Status_e HW_TIM_COUNT_IT_init(TIM_TypeDef *TIMx,
     uint16_t psc;
     uint16_t arr;
 
+#if defined(PY32F002BPRE)
+    /* RM chapter 16: TIM14 is an up-counter only. */
+    if ((TIMx == TIM14) && (count_mode == DOWN))
+        return HW_TIM_STATUS_UNSUPPORTED;
+#endif
     if ((count_mode != UP) && (count_mode != DOWN))
     {
         return HW_TIM_STATUS_INVALID_ARG;
@@ -501,8 +529,14 @@ HW_TIM_Status_e HW_TIM_COUNT_IT_init(TIM_TypeDef *TIMx,
         return status;
     }
 
+#if defined(PY32F002BPRE)
+    /* Read after clock enable; preserve configured PWM/capture channels. */
+    if (TIMx->CCER != 0U) return HW_TIM_STATUS_BUSY;
+#endif
+
     /* 当前 system_init 固定 APB1 = HCLK；因此 PCLK1 就是本项目的 TIM 时钟。 */
     LL_RCC_GetSystemClocksFreq(&rcc_clocks);
+    if (LL_RCC_GetAPB1Prescaler() != LL_RCC_APB1_DIV_1) rcc_clocks.PCLK1_Frequency *= 2U;
     status = HW_TIM_CalculatePeriod(rcc_clocks.PCLK1_Frequency,
                                     period_ms,
                                     &psc,
@@ -577,6 +611,11 @@ HW_TIM_Status_e HW_TIM_PWM_init(TIM_TypeDef *TIMx,
         return status;
     }
 
+#if defined(PY32F002BPRE)
+    /* Do not overwrite MAG TIM1 or another active timer user. */
+    if (LL_TIM_IsEnabledCounter(TIMx) || TIMx->DIER != 0U || TIMx->CCER != 0U)
+        return HW_TIM_STATUS_BUSY;
+#endif
     status = HW_TIM_EnableGPIOClock(pwm_cfg->gpio_port);
     if (status != HW_TIM_STATUS_OK)
     {
@@ -596,6 +635,7 @@ HW_TIM_Status_e HW_TIM_PWM_init(TIM_TypeDef *TIMx,
 
     /* 当前 system_init 固定 APB1 = HCLK；因此 PCLK1 就是本项目的 TIM 时钟。 */
     LL_RCC_GetSystemClocksFreq(&rcc_clocks);
+    if (LL_RCC_GetAPB1Prescaler() != LL_RCC_APB1_DIV_1) rcc_clocks.PCLK1_Frequency *= 2U;
     status = HW_TIM_CalculatePWMFrequency(rcc_clocks.PCLK1_Frequency,
                                            frequency_hz,
                                            &psc,
@@ -653,7 +693,7 @@ HW_TIM_Status_e HW_TIM_PWM_init(TIM_TypeDef *TIMx,
 }
 
 /* 各定时器 IRQ 只处理自身的更新标志，清标志后再交给对应的 weak 回调。 */
-#ifdef TIM1
+#if defined(TIM1) && (!defined(MAG_TICK_EXTERNAL_IRQ) || !MAG_TICK_EXTERNAL_IRQ)
 void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
 {
     if (LL_TIM_IsActiveFlag_UPDATE(TIM1) && LL_TIM_IsEnabledIT_UPDATE(TIM1))

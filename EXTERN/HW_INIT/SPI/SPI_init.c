@@ -1,4 +1,30 @@
 #include "./HW_INIT/SPI/SPI_init.h"
+#if defined(PY32F002BPRE)
+/* PY32F002B has SPI1 but no DMA controller (datasheet peripheral summary).
+ * Keep DMA API semantics explicit: do not silently replace it with polling. */
+volatile uint8_t SPI_DMA_Flag = 0U;
+HW_SPI_Status_e HW_SPI_DMA_init(SPI_index_e spi_index,
+    SPI_SCK_Pin_e SCK_Pin, SPI_MOSI_Pin_e MOSI_Pin, SPI_MISO_Pin_e MISO_Pin)
+{
+    (void)spi_index; (void)SCK_Pin; (void)MOSI_Pin; (void)MISO_Pin;
+    return HW_SPI_STATUS_UNSUPPORTED;
+}
+HW_SPI_Status_e SPI_TransmitReceive_DMA(uint8_t *tx, uint8_t *rx, uint16_t size)
+{
+    (void)tx; (void)rx; (void)size;
+    return HW_SPI_STATUS_UNSUPPORTED;
+}
+HW_SPI_Status_e SPI_Transmit_DMA(uint8_t *tx, uint16_t size)
+{
+    (void)tx; (void)size;
+    return HW_SPI_STATUS_UNSUPPORTED;
+}
+HW_SPI_Status_e SPI_WaitAndCheckEndOfTransfer(void)
+{
+    return HW_SPI_STATUS_UNSUPPORTED;
+}
+#elif defined(PY32F030PRE)
+
 
 /*使用例
  *HW_SPI_Status_e status;
@@ -1008,3 +1034,7 @@ void DMA1_Channel2_3_IRQHandler(void)
 
 
 
+
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif /* PY32F002BPRE */

@@ -1,6 +1,33 @@
 /**/
 
 #include "app_main.h"
+#if defined(PY32F002BPRE)
+#include "../MAG/mag_scheduler.h"
+
+/* 周期业务在主循环执行，不要阻塞。 */
+void APP_PeriodicTask(void *context)
+{
+    (void)context;
+}
+
+/* 新增任务在这里填写：函数、间隔ms、首次延迟ms、次数。 */
+static const MAG_TaskTableEntry_t s_app_tasks[] =
+{
+		//{任务函数, 间隔ms, 首次延迟ms, 执行次数},
+    {APP_PeriodicTask, 1U, 0U, MAG_SCHEDULER_RUN_FOREVER},//每秒运行一次
+};
+
+/* 初始化 */
+void app_main_init(void)
+{
+    APP_Input_init();
+    APP_Output_init();
+    if (MAG_SchedulerInit(s_app_tasks,sizeof(s_app_tasks) / sizeof(s_app_tasks[0])) != MAG_SCHEDULER_STATUS_OK){
+        APP_ErrorHandler();
+    }
+}
+void app_main(void) { MAG_SchedulerProcess(); }
+#elif defined(PY32F030PRE)
 
 #define LED_PIN A3
 #define KEY_PIN A5
@@ -103,3 +130,7 @@ void app_main(void){
 //		}
 //	}
 }
+
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif

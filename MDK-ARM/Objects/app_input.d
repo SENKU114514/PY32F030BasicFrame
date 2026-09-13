@@ -1,5 +1,5 @@
 .\objects\app_input.o: ..\EXTERN\APP\APP_INPUT\APP_input.c
-.\objects\app_input.o: ..\EXTERN\./APP/APP_INPUT/APP_input.h
+.\objects\app_input.o: ..\EXTERN\APP/APP_INPUT/APP_input.h
 .\objects\app_input.o: ..\Inc\main.h
 .\objects\app_input.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\app_input.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
@@ -43,6 +43,7 @@
 .\objects\app_input.o: ..\Inc\main.h
 .\objects\app_input.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\app_input.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
+.\objects\app_input.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\app_input.o: ..\EXTERN\./HW_INIT/SPI/SPI_init.h
 .\objects\app_input.o: ..\EXTERN\./HW_INIT/TIM/TIM_init.h
 .\objects\app_input.o: ..\EXTERN\./HW_INIT/ADC/ADC_init.h

@@ -28,13 +28,13 @@ typedef struct
     uint32_t run_count;          // 执行次数，MAG_SCHEDULER_RUN_FOREVER 表示永久循环
 } MAG_TaskConfig_t;
 
-/* 静态任务表：每行只填 {执行函数, 执行间隔ms, 首次延迟ms, 执行次数}。 */
+/* 静态任务表：每行只填 {执行函数, 执行间隔ms, 首次延迟ms, 执行次数}*/
 typedef struct
 {
     MAG_TaskCallback_t callback; /* void task(void *p_context)，参数固定传 NULL。 */
-    uint32_t period_ms;         /* 本次返回后等待多久再执行；不是函数运行时长。 */
-    uint32_t first_delay_ms;    /* 注册后首次等待时间；0 表示尽快执行。 */
-    uint32_t run_count;         /* 1=一次，N=N次，MAG_SCHEDULER_RUN_FOREVER=永久。 */
+    uint32_t period_ms;         /* 执行间隔ms*/
+    uint32_t first_delay_ms;    /* 首次延迟ms*/
+    uint32_t run_count;         /* 1=一次，N=N次，MAG_SCHEDULER_RUN_FOREVER=永久。执行次数 */
 } MAG_TaskTableEntry_t;
 
 /* 调度任务句柄，由节点位置和节点代次共同确定。 */

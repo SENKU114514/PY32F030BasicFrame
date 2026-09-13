@@ -43,6 +43,7 @@
 .\objects\i2c_init.o: ..\Inc\main.h
 .\objects\i2c_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\i2c_init.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
+.\objects\i2c_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\i2c_init.o: ..\EXTERN\./HW_INIT/SPI/SPI_init.h
 .\objects\i2c_init.o: ..\EXTERN\./HW_INIT/TIM/TIM_init.h
 .\objects\i2c_init.o: ..\EXTERN\./HW_INIT/ADC/ADC_init.h

@@ -8,10 +8,38 @@ extern "C" {
 
 /*code*/
 #include "main.h"
+#include "../../HW_INIT/USART/USART_init.h"
+#ifndef LOG_ENABLE
+#define LOG_ENABLE 0
+#endif
 
+#ifndef UARTx
+#if defined(PY32F002BPRE)
+#define UARTx UART1
+#elif defined(PY32F030PRE)
 #define UARTx UART2
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
+#endif
+#ifndef TX_pin
+#if defined(PY32F002BPRE)
+#define TX_pin TX_A3
+#elif defined(PY32F030PRE)
 #define TX_pin TX_A4
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
+#endif
+#ifndef RX_pin
+#if defined(PY32F002BPRE)
+#define RX_pin RX_A4
+#elif defined(PY32F030PRE)
 #define RX_pin RX_A5
+#else
+#error "Unsupported MCU: select PY32F002B or PY32F030"
+#endif
+#endif
 
 #define LOG_BUFFER_SIZE    128U
 
