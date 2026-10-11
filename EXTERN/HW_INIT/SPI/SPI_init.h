@@ -23,6 +23,8 @@ typedef enum
 	SCK_A5,         /* PA5 -> SPI1_SCK，AF0  */
 	SCK_A9,         /* PA9 -> SPI1_SCK，AF10 */
 	SCK_B3,         /* PB3 -> SPI1_SCK，AF0  */
+	SCK_B0,         /* 002B：PB0 -> SPI1_SCK，AF0 */
+	SCK_B2,         /* 002B：PB2 -> SPI1_SCK，AF0 */
 	SCK_PIN_COUNT,
 }SPI_SCK_Pin_e;
 
@@ -40,6 +42,8 @@ typedef enum
 	MOSI_A8,        /* PA8  -> SPI1_MOSI，AF10 */
 	MOSI_A12,       /* PA12 -> SPI1_MOSI，AF0  */
 	MOSI_B5,        /* PB5  -> SPI1_MOSI，AF0  */
+	MOSI_A0,        /* 002B：PA0 -> SPI1_MOSI，AF0 */
+	MOSI_B7,        /* 002B：PB7 -> SPI1_MOSI，AF0 */
 	MOSI_PIN_COUNT,
 }SPI_MOSI_Pin_e;
 
@@ -53,6 +57,9 @@ typedef enum
 	MISO_A11,       /* PA11 -> SPI1_MISO，AF0  */
 	MISO_A13,       /* PA13 -> SPI1_MISO，AF10；会占用 SWDIO */
 	MISO_B4,        /* PB4  -> SPI1_MISO，AF0  */
+	MISO_A1,        /* 002B：PA1 -> SPI1_MISO，AF0 */
+	MISO_B6,        /* 002B：PB6 -> SPI1_MISO，AF2；占用 SWDIO */
+	MISO_C1,        /* 002B：PC1 -> SPI1_MISO，AF0 */
 	MISO_PIN_COUNT,
 }SPI_MISO_Pin_e;
 
@@ -84,6 +91,16 @@ HW_SPI_Status_e HW_SPI_DMA_init(SPI_index_e spi_index,
 HW_SPI_Status_e SPI_TransmitReceive_DMA(uint8_t *pTxData, uint8_t *pRxData, uint16_t Size);//SPI收发函数
 HW_SPI_Status_e SPI_Transmit_DMA(uint8_t *pTxData, uint16_t Size);//SPI发送函数
 HW_SPI_Status_e SPI_WaitAndCheckEndOfTransfer(void);
+
+/* 按引脚枚举初始化轮询 SPI。 */
+HW_SPI_Status_e HW_SPI_Polling_Init(SPI_index_e spi_index,
+									SPI_SCK_Pin_e SCK_Pin,
+									SPI_MOSI_Pin_e MOSI_Pin,
+									SPI_MISO_Pin_e MISO_Pin);
+HW_SPI_Status_e HW_SPI_Transmit_Polling(const uint8_t *pData, uint16_t Size);
+HW_SPI_Status_e HW_SPI_TransmitReceive_Polling(const uint8_t *pTxData,
+														uint8_t *pRxData,
+														uint16_t Size);
 
 /*回调弱定义函数__weak void SPI_DmaTxIRQCallback(void)*/
 
