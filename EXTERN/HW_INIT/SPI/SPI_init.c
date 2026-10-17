@@ -1,8 +1,115 @@
 #include "./HW_INIT/SPI/SPI_init.h"
+
+/* SPI 参数统一配置。 */
+#ifndef HW_SPI_CPOL
+#define HW_SPI_CPOL                     LL_SPI_POLARITY_HIGH
+#endif
+#ifndef HW_SPI_CPHA
+#define HW_SPI_CPHA                     LL_SPI_PHASE_2EDGE
+#endif
+#ifndef HW_SPI_BAUDRATE_PRESCALER
+#define HW_SPI_BAUDRATE_PRESCALER       LL_SPI_BAUDRATEPRESCALER_DIV128
+#endif
+#ifndef HW_SPI_GPIO_SPEED
+#define HW_SPI_GPIO_SPEED               LL_GPIO_SPEED_FREQ_HIGH
+#endif
+#ifndef HW_SPI_WAIT_COUNT
+#define HW_SPI_WAIT_COUNT               1000000UL
+#endif
+
 #if defined(PY32F002BPRE)
-/* PY32F002B has SPI1 but no DMA controller (datasheet peripheral summary).
- * Keep DMA API semantics explicit: do not silently replace it with polling. */
+#include "py32f002b_ll_bus.h"
+#include "py32f002b_ll_gpio.h"
+#include "py32f002b_ll_spi.h"
+
+/* 002B 无 DMA，使用轮询接口。 */
 volatile uint8_t SPI_DMA_Flag = 0U;
+
+static uint8_t s_spi_polling_ready = 0U;
+static uint8_t s_spi_polling_full_duplex = 0U;
+static uint8_t s_spi_polling_tx_available = 0U;
+
+typedef struct
+{
+    uint32_t pin_index;
+    GPIO_TypeDef *gpio_port;
+    uint32_t gpio_pin;
+    uint32_t gpio_alternate;
+} HW_SPI_002B_PinMap_t;
+
+static const HW_SPI_002B_PinMap_t s_spi_002b_sck_map[] =
+{
+    {SCK_B0, GPIOB, LL_GPIO_PIN_0, LL_GPIO_AF_0},
+    {SCK_B2, GPIOB, LL_GPIO_PIN_2, LL_GPIO_AF_0},
+};
+
+static const HW_SPI_002B_PinMap_t s_spi_002b_mosi_map[] =
+{
+    {MOSI_A0, GPIOA, LL_GPIO_PIN_0, LL_GPIO_AF_0},
+    {MOSI_A7, GPIOA, LL_GPIO_PIN_7, LL_GPIO_AF_0},
+    {MOSI_B7, GPIOB, LL_GPIO_PIN_7, LL_GPIO_AF_0},
+};
+
+static const HW_SPI_002B_PinMap_t s_spi_002b_miso_map[] =
+{
+    {MISO_A1, GPIOA, LL_GPIO_PIN_1, LL_GPIO_AF_0},
+    {MISO_B6, GPIOB, LL_GPIO_PIN_6, LL_GPIO_AF_2},
+    {MISO_C1, GPIOC, LL_GPIO_PIN_1, LL_GPIO_AF_0},
+};
+
+static const HW_SPI_002B_PinMap_t *HW_SPI_Find002BPin(
+    const HW_SPI_002B_PinMap_t *pin_map,
+    uint32_t pin_map_count,
+    uint32_t pin_index)
+{
+    uint32_t index;
+
+    for (index = 0U; index < pin_map_count; index++)
+    {
+        if (pin_map[index].pin_index == pin_index)
+        {
+            return &pin_map[index];
+        }
+    }
+    return NULL;
+}
+
+static void HW_SPI_Enable002BGPIOClock(GPIO_TypeDef *gpio_port)
+{
+    if (gpio_port == GPIOA)
+    {
+        LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA);
+    }
+    else if (gpio_port == GPIOB)
+    {
+        LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOB);
+    }
+    else if (gpio_port == GPIOC)
+    {
+        LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOC);
+    }
+}
+
+static HW_SPI_Status_e HW_SPI_Init002BAlternatePin(
+    const HW_SPI_002B_PinMap_t *pin_config)
+{
+    LL_GPIO_InitTypeDef gpio_init = {0};
+
+    HW_SPI_Enable002BGPIOClock(pin_config->gpio_port);
+    gpio_init.Pin = pin_config->gpio_pin;
+    gpio_init.Mode = LL_GPIO_MODE_ALTERNATE;
+    gpio_init.Speed = LL_GPIO_SPEED_FREQ_HIGH;
+    gpio_init.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+    gpio_init.Pull = LL_GPIO_PULL_NO;
+    gpio_init.Alternate = pin_config->gpio_alternate;
+
+    if (LL_GPIO_Init(pin_config->gpio_port, &gpio_init) != SUCCESS)
+    {
+        return HW_SPI_STATUS_GPIO_INIT_FAILED;
+    }
+    return HW_SPI_STATUS_OK;
+}
+
 HW_SPI_Status_e HW_SPI_DMA_init(SPI_index_e spi_index,
     SPI_SCK_Pin_e SCK_Pin, SPI_MOSI_Pin_e MOSI_Pin, SPI_MISO_Pin_e MISO_Pin)
 {
@@ -22,6 +129,251 @@ HW_SPI_Status_e SPI_Transmit_DMA(uint8_t *tx, uint16_t size)
 HW_SPI_Status_e SPI_WaitAndCheckEndOfTransfer(void)
 {
     return HW_SPI_STATUS_UNSUPPORTED;
+}
+
+/* 按 002B 引脚枚举初始化 SPI1。 */
+HW_SPI_Status_e HW_SPI_Polling_Init(SPI_index_e spi_index,
+                                   SPI_SCK_Pin_e SCK_Pin,
+                                   SPI_MOSI_Pin_e MOSI_Pin,
+                                   SPI_MISO_Pin_e MISO_Pin)
+{
+    LL_SPI_InitTypeDef spi_init = {0};
+    const HW_SPI_002B_PinMap_t *sck_config;
+    const HW_SPI_002B_PinMap_t *mosi_config;
+    const HW_SPI_002B_PinMap_t *miso_config = NULL;
+    HW_SPI_Status_e status;
+
+    s_spi_polling_ready = 0U;
+    if (((uint32_t)spi_index >= (uint32_t)SPI_BUS_COUNT) ||
+        ((uint32_t)SCK_Pin >= (uint32_t)SCK_PIN_COUNT) ||
+        ((uint32_t)MOSI_Pin >= (uint32_t)MOSI_PIN_COUNT) ||
+        ((uint32_t)MISO_Pin >= (uint32_t)MISO_PIN_COUNT))
+    {
+        return HW_SPI_STATUS_INVALID_ARG;
+    }
+
+    if (spi_index != SPI_BUS1)
+    {
+        return HW_SPI_STATUS_UNSUPPORTED;
+    }
+
+    sck_config = HW_SPI_Find002BPin(s_spi_002b_sck_map,
+        sizeof(s_spi_002b_sck_map) / sizeof(s_spi_002b_sck_map[0]),
+        (uint32_t)SCK_Pin);
+    mosi_config = HW_SPI_Find002BPin(s_spi_002b_mosi_map,
+        sizeof(s_spi_002b_mosi_map) / sizeof(s_spi_002b_mosi_map[0]),
+        (uint32_t)MOSI_Pin);
+    if ((sck_config == NULL) || ((MOSI_Pin != MOSI_NULL) && (mosi_config == NULL)))
+    {
+        return HW_SPI_STATUS_UNSUPPORTED;
+    }
+
+    if ((MOSI_Pin == MOSI_NULL) && (MISO_Pin == MISO_NULL))
+    {
+        return HW_SPI_STATUS_INVALID_ARG;
+    }
+
+    if (MISO_Pin != MISO_NULL)
+    {
+        miso_config = HW_SPI_Find002BPin(s_spi_002b_miso_map,
+            sizeof(s_spi_002b_miso_map) / sizeof(s_spi_002b_miso_map[0]),
+            (uint32_t)MISO_Pin);
+        if (miso_config == NULL)
+        {
+            return HW_SPI_STATUS_UNSUPPORTED;
+        }
+    }
+
+    if (((mosi_config != NULL) &&
+         (mosi_config->gpio_port == sck_config->gpio_port) &&
+         (mosi_config->gpio_pin == sck_config->gpio_pin)) ||
+        ((miso_config != NULL) &&
+         (miso_config->gpio_port == sck_config->gpio_port) &&
+         (miso_config->gpio_pin == sck_config->gpio_pin)) ||
+        ((mosi_config != NULL) && (miso_config != NULL) &&
+         (mosi_config->gpio_port == miso_config->gpio_port) &&
+         (mosi_config->gpio_pin == miso_config->gpio_pin)))
+    {
+        return HW_SPI_STATUS_INVALID_ARG;
+    }
+
+    status = HW_SPI_Init002BAlternatePin(sck_config);
+    if (status != HW_SPI_STATUS_OK)
+    {
+        return status;
+    }
+    if (mosi_config != NULL)
+    {
+        status = HW_SPI_Init002BAlternatePin(mosi_config);
+        if (status != HW_SPI_STATUS_OK)
+        {
+            return status;
+        }
+    }
+    if (miso_config != NULL)
+    {
+        status = HW_SPI_Init002BAlternatePin(miso_config);
+        if (status != HW_SPI_STATUS_OK)
+        {
+            return status;
+        }
+    }
+
+    LL_APB1_GRP2_EnableClock(LL_APB1_GRP2_PERIPH_SPI1);
+    LL_SPI_Disable(SPI1);
+    if (mosi_config == NULL)
+    {
+        spi_init.TransferDirection = LL_SPI_HALF_DUPLEX_RX;
+    }
+    else if (miso_config == NULL)
+    {
+        spi_init.TransferDirection = LL_SPI_HALF_DUPLEX_TX;
+    }
+    else
+    {
+        spi_init.TransferDirection = LL_SPI_FULL_DUPLEX;
+    }
+    spi_init.Mode = LL_SPI_MODE_MASTER;
+    spi_init.DataWidth = LL_SPI_DATAWIDTH_8BIT;
+    spi_init.ClockPolarity = HW_SPI_CPOL;
+    spi_init.ClockPhase = HW_SPI_CPHA;
+    spi_init.NSS = LL_SPI_NSS_SOFT;
+    spi_init.BaudRate = HW_SPI_BAUDRATE_PRESCALER;
+    spi_init.BitOrder = LL_SPI_MSB_FIRST;
+
+    if (LL_SPI_Init(SPI1, &spi_init) != SUCCESS)
+    {
+        s_spi_polling_ready = 0U;
+        return HW_SPI_STATUS_INIT_FAILED;
+    }
+
+    LL_SPI_Enable(SPI1);
+    while (LL_SPI_GetRxFIFOLevel(SPI1) != LL_SPI_RX_FIFO_EMPTY)
+    {
+        (void)LL_SPI_ReceiveData8(SPI1);
+    }
+    s_spi_polling_full_duplex = (miso_config != NULL && mosi_config != NULL) ? 1U : 0U;
+    s_spi_polling_tx_available = (mosi_config != NULL) ? 1U : 0U;
+    s_spi_polling_ready = 1U;
+    return HW_SPI_STATUS_OK;
+}
+
+/* 发送数据并清除同时收到的数据。 */
+HW_SPI_Status_e HW_SPI_Transmit_Polling(const uint8_t *pData, uint16_t Size)
+{
+    uint16_t index;
+    uint32_t timeout;
+
+    if ((pData == NULL) || (Size == 0U))
+    {
+        return HW_SPI_STATUS_INVALID_ARG;
+    }
+    if (s_spi_polling_ready == 0U)
+    {
+        return HW_SPI_STATUS_NOT_READY;
+    }
+    if (s_spi_polling_tx_available == 0U)
+    {
+        return HW_SPI_STATUS_UNSUPPORTED;
+    }
+
+    for (index = 0U; index < Size; index++)
+    {
+        timeout = HW_SPI_WAIT_COUNT;
+        while (LL_SPI_IsActiveFlag_TXE(SPI1) == 0U)
+        {
+            if (timeout == 0U)
+            {
+                return HW_SPI_STATUS_TIMEOUT;
+            }
+            timeout--;
+        }
+
+        LL_SPI_TransmitData8(SPI1, pData[index]);
+        if (s_spi_polling_full_duplex != 0U)
+        {
+            timeout = HW_SPI_WAIT_COUNT;
+            while (LL_SPI_IsActiveFlag_RXNE(SPI1) == 0U)
+            {
+                if (timeout == 0U)
+                {
+                    return HW_SPI_STATUS_TIMEOUT;
+                }
+                timeout--;
+            }
+            (void)LL_SPI_ReceiveData8(SPI1);
+        }
+    }
+
+    timeout = HW_SPI_WAIT_COUNT;
+    while (LL_SPI_IsActiveFlag_BSY(SPI1) != 0U)
+    {
+        if (timeout == 0U)
+        {
+            return HW_SPI_STATUS_TIMEOUT;
+        }
+        timeout--;
+    }
+
+    return HW_SPI_STATUS_OK;
+}
+
+/* 同步收发数据。 */
+HW_SPI_Status_e HW_SPI_TransmitReceive_Polling(const uint8_t *pTxData,
+                                              uint8_t *pRxData,
+                                              uint16_t Size)
+{
+    uint16_t index;
+    uint32_t timeout;
+
+    if ((pTxData == NULL) || (pRxData == NULL) || (Size == 0U))
+    {
+        return HW_SPI_STATUS_INVALID_ARG;
+    }
+    if (s_spi_polling_ready == 0U)
+    {
+        return HW_SPI_STATUS_NOT_READY;
+    }
+    if (s_spi_polling_full_duplex == 0U)
+    {
+        return HW_SPI_STATUS_UNSUPPORTED;
+    }
+
+    for (index = 0U; index < Size; index++)
+    {
+        timeout = HW_SPI_WAIT_COUNT;
+        while (LL_SPI_IsActiveFlag_TXE(SPI1) == 0U)
+        {
+            if (timeout == 0U)
+            {
+                return HW_SPI_STATUS_TIMEOUT;
+            }
+            timeout--;
+        }
+
+        LL_SPI_TransmitData8(SPI1, pTxData[index]);
+        timeout = HW_SPI_WAIT_COUNT;
+        while (LL_SPI_IsActiveFlag_RXNE(SPI1) == 0U)
+        {
+            if (timeout == 0U)
+            {
+                return HW_SPI_STATUS_TIMEOUT;
+            }
+            timeout--;
+        }
+        pRxData[index] = LL_SPI_ReceiveData8(SPI1);
+    }
+
+    timeout = HW_SPI_WAIT_COUNT;
+    while (LL_SPI_IsActiveFlag_BSY(SPI1) != 0U)
+    {
+        if (timeout == 0U)
+        {
+            return HW_SPI_STATUS_TIMEOUT;
+        }
+        timeout--;
+    }
+    return HW_SPI_STATUS_OK;
 }
 #elif defined(PY32F030PRE)
 
@@ -52,32 +404,33 @@ HW_SPI_Status_e SPI_WaitAndCheckEndOfTransfer(void)
  * Mode 3：CPOL 高、CPHA 第二个边沿。
  * 当前默认值是 Mode 3。
  */
-#ifndef HW_SPI_CPOL
-#define HW_SPI_CPOL                     LL_SPI_POLARITY_HIGH
-#endif
-#ifndef HW_SPI_CPHA
-#define HW_SPI_CPHA                     LL_SPI_PHASE_2EDGE
-#endif
-
-/*发送速率*/
-#ifndef HW_SPI_BAUDRATE_PRESCALER
-#define HW_SPI_BAUDRATE_PRESCALER       LL_SPI_BAUDRATEPRESCALER_DIV128
-#endif
-
-/*开关速率*/
-#ifndef HW_SPI_GPIO_SPEED
-#define HW_SPI_GPIO_SPEED               LL_GPIO_SPEED_FREQ_HIGH
-#endif
-
-/*等待时间*/
-#ifndef HW_SPI_WAIT_COUNT
-#define HW_SPI_WAIT_COUNT               1000000UL
-#endif
-
 /* 收发数据完成标志 */
 volatile uint8_t txRxDataComplteFlag = RESET;
 
 volatile uint8_t SPI_DMA_Flag = 0;//定义全局传输完成标志位
+
+HW_SPI_Status_e HW_SPI_Polling_Init(SPI_index_e spi_index,
+                                   SPI_SCK_Pin_e SCK_Pin,
+                                   SPI_MOSI_Pin_e MOSI_Pin,
+                                   SPI_MISO_Pin_e MISO_Pin)
+{
+  (void)spi_index; (void)SCK_Pin; (void)MOSI_Pin; (void)MISO_Pin;
+  return HW_SPI_STATUS_UNSUPPORTED;
+}
+
+HW_SPI_Status_e HW_SPI_Transmit_Polling(const uint8_t *pData, uint16_t Size)
+{
+  (void)pData; (void)Size;
+  return HW_SPI_STATUS_UNSUPPORTED;
+}
+
+HW_SPI_Status_e HW_SPI_TransmitReceive_Polling(const uint8_t *pTxData,
+                                              uint8_t *pRxData,
+                                              uint16_t Size)
+{
+  (void)pTxData; (void)pRxData; (void)Size;
+  return HW_SPI_STATUS_UNSUPPORTED;
+}
 
 /* SCK、MOSI、MISO 共用的 GPIO 复用配置。 */
 typedef struct
