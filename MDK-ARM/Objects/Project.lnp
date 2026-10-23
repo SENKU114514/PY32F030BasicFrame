@@ -29,6 +29,7 @@
 ".\objects\iwdg_init.o"
 ".\objects\i2c_init.o"
 ".\objects\lowpower.o"
+".\objects\bsp_uart.o"
 ".\objects\log.o"
 ".\objects\key_fsm.o"
 ".\objects\json_parse.o"

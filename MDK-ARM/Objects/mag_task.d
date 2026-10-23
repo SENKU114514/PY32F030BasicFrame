@@ -1,10 +1,10 @@
 .\objects\mag_task.o: ..\EXTERN\MAG\mag_task.c
 .\objects\mag_task.o: ..\EXTERN\MAG\mag_task.h
 .\objects\mag_task.o: ..\Inc\main.h
-.\objects\mag_task.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\mag_task.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\mag_task.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\mag_task.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mag_task.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\mag_task.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mag_task.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\mag_task.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mag_task.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\mag_task.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\mag_task.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\mag_task.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\mag_task.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\mag_task.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\mag_task.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\mag_task.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

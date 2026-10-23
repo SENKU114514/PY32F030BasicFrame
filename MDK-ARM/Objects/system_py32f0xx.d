@@ -2,7 +2,7 @@
 .\objects\system_py32f0xx.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\system_py32f0xx.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
 .\objects\system_py32f0xx.o: ..\Drivers\CMSIS\Include\core_cm0plus.h
-.\objects\system_py32f0xx.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\system_py32f0xx.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\system_py32f0xx.o: ..\Drivers\CMSIS\Include\core_cmInstr.h
 .\objects\system_py32f0xx.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\system_py32f0xx.o: ..\Drivers\CMSIS\Include\core_cmFunc.h

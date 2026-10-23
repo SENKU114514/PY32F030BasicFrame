@@ -578,6 +578,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>BSP</GroupName>
+          <Files>
+            <File>
+              <FileName>BSP_UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\EXTERN\BSP\UART\BSP_UART.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>SERVER</GroupName>
           <Files>
             <File>

@@ -58,11 +58,11 @@ ARM Macro Assembler    Page 1
    38 00000018         
    39 00000018                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
-work --depend=.\objects\switch.d -o.\objects\switch.o -I.\RTE\_Project -IE:\all
-Software\keil5\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include -I
-E:\allSoftware\keil5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --predef
-ine="__UVISION_VERSION SETA 528" --list=.\listings\switch.lst ..\EXTERN\RTOS\sw
-itch.s
+work --depend=.\objects\switch.d -o.\objects\switch.o -I.\RTE\_Project -IC:\Use
+rs\Administrator\AppData\Local\Arm\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\
+Device\PY32F0xx\Include -ID:\AllSoftWare\Keil5\ARM\CMSIS\Include --predefine="_
+_MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 528" --list=.\listings\sw
+itch.lst ..\EXTERN\RTOS\switch.s
 
 
 

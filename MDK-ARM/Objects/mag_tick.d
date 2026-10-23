@@ -1,10 +1,10 @@
 .\objects\mag_tick.o: ..\EXTERN\MAG\mag_tick.c
 .\objects\mag_tick.o: ..\EXTERN\MAG\mag_tick.h
 .\objects\mag_tick.o: ..\Inc\main.h
-.\objects\mag_tick.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\mag_tick.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\mag_tick.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\mag_tick.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mag_tick.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\mag_tick.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mag_tick.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\mag_tick.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mag_tick.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\mag_tick.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\mag_tick.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\mag_tick.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\mag_tick.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\mag_tick.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\mag_tick.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\mag_tick.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

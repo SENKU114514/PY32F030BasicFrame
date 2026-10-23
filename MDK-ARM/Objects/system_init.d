@@ -1,10 +1,10 @@
 .\objects\system_init.o: ..\EXTERN\SYS\system_init.c
 .\objects\system_init.o: ..\EXTERN\SYS\system_init.h
 .\objects\system_init.o: ..\Inc\main.h
-.\objects\system_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\system_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\system_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\system_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\system_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\system_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\system_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\system_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\system_init.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\system_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\system_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\system_init.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\system_init.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\system_init.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\system_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\system_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

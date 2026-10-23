@@ -1,10 +1,10 @@
 .\objects\iwdg_init.o: ..\EXTERN\HW_INIT\IWDG\IWDG_init.c
 .\objects\iwdg_init.o: ..\EXTERN\HW_INIT\IWDG\IWDG_init.h
 .\objects\iwdg_init.o: ..\Inc\main.h
-.\objects\iwdg_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\iwdg_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\iwdg_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\iwdg_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\iwdg_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\iwdg_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\iwdg_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\iwdg_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\iwdg_init.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\iwdg_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\iwdg_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\iwdg_init.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\iwdg_init.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\iwdg_init.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\iwdg_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\iwdg_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

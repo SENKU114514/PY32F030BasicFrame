@@ -1,6 +1,6 @@
 .\objects\lowpower.o: ..\EXTERN\HW_INIT\LOWPOWER\LowPower.c
 .\objects\lowpower.o: ..\EXTERN\./HW_INIT/LOWPOWER/LowPower.h
-.\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\lowpower.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\lowpower.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_init.h
 .\objects\lowpower.o: ..\EXTERN\./HW_INIT/GPIO/GPIO_types.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
@@ -14,9 +14,9 @@
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\lowpower.o: ..\EXTERN\./SYS/system_init.h
 .\objects\lowpower.o: ..\Inc\main.h
-.\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\lowpower.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\lowpower.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\lowpower.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\lowpower.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\lowpower.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_bus.h
@@ -59,7 +59,7 @@
 .\objects\lowpower.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\lowpower.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\lowpower.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\lowpower.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\lowpower.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\lowpower.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_adc.h
 .\objects\lowpower.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\lowpower.o: ..\EXTERN\HW_INIT\LOWPOWER\LowPower_key.h

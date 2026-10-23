@@ -1,10 +1,10 @@
 .\objects\tim_init.o: ..\EXTERN\HW_INIT\TIM\TIM_init.c
 .\objects\tim_init.o: ..\EXTERN\./HW_INIT/TIM/TIM_init.h
 .\objects\tim_init.o: ..\Inc\main.h
-.\objects\tim_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\tim_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\tim_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\tim_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\tim_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\tim_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\tim_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\tim_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\tim_init.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\tim_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\tim_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\tim_init.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\tim_init.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\tim_init.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\tim_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\tim_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

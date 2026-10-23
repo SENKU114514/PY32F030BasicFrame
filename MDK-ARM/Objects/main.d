@@ -1,9 +1,9 @@
 .\objects\main.o: ..\Src\main.c
 .\objects\main.o: ..\Inc\main.h
-.\objects\main.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\main.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\main.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\main.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\main.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -58,5 +58,5 @@
 .\objects\main.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\main.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\main.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\main.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\main.o: ..\Drivers\BSP\PY32F030xx_Start_Kit\py32f030xx_ll_Start_Kit.h

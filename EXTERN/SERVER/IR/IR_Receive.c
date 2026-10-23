@@ -38,29 +38,29 @@ static uint16_t IR_index = 0;					//原始数据个数
 
 static uint8_t IR_Receive_flag = 0;		//IR数据满足数量标志位
 
-/*IO中断位置*/
-void HW_GPIO_INPUT_IT_Callback(GPIO_index_e GPIO_index)
-{
-	//中断捕获后获取下降时间间隔
-	if(GPIO_index == GPIO_INDEX){
-		HW_TIM_TIME_MS_Stop(TIMx, &time);//停止并输出参数
-		
-		if(time > 13){
-			time = 0;//预防间隔过大导致无法识别数据
-		}
-		
-		if(time != 0){
-			IR_Info[IR_index] = time;	//记录时间
-			IR_index++;								//记录数量
-			time = 0;
-		}
-		
-		if(IR_index >= 1+IR_Receive_Byte*8){
-			IR_Receive_flag = 1;			//设计接收标志位
-		}
-		HW_TIM_TIME_MS_Start(TIMx);	//清零计时后计时
-	}
-}
+/*IO中断位置(注释防止冲突)*/
+//void HW_GPIO_INPUT_IT_Callback(GPIO_index_e GPIO_index)
+//{
+//	//中断捕获后获取下降时间间隔
+//	if(GPIO_index == GPIO_INDEX){
+//		HW_TIM_TIME_MS_Stop(TIMx, &time);//停止并输出参数
+//		
+//		if(time > 13){
+//			time = 0;//预防间隔过大导致无法识别数据
+//		}
+//		
+//		if(time != 0){
+//			IR_Info[IR_index] = time;	//记录时间
+//			IR_index++;								//记录数量
+//			time = 0;
+//		}
+//		
+//		if(IR_index >= 1+IR_Receive_Byte*8){
+//			IR_Receive_flag = 1;			//设计接收标志位
+//		}
+//		HW_TIM_TIME_MS_Start(TIMx);	//清零计时后计时
+//	}
+//}
 
 /*清除缓存*/
 void IR_Receive_Clearn(void){

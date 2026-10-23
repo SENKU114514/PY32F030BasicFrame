@@ -1,10 +1,10 @@
 .\objects\log.o: ..\EXTERN\SERVER\LOG\LOG.c
 .\objects\log.o: ..\EXTERN\./SERVER/LOG/LOG.h
 .\objects\log.o: ..\Inc\main.h
-.\objects\log.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\log.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\log.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\log.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\log.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\log.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\log.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\log.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\log.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\log.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\log.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\log.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\log.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\log.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\log.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\log.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

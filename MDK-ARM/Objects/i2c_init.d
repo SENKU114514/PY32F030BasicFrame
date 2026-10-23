@@ -1,10 +1,10 @@
 .\objects\i2c_init.o: ..\EXTERN\HW_INIT\I2C\I2C_init.c
 .\objects\i2c_init.o: ..\EXTERN\./HW_INIT/I2C/I2C_init.h
 .\objects\i2c_init.o: ..\Inc\main.h
-.\objects\i2c_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\i2c_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\i2c_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\i2c_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\i2c_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\i2c_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\i2c_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\i2c_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\i2c_init.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\i2c_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\i2c_init.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\i2c_init.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\i2c_init.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\i2c_init.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\i2c_init.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\i2c_init.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

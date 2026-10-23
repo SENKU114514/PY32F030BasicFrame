@@ -1,10 +1,10 @@
 .\objects\rtos.o: ..\EXTERN\RTOS\RTOS.c
 .\objects\rtos.o: ..\EXTERN\RTOS\RTOS.h
 .\objects\rtos.o: ..\Inc\main.h
-.\objects\rtos.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\rtos.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\rtos.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\rtos.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rtos.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\rtos.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\rtos.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\rtos.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\rtos.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\rtos.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\rtos.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\rtos.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\rtos.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\rtos.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\rtos.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\rtos.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

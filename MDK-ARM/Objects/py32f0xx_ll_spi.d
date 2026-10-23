@@ -3,7 +3,7 @@
 .\objects\py32f0xx_ll_spi.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\py32f0xx_ll_spi.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
 .\objects\py32f0xx_ll_spi.o: ..\Drivers\CMSIS\Include\core_cm0plus.h
-.\objects\py32f0xx_ll_spi.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\py32f0xx_ll_spi.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\py32f0xx_ll_spi.o: ..\Drivers\CMSIS\Include\core_cmInstr.h
 .\objects\py32f0xx_ll_spi.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\py32f0xx_ll_spi.o: ..\Drivers\CMSIS\Include\core_cmFunc.h

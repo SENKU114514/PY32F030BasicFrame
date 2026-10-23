@@ -1,5 +1,25 @@
 #include "SERVER/CRC/CRC.h"
 
+/* 对指定字节序列逐字节异或，计算通用 8 位异或校验值。 */
+uint8_t CRC_XOR(const uint8_t *data, uint16_t len)
+{
+    uint8_t crc = 0U;
+    uint16_t index;
+
+    if (data == NULL)
+    {
+        return 0U;
+    }
+
+    for (index = 0U; index < len; index++)
+    {
+        crc ^= data[index];
+    }
+
+    return crc;
+}
+
+
 //CRC8
 uint8_t CRC_8(const uint8_t *data, uint8_t len){
 	uint8_t crc = 0U;

@@ -1,10 +1,10 @@
 .\objects\app_input.o: ..\EXTERN\APP\APP_INPUT\APP_input.c
 .\objects\app_input.o: ..\EXTERN\APP/APP_INPUT/APP_input.h
 .\objects\app_input.o: ..\Inc\main.h
-.\objects\app_input.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\app_input.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\app_input.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\app_input.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\app_input.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\app_input.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\app_input.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\app_input.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\app_input.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\app_input.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\app_input.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\app_input.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\app_input.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\app_input.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\app_input.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\app_input.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h

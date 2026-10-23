@@ -1,11 +1,11 @@
 .\objects\mag_scheduler.o: ..\EXTERN\MAG\mag_scheduler.c
 .\objects\mag_scheduler.o: ..\EXTERN\MAG\mag_scheduler.h
-.\objects\mag_scheduler.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mag_scheduler.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mag_scheduler.o: ..\EXTERN\MAG\mag_tick.h
 .\objects\mag_scheduler.o: ..\Inc\main.h
-.\objects\mag_scheduler.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\mag_scheduler.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\mag_scheduler.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\mag_scheduler.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\mag_scheduler.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mag_scheduler.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\mag_scheduler.o: ..\Drivers\PY32F0xx_HAL_Driver\Inc\py32f0xx_ll_rcc.h
 .\objects\mag_scheduler.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f0xx.h
 .\objects\mag_scheduler.o: ..\Drivers\CMSIS\Device\PY32F0xx\Include\py32f030x8.h
@@ -59,4 +59,4 @@
 .\objects\mag_scheduler.o: ..\EXTERN\./APP/APP_COMM/APP_comm.h
 .\objects\mag_scheduler.o: ..\EXTERN\./SERVER/KEY/KEY_FSM.h
 .\objects\mag_scheduler.o: ..\EXTERN\./SERVER/QUEUE/Queue.h
-.\objects\mag_scheduler.o: E:\allSoftware\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\mag_scheduler.o: D:\AllSoftWare\Keil5\ARM\ARMCC\Bin\..\include\stdbool.h
